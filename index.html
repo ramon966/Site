@@ -1,0 +1,976 @@
+<title>Norte Agro</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Public+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+  /* ---------- tokens ---------- */
+  :root{
+    --bg:#f3efe3; --bg-alt:#e9e2cd; --surface:#fffdf8; --surface-2:#ece5d2;
+    --ink:#201e18; --ink-soft:#5a5546; --ink-faint:#948d76;
+    --line:#d9d0b8; --dark:#1c1912; --dark-2:#120f0a;
+    --on-dark:#f3efe3; --on-dark-soft:#b9b29c;
+    --accent:#5c6b35; --accent-strong:#3f4a25; --accent-soft:#dfe3c9;
+    --clay:#a15c3c;
+    --shadow:0 24px 60px -30px rgba(28,25,18,.45);
+    --header-h:76px;
+    --font-display:'Newsreader','Iowan Old Style',Georgia,serif;
+    --font-body:'Public Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --font-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#15130d; --bg-alt:#1c1912; --surface:#201d16; --surface-2:#262218;
+      --ink:#efe9d8; --ink-soft:#b3ab93; --ink-faint:#7d7660;
+      --line:#37331f; --dark:#0d0c08; --dark-2:#090805;
+      --on-dark:#efe9d8; --on-dark-soft:#a89f86;
+      --accent:#9fb463; --accent-strong:#c3d189; --accent-soft:#2b3320;
+      --clay:#c9835e;
+      --shadow:0 24px 60px -30px rgba(0,0,0,.65);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#15130d; --bg-alt:#1c1912; --surface:#201d16; --surface-2:#262218;
+    --ink:#efe9d8; --ink-soft:#b3ab93; --ink-faint:#7d7660;
+    --line:#37331f; --dark:#0d0c08; --dark-2:#090805;
+    --on-dark:#efe9d8; --on-dark-soft:#a89f86;
+    --accent:#9fb463; --accent-strong:#c3d189; --accent-soft:#2b3320;
+    --clay:#c9835e;
+    --shadow:0 24px 60px -30px rgba(0,0,0,.65);
+  }
+
+  /* ---------- base ---------- */
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--font-body); font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;}
+  h1,h2,h3,h4{font-family:var(--font-display); font-weight:600; margin:0; text-wrap:balance; color:inherit;}
+  p{margin:0;}
+  a{color:inherit;}
+  button{font-family:inherit;}
+  ::selection{background:var(--accent-soft); color:var(--accent-strong);}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+  .container{max-width:1220px; margin-inline:auto; padding-inline:clamp(1.25rem,4vw,3rem);}
+  .section{padding-block:clamp(4.25rem,8vw,7rem); scroll-margin-top:calc(var(--header-h) + 10px);}
+  .section--alt{background:var(--bg-alt);}
+  .section--dark{background:var(--dark); color:var(--on-dark);}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:.5em; font-family:var(--font-mono);
+    font-size:.74rem; letter-spacing:.16em; text-transform:uppercase; color:var(--clay);
+    margin:0 0 .9rem;
+  }
+  .eyebrow::before{content:"§"; opacity:.75;}
+  .section--dark .eyebrow{color:var(--clay);}
+  h2.title{font-size:clamp(1.9rem,1.2rem + 2.6vw,2.7rem); line-height:1.12; letter-spacing:-.01em;}
+  h2.title em{font-style:italic; color:var(--accent);}
+  .section--dark h2.title em{color:var(--accent);}
+  .lede{max-width:46ch; color:var(--ink-soft); font-size:1.05rem;}
+  .section--dark .lede{color:var(--on-dark-soft);}
+
+  /* neat-line divider: echoes the dashed boundary line on a survey plat */
+  .neatline{
+    height:14px; width:100%;
+    background:repeating-linear-gradient(to right, var(--line) 0 18px, transparent 18px 30px) center/100% 1px no-repeat;
+  }
+  .section--dark + .neatline, .neatline + .section--dark{ }
+  .neatline--dark{ background-image:repeating-linear-gradient(to right, var(--border-dark,#3a3527) 0 18px, transparent 18px 30px); }
+
+  /* ---------- image placeholder "plate" ---------- */
+  .plate{
+    position:relative; aspect-ratio:var(--ar,4/3); border-radius:2px;
+    background:var(--surface-2); border:1px dashed var(--ink-faint);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:.75rem; text-align:center; padding:1.5rem; overflow:hidden;
+  }
+  .section--dark .plate{ background:rgba(255,255,255,.03); border-color:#544c37; }
+  .plate::before,.plate::after,.plate span.c2::before,.plate span.c2::after{content:"";}
+  .plate__corner{ position:absolute; width:16px; height:16px; }
+  .plate__corner.tl{ top:6px; left:6px; border-top:1.5px solid var(--clay); border-left:1.5px solid var(--clay); }
+  .plate__corner.tr{ top:6px; right:6px; border-top:1.5px solid var(--clay); border-right:1.5px solid var(--clay); }
+  .plate__corner.bl{ bottom:6px; left:6px; border-bottom:1.5px solid var(--clay); border-left:1.5px solid var(--clay); }
+  .plate__corner.br{ bottom:6px; right:6px; border-bottom:1.5px solid var(--clay); border-right:1.5px solid var(--clay); }
+  .plate svg.plate__icon{ width:34px; height:34px; color:var(--ink-faint); stroke-width:1.3; }
+  .plate__cap{ font-family:var(--font-mono); font-size:.72rem; letter-spacing:.02em; color:var(--ink-faint); line-height:1.5; max-width:32ch; }
+
+  /* ---------- icons ---------- */
+  .ic{ width:24px; height:24px; stroke:currentColor; stroke-width:1.6; fill:none; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+
+  /* ---------- header ---------- */
+  header.site{
+    position:fixed; inset:0 0 auto 0; height:var(--header-h); z-index:100;
+    background:var(--dark-2); color:var(--on-dark);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  header.site .container{ height:100%; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
+  .brand{ display:flex; align-items:baseline; gap:.15em; text-decoration:none; color:var(--on-dark); font-family:var(--font-display); }
+  .brand .cap{ font-size:1.5rem; font-weight:600; }
+  .brand .word{ font-size:1.05rem; letter-spacing:.22em; text-transform:uppercase; font-weight:500; }
+  nav.primary{ display:flex; align-items:center; gap:2rem; }
+  nav.primary ul{ list-style:none; display:flex; gap:1.9rem; margin:0; padding:0; }
+  nav.primary a{
+    text-decoration:none; font-size:.9rem; font-weight:500; letter-spacing:.02em; color:var(--on-dark-soft);
+    position:relative; padding-block:.3rem;
+  }
+  nav.primary a:hover, nav.primary a.active{ color:var(--on-dark); }
+  nav.primary a.active::after{ content:""; position:absolute; left:0; right:0; bottom:-2px; height:2px; background:var(--accent); }
+  .head-tools{ display:flex; align-items:center; gap:1rem; }
+  .lang-switch{ display:flex; gap:.15rem; font-family:var(--font-mono); font-size:.72rem; }
+  .lang-switch button{
+    background:none; border:1px solid rgba(255,255,255,.18); color:var(--on-dark-soft);
+    padding:.3rem .5rem; cursor:pointer; letter-spacing:.05em; border-radius:2px;
+  }
+  .lang-switch button.active{ background:var(--accent); border-color:var(--accent); color:var(--dark-2); font-weight:600; }
+  .icon-btn{ background:none; border:none; color:var(--on-dark-soft); cursor:pointer; display:flex; padding:.3rem; }
+  .icon-btn:hover{ color:var(--on-dark); }
+  .stamp-row{ display:flex; gap:.4rem; }
+  .stamp{
+    width:30px; height:30px; border-radius:50%; border:1px dashed rgba(255,255,255,.35);
+    display:flex; align-items:center; justify-content:center; font-family:var(--font-mono);
+    font-size:.6rem; letter-spacing:.03em; color:var(--on-dark-soft); text-decoration:none;
+  }
+  .stamp:hover{ border-color:var(--accent); color:var(--on-dark); border-style:solid; }
+  .stamp.disabled{ opacity:.45; cursor:default; }
+  .menu-toggle{ display:none; }
+
+  @media (max-width:960px){
+    nav.primary{ position:fixed; inset:var(--header-h) 0 0 auto; width:min(340px,86vw); height:calc(100vh - var(--header-h));
+      background:var(--dark-2); flex-direction:column; align-items:flex-start; padding:2rem 1.75rem; gap:2.25rem;
+      transform:translateX(100%); transition:transform .35s ease; overflow-y:auto; border-left:1px solid rgba(255,255,255,.08); }
+    nav.primary.open{ transform:translateX(0); }
+    nav.primary ul{ flex-direction:column; gap:1.25rem; }
+    nav.primary a{ font-size:1.05rem; }
+    .head-tools{ order:2; }
+    .menu-toggle{ display:flex; order:3; }
+    .stamp-row.desktop-only{ display:none; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{ background:var(--dark); color:var(--on-dark); padding-top:calc(var(--header-h) + 4.5rem); padding-bottom:4.5rem; }
+  .hero .container{ display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(2rem,5vw,4rem); align-items:center; }
+  .hero__coord{ font-family:var(--font-mono); font-size:.78rem; letter-spacing:.08em; color:var(--clay); margin-bottom:1.25rem; }
+  .hero h1{ font-size:clamp(2.4rem,1.6rem + 3.4vw,3.9rem); line-height:1.08; letter-spacing:-.01em; margin-bottom:1.3rem; }
+  .hero h1 em{ font-style:italic; color:var(--accent); }
+  .hero p.lede{ color:var(--on-dark-soft); max-width:48ch; margin-bottom:2.1rem; font-size:1.08rem; }
+  .cta-row{ display:flex; flex-wrap:wrap; gap:1rem; }
+  .btn{
+    display:inline-flex; align-items:center; gap:.55rem; font-weight:600; font-size:.95rem;
+    padding:.85rem 1.5rem; border-radius:2px; text-decoration:none; cursor:pointer; border:1px solid transparent;
+    transition:background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn--primary{ background:var(--accent); color:#fff; }
+  .btn--primary:hover{ background:var(--accent-strong); }
+  .btn--outline{ border-color:rgba(255,255,255,.35); color:var(--on-dark); }
+  .btn--outline:hover{ border-color:var(--on-dark); background:rgba(255,255,255,.06); }
+  .btn--solid-dark{ background:var(--dark); color:var(--on-dark); border-color:var(--dark); }
+  .btn--solid-dark:hover{ background:var(--accent-strong); border-color:var(--accent-strong); }
+
+  /* ---------- intro strip ---------- */
+  .intro-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2.5rem; margin-top:3rem; }
+  .intro-item{ display:flex; gap:1rem; align-items:flex-start; }
+  .intro-item .ic-wrap{ width:44px; height:44px; border-radius:50%; background:var(--accent-soft); color:var(--accent-strong);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .intro-item h3{ font-size:1.05rem; margin-bottom:.35rem; }
+  .intro-item p{ color:var(--ink-soft); font-size:.94rem; }
+
+  /* ---------- about ---------- */
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,4.5rem); align-items:center; }
+  .about-copy p{ color:var(--ink-soft); margin-top:1rem; }
+  .badge-year{ display:inline-flex; align-items:center; gap:.5rem; font-family:var(--font-mono); font-size:.78rem;
+    letter-spacing:.06em; color:var(--accent-strong); background:var(--accent-soft); padding:.4rem .8rem; border-radius:2px; margin-top:1.5rem; }
+
+  .purpose{ background:var(--dark); color:var(--on-dark); border-radius:2px; padding:clamp(2.5rem,5vw,4rem); margin-top:4.5rem; }
+  .purpose > p{ max-width:60ch; color:var(--on-dark-soft); font-size:1.05rem; margin-bottom:2.75rem; }
+  .purpose-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2.5rem; }
+  .purpose-item .ic-wrap{ width:40px; height:40px; border:1px solid rgba(255,255,255,.25); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; margin-bottom:1rem; color:var(--accent); }
+  .purpose-item h3{ font-size:1.1rem; margin-bottom:.5rem; }
+  .purpose-item p{ color:var(--on-dark-soft); font-size:.93rem; }
+
+  /* ---------- service cards (territorial) ---------- */
+  .head-row{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:1.5rem; margin-bottom:3rem; }
+  .card-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.75rem; }
+  .card{ background:var(--surface); border:1px solid var(--line); border-radius:2px; overflow:hidden;
+    display:flex; flex-direction:column; transition:transform .25s ease, box-shadow .25s ease; }
+  .card:hover{ transform:translateY(-5px); box-shadow:var(--shadow); }
+  .card .plate{ border:none; border-bottom:1px dashed var(--line); border-radius:0; }
+  .card-body{ padding:1.5rem 1.5rem 1.75rem; }
+  .card-body h3{ font-size:1.08rem; margin-bottom:.5rem; }
+  .card-body p{ color:var(--ink-soft); font-size:.92rem; }
+
+  @media (min-width:961px){
+    .card-grid.cols-5{ grid-template-columns:repeat(3,1fr); }
+    .card-grid.cols-5 .card:nth-child(4),.card-grid.cols-5 .card:nth-child(5){ grid-column:span 1; }
+  }
+
+  /* ---------- environmental (checklist style) ---------- */
+  .env-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,4rem); align-items:start; }
+  .env-list{ display:grid; grid-template-columns:1fr 1fr; gap:1.75rem 2rem; }
+  .env-item{ border-top:1px solid var(--line); padding-top:1.1rem; }
+  .env-item .ic-wrap{ color:var(--accent); margin-bottom:.7rem; }
+  .env-item h3{ font-size:1rem; margin-bottom:.4rem; }
+  .env-item p{ color:var(--ink-soft); font-size:.9rem; }
+
+  /* ---------- projects ---------- */
+  .proj-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-bottom:3rem; }
+  .proj-card{ background:var(--surface); border:1px solid var(--line); border-radius:2px; padding:1.9rem; }
+  .proj-card .ic-wrap{ color:var(--accent); margin-bottom:1.1rem; }
+  .proj-card h3{ font-size:1.08rem; margin-bottom:.55rem; }
+  .proj-card p{ color:var(--ink-soft); font-size:.92rem; }
+  .proj-foot{ display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:center; }
+  .proj-foot p{ color:var(--ink-soft); margin-bottom:1.5rem; }
+
+  /* ---------- testimonial ---------- */
+  .testi-grid{ display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(2rem,5vw,3.5rem); align-items:center; }
+  .testi-card{ position:relative; background:var(--surface-2); border-radius:2px; padding:clamp(2rem,4vw,3rem); }
+  .testi-card .mark{ font-family:var(--font-display); font-size:3.5rem; color:var(--clay); line-height:1; opacity:.7; }
+  .testi-card blockquote{ margin:.5rem 0 1.75rem; font-family:var(--font-display); font-style:italic; font-size:clamp(1.2rem,1rem + .9vw,1.6rem); line-height:1.4; }
+  .testi-card .name{ font-weight:700; }
+  .testi-card .role{ color:var(--ink-soft); font-size:.9rem; }
+  .testi-card hr{ border:none; border-top:1px solid var(--line); width:48px; margin:0 0 1.25rem; }
+
+  /* ---------- contact ---------- */
+  .contact-grid{ display:grid; grid-template-columns:1fr 1.1fr; gap:clamp(2.5rem,5vw,4.5rem); }
+  .contact-info dl{ margin:2rem 0 0; }
+  .info-row{ display:flex; gap:.9rem; align-items:flex-start; margin-bottom:1.4rem; }
+  .info-row .ic-wrap{ color:var(--accent); flex-shrink:0; margin-top:.15rem; }
+  .info-row p{ color:var(--on-dark-soft); }
+  .info-row .strong{ color:var(--on-dark); font-weight:600; }
+  form.contact-form{ background:var(--surface); color:var(--ink); border-radius:2px; padding:clamp(1.75rem,3vw,2.5rem); }
+  .form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.25rem 1.5rem; }
+  .field{ display:flex; flex-direction:column; gap:.4rem; margin-bottom:1.25rem; }
+  .field.full{ grid-column:1/-1; }
+  .field label{ font-size:.8rem; font-weight:600; letter-spacing:.02em; }
+  .field label .req{ color:var(--clay); }
+  .field input, .field textarea{
+    font-family:inherit; font-size:.95rem; padding:.75rem .85rem; border:1px solid var(--line);
+    border-radius:2px; background:var(--bg); color:var(--ink); resize:vertical;
+  }
+  .field input:focus, .field textarea:focus{ border-color:var(--accent); }
+  .field textarea{ min-height:110px; }
+  .form-foot{ display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap; margin-top:.5rem; }
+  .form-note{ font-family:var(--font-mono); font-size:.74rem; color:var(--ink-faint); }
+  .form-success{ font-size:.85rem; color:var(--accent-strong); font-weight:600; display:none; }
+  .form-success.show{ display:block; }
+
+  /* ---------- footer ---------- */
+  footer.site{ background:var(--dark-2); color:var(--on-dark-soft); padding-top:4rem; }
+  .footer-grid{ display:grid; grid-template-columns:1.3fr .8fr .9fr .9fr; gap:2.5rem; padding-bottom:3rem; border-bottom:1px solid rgba(255,255,255,.08); }
+  .footer-grid .brand{ margin-bottom:1rem; }
+  .footer-grid p{ font-size:.9rem; line-height:1.6; max-width:32ch; }
+  .footer-col h4{ font-family:var(--font-mono); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--on-dark); margin-bottom:1.1rem; font-weight:500; }
+  .footer-col ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.75rem; }
+  .footer-col a{ text-decoration:none; color:var(--on-dark-soft); font-size:.9rem; }
+  .footer-col a:hover{ color:var(--on-dark); }
+  .footer-bottom{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; padding-block:1.5rem; font-size:.8rem; }
+
+  /* ---------- reveal ---------- */
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion:reduce){ .reveal{ transition:none; opacity:1; transform:none; } }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:960px){
+    .hero .container{ grid-template-columns:1fr; }
+    .hero{ padding-bottom:0; }
+    .hero .plate{ margin-top:2.5rem; }
+    .intro-grid, .purpose-grid, .card-grid, .proj-grid{ grid-template-columns:1fr 1fr; }
+    .about-grid, .env-wrap, .testi-grid, .contact-grid, .proj-foot{ grid-template-columns:1fr; }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+    .env-list{ grid-template-columns:1fr; }
+  }
+  @media (max-width:640px){
+    .intro-grid, .purpose-grid, .card-grid, .proj-grid, .footer-grid{ grid-template-columns:1fr; }
+    .form-grid{ grid-template-columns:1fr; }
+    nav.primary{ width:100%; }
+  }
+</style>
+
+<script>
+  (function(){
+    try{
+      var saved = localStorage.getItem('na_theme');
+      var theme = saved || 'system';
+      if(theme !== 'system'){ document.documentElement.setAttribute('data-theme', theme); }
+    }catch(e){}
+  })();
+</script>
+
+<header class="site" id="top">
+  <div class="container">
+    <a class="brand" href="#inicio"><span class="cap">N</span><span class="word">orte </span><span class="cap">A</span><span class="word">gro</span></a>
+
+    <nav class="primary" id="primaryNav">
+      <ul>
+        <li><a href="#inicio" data-i18n="nav_home">Início</a></li>
+        <li><a href="#quem-somos" data-i18n="nav_about">Quem somos</a></li>
+        <li><a href="#territorial" data-i18n="nav_territorial">Territorial</a></li>
+        <li><a href="#ambiental" data-i18n="nav_environmental">Ambiental</a></li>
+        <li><a href="#projetos" data-i18n="nav_projects">Projetos</a></li>
+        <li><a href="#contato" data-i18n="nav_contact">Contato</a></li>
+      </ul>
+      <div class="stamp-row" aria-label="Redes sociais">
+        <a class="stamp" href="https://www.instagram.com/norteagroprojetos/" target="_blank" rel="noopener" title="Instagram">IG</a>
+        <a class="stamp" href="https://www.facebook.com/profile.php?id=100089072502488&locale=pt_BR" target="_blank" rel="noopener" title="Facebook">FB</a>
+        <a class="stamp" href="https://www.linkedin.com/company/norte-agro-projetos/posts/?feedView=all" target="_blank" rel="noopener" title="LinkedIn">IN</a>
+        <a class="stamp" href="https://www.youtube.com/@ramoncsgomes" target="_blank" rel="noopener" title="YouTube">YT</a>
+        <span class="stamp disabled" data-i18n-title="contact_whatsapp_note" title="WhatsApp em breve">WA</span>
+      </div>
+    </nav>
+
+    <div class="head-tools">
+      <div class="stamp-row desktop-only">
+        <a class="stamp" href="https://www.instagram.com/norteagroprojetos/" target="_blank" rel="noopener" title="Instagram">IG</a>
+        <a class="stamp" href="https://www.facebook.com/profile.php?id=100089072502488&locale=pt_BR" target="_blank" rel="noopener" title="Facebook">FB</a>
+        <a class="stamp" href="https://www.linkedin.com/company/norte-agro-projetos/posts/?feedView=all" target="_blank" rel="noopener" title="LinkedIn">IN</a>
+        <a class="stamp" href="https://www.youtube.com/@ramoncsgomes" target="_blank" rel="noopener" title="YouTube">YT</a>
+        <span class="stamp disabled" data-i18n-title="contact_whatsapp_note" title="WhatsApp em breve">WA</span>
+      </div>
+      <div class="lang-switch" id="langSwitch">
+        <button type="button" data-lang="pt" class="active">PT</button>
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="es">ES</button>
+      </div>
+      <button class="icon-btn" id="themeToggle" type="button" data-i18n-title="aria_theme" title="Alternar tema">
+        <svg class="ic" id="iconSun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+        <svg class="ic" id="iconMoon" viewBox="0 0 24 24" style="display:none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg>
+      </button>
+      <button class="icon-btn menu-toggle" id="menuToggle" type="button" data-i18n-title="aria_menu" title="Abrir menu">
+        <svg class="ic" id="iconMenu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="ic" id="iconClose" viewBox="0 0 24 24" style="display:none"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="reveal">
+        <p class="hero__coord">13°59'S 49°06'O · Mara Rosa, GO — Brasil</p>
+        <p class="eyebrow" data-i18n="hero_eyebrow">Norte Agro Projetos e Planejamentos Agroambientais</p>
+        <h1 data-i18n="hero_title">Especialistas em <em>regularização</em> de imóveis rurais.</h1>
+        <p class="lede" data-i18n="hero_body">Levantamentos georreferenciados e acompanhamento completo junto às instituições e órgãos competentes — para que sua propriedade fique 100% dentro da lei.</p>
+        <div class="cta-row">
+          <a class="btn btn--primary" href="#contato" data-i18n="hero_cta1">Fale conosco</a>
+          <a class="btn btn--outline" href="#territorial" data-i18n="hero_cta2">Conheça os serviços</a>
+        </div>
+      </div>
+      <div class="plate reveal" style="--ar:4/5">
+        <span class="plate__corner tl"></span><span class="plate__corner tr"></span><span class="plate__corner bl"></span><span class="plate__corner br"></span>
+        <svg class="plate__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="15" r="4"/><path d="M4 34 18 20 26 28 34 18 44 34"/></svg>
+        <p class="plate__cap" data-i18n="hero_imgcap">Espaço reservado: foto aérea (drone) de propriedade rural georreferenciada, com sobreposição do contorno do perímetro</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INTRO STRIP ================= -->
+  <section class="section" aria-labelledby="introTitle">
+    <div class="container">
+      <p class="eyebrow" data-i18n="intro_eyebrow">Visão geral</p>
+      <h2 class="title" id="introTitle" data-i18n="intro_title">Regularização de imóveis rurais, do campo ao <em>cartório</em>.</h2>
+      <p class="lede" style="margin-top:1rem" data-i18n="intro_body">Ajudamos produtores rurais a regularizar suas propriedades com agilidade, unindo levantamento técnico de precisão a um acompanhamento próximo junto a INCRA, IBAMA, SEMAD e demais órgãos competentes.</p>
+
+      <div class="intro-grid">
+        <div class="intro-item reveal">
+          <span class="ic-wrap"><svg class="ic" viewBox="0 0 24 24" stroke-width="1.6"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg></span>
+          <div><h3 data-i18n="intro1_t">Georreferenciamento</h3><p data-i18n="intro1_b">Processo completo de certificação do imóvel junto ao INCRA.</p></div>
+        </div>
+        <div class="intro-item reveal">
+          <span class="ic-wrap"><svg class="ic" viewBox="0 0 24 24" stroke-width="1.6"><rect x="4" y="4" width="13" height="16" rx="1"/><path d="M7 8h7M7 12h7M7 16h4"/><circle cx="17.5" cy="17.5" r="3.2"/><path d="M16 17.5l1 1 2-2"/></svg></span>
+          <div><h3 data-i18n="intro2_t">Cadastros Rurais</h3><p data-i18n="intro2_b">CCIR, CIB, CAR e todos os cadastros obrigatórios em dia.</p></div>
+        </div>
+        <div class="intro-item reveal">
+          <span class="ic-wrap"><svg class="ic" viewBox="0 0 24 24" stroke-width="1.6"><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6Z"/><path d="M9 12c3 0 5-2 5-5-3 0-5 2-5 5Z"/></svg></span>
+          <div><h3 data-i18n="intro3_t">Ambiental</h3><p data-i18n="intro3_b">Regularização ambiental completa para a atividade rural.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="neatline"></div>
+
+  <!-- ================= QUEM SOMOS ================= -->
+  <section class="section section--alt" id="quem-somos">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-copy reveal">
+          <p class="eyebrow" data-i18n="about_eyebrow">Quem somos</p>
+          <h2 class="title" data-i18n="about_title">Seu imóvel rural, <em>regularizado</em>.</h2>
+          <p data-i18n="about_p1">Desde 2016 a Norte Agro é referência em regularização de imóveis rurais, dedicada à organização e gestão de territórios com soluções técnicas inovadoras para o produtor rural.</p>
+          <p data-i18n="about_p2">Oferecemos serviços personalizados que vão do georreferenciamento à regularização ambiental, simplificando processos complexos e garantindo legalidade e tranquilidade para os nossos clientes.</p>
+          <span class="badge-year"><svg class="ic" viewBox="0 0 24 24" width="16" height="16" stroke-width="1.8"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg><span data-i18n="about_badge">Desde 2016</span></span>
+        </div>
+        <div class="plate reveal" style="--ar:4/5">
+          <span class="plate__corner tl"></span><span class="plate__corner tr"></span><span class="plate__corner bl"></span><span class="plate__corner br"></span>
+          <svg class="plate__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="15" r="4"/><path d="M4 34 18 20 26 28 34 18 44 34"/></svg>
+          <p class="plate__cap" data-i18n="about_imgcap">Espaço reservado: foto da equipe técnica da Norte Agro em campo, com equipamento de topografia</p>
+        </div>
+      </div>
+
+      <div class="purpose reveal">
+        <p data-i18n="purpose_body">Nosso propósito é impactar efetivamente a regularização de imóveis rurais, auxiliando o produtor em cada etapa da jornada de legalização.</p>
+        <div class="purpose-grid">
+          <div class="purpose-item">
+            <span class="ic-wrap"><svg class="ic" viewBox="0 0 24 24" stroke-width="1.6"><path d="M7 3h7l4 4v14H7Z"/><path d="M14 3v4h4"/><path d="M9.5 14l2 2 4-4"/></svg></span>
+            <h3 data-i18n="mission_t">Missão</h3>
+            <p data-i18n="mission_b">Auxiliar de forma simplificada e objetiva, por meio de trabalhos técnicos especializados, encurtando o caminho com estratégias assertivas.</p>
+          </div>
+          <div class="purpose-item">
+            <span class="ic-wrap"><svg class="ic" viewBox="0 0 24 24" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 6-6 2 2-6Z"/><circle cx="12" cy="12" r="1"/></svg></span>
+            <h3 data-i18n="vision_t">Visão</h3>
+            <p data-i18n="vision_b">Ser responsável pelo maior movimento de regularização de imóveis rurais do Brasil, com propostas eficientes de legalização.</p>
+          </div>
+          <div class="purpose-item">
+            <span class="ic-wrap"><svg class="ic" viewBox="0 0 24 24" stroke-width="1.6"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7 2 13a3 3 0 0 0 6 0Z"/><path d="M19 7l-3 6a3 3 0 0 0 6 0Z"/><path d="M8 21h8"/></svg></span>
+            <h3 data-i18n="values_t">Valores</h3>
+            <p data-i18n="values_b">Comunicação clara e precisa, sempre a serviço do produtor, com o compromisso de entregar o melhor que podemos oferecer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="neatline"></div>
+
+  <!-- ================= TERRITORIAL ================= -->
+  <section class="section" id="territorial">
+    <div class="container">
+      <div class="head-row">
+        <div>
+          <p class="eyebrow" data-i18n="terr_eyebrow">Territorial</p>
+          <h2 class="title" data-i18n="terr_title">Precisão em cada <em>limite</em>.</h2>
+        </div>
+        <p class="lede" data-i18n="terr_body">Do marco em campo ao mapa certificado — levantamentos técnicos que dão base legal ao seu território.</p>
+      </div>
+
+      <div class="card-grid cols-5">
+        <article class="card reveal">
+          <div class="plate" style="--ar:4/3">
+            <svg class="plate__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="15" r="4"/><path d="M4 34 18 20 26 28 34 18 44 34"/></svg>
+            <p class="plate__cap" data-i18n="t1_cap">Técnico operando estação total em campo</p>
+          </div>
+          <div class="card-body"><h3 data-i18n="t1_t">Georreferenciamento</h3><p data-i18n="t1_b">Levantamento de precisão e certificação do imóvel junto ao INCRA, conforme a Lei 10.267.</p></div>
+        </article>
+        <article class="card reveal">
+          <div class="plate" style="--ar:4/3">
+            <svg class="plate__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="15" r="4"/><path d="M4 34 18 20 26 28 34 18 44 34"/></svg>
+            <p class="plate__cap" data-i18n="t2_cap">Mapa topográfico com curvas de nível</p>
+          </div>
+          <div class="card-body"><h3 data-i18n="t2_t">Levantamento Topográfico</h3><p data-i18n="t2_b">Medição detalhada de limites, áreas e curvas de nível da propriedade.</p></div>
+        </article>
+        <article class="card reveal">
+          <div class="plate" style="--ar:4/3">
+            <svg class="plate__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="15" r="4"/><path d="M4 34 18 20 26 28 34 18 44 34"/></svg>
+            <p class="plate__cap" data-i18n="t3_cap">Marco de piquetagem cravado em campo</p>
+          </div>
+          <div class="card-body"><h3 data-i18n="t3_t">Piquetagem</h3><p data-i18n="t3_b">Demarcação física dos limites do imóvel diretamente em campo, com marcos e coordenadas.</p></div>
+        </article>
+        <article class="card reveal">
+          <div class="plate" style="--ar:4/3">
+            <svg class="plate__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="15" r="4"/><path d="M4 34 18 20 26 28 34 18 44 34"/></svg>
+            <p class="plate__cap" data-i18n="t4_cap">Mapa de divisão de gleba em parcelas</p>
+          </div>
+          <div class="card-body"><h3 data-i18n="t4_t">Divisão de Imóveis Rurais</h3><p data-i18n="t4_b">Parcelamento técnico para partilha, venda ou processos de sucessão familiar.</p></div>
+        </article>
+        <article class="card reveal">
+          <div class="plate" style="--ar:4/3">
+            <svg class="plate__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="15" r="4"/><path d="M4 34 18 20 26 28 34 18 44 34"/></svg>
+            <p class="plate__cap" data-i18n="t5_cap">Ortomosaico aéreo gerado por drone</p>
+          </div>
+          <div class="card-body"><h3 data-i18n="t5_t">Mapeamentos</h3><p data-i18n="t5_b">Projetos de mapeamento com auxílio de aerolevantamento por drone.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="neatline"></div>
+
+  <!-- ================= AMBIENTAL ================= -->
+  <section class="section section--alt" id="ambiental">
+    <div class="container">
+      <div class="env-wrap">
+        <div class="plate reveal" style="--ar:1/1">
+          <span class="plate__corner tl"></span><span class="plate__corner tr"></span><span class="plate__corner bl"></span><span class="plate__corner br"></span>
+          <svg class="plate__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="15" r="4"/><path d="M4 34 18 20 26 28 34 18 44 34"/></svg>
+          <p class="plate__cap" data-i18n="env_imgcap">Espaço reservado: área de preservação permanente à beira de curso d'água</p>
+        </div>
+
+        <div class="reveal">
+          <p class="eyebrow" data-i18n="env_eyebrow">Ambiental</p>
+          <h2 class="title" data-i18n="env_title">Conformidade com <em>tranquilidade</em>.</h2>
+          <p class="lede" style="margin:.9rem 0 2rem" data-i18n="env_body">Regularização ambiental completa, para que sua atividade rural esteja segura perante a lei.</p>
+
+          <div class="env-list">
+            <div class="env-item">
+              <span class="ic-wrap"><svg class="ic" viewBox="0 0 24 24" stroke-width="1.6" width="26" height="26"><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6Z"/><path d="M9 12c3 0 5-2 5-5-3 0-5 2-5 5Z"/></svg></span>
+              <h3 data-i18n="e1_t">CAR — Cadastro Ambiental Rural</h3><p data-i18n="e1_b">Inscrição, atualização e retificação do cadastro ambiental da propriedade.</p>
+            </div>
+            <div class="env-item">
+              <span class="ic-wrap"><svg class="ic" viewBox="0 0 24 24" stroke-width="1.6" width="26" height="26"><path d="M7 3h7l4 4v14H7Z"/><path d="M14 3v4h4"/><path d="M9.5 14l2 2 4-4"/></svg></span>
+              <h3 data-i18n="e2_t">Licenciamento Ambiental</h3><p data-i18n="e2_b">Obtenção de licenças e outorgas junto aos órgãos ambientais competentes.</p>
+            </div>
+            <div class="env-item">
+              <span class="ic-wrap"><svg class="ic" viewBox="0 0 24 24" stroke-width="1.6" width="26" height="26"><path d="M4 12a8 8 0 0 1 13-6"/><path d="M20 12a8 8 0 0 1-13 6"/><path d="M17 3v4h-4"/><path d="M7 21v-4h4"/></svg></span>
+              <h3 data-i18n="e3_t">Recuperação de Áreas Degradadas</h3><p data-i18n="e3_b">Projetos técnicos de PRAD para recomposição de áreas de preservação.</p>
+            </div>
+            <div class="env-item">
+              <span class="ic-wrap"><svg class="ic" viewBox="0 0 24 24" stroke-width="1.6" width="26" height="26"><rect x="4" y="4" width="13" height="16" rx="1"/><path d="M7 8h7M7 12h7M7 16h4"/><circle cx="17.5" cy="17.5" r="3.2"/><path d="M16 17.5l1 1 2-2"/></svg></span>
+              <h3 data-i18n="e4_t">CCIR e CIB</h3><p data-i18n="e4_b">Emissão e regularização dos certificados obrigatórios do imóvel rural.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="neatline"></div>
+
+  <!-- ================= PROJETOS ================= -->
+  <section class="section" id="projetos">
+    <div class="container">
+      <div class="head-row">
+        <div>
+          <p class="eyebrow" data-i18n="proj_eyebrow">Projetos e Planejamentos</p>
+          <h2 class="title" data-i18n="proj_title">Estratégia para o seu <em>negócio rural</em>.</h2>
+        </div>
+        <p class="lede" data-i18n="proj_body">Levantamentos técnicos que apoiam decisões — do acesso ao crédito ao planejamento de longo prazo.</p>
+      </div>
+
+      <div class="proj-grid">
+        <div class="proj-card reveal">
+          <span class="ic-wrap"><svg class="ic" viewBox="0 0 24 24" stroke-width="1.6"><circle cx="12" cy="14" r="7"/><path d="M12 14V6"/><path d="M12 6c-2 0-3 1.4-3 3 2 0 3-1.2 3-3Z"/><path d="M12 6c2 0 3 1.4 3 3-2 0-3-1.2-3-3Z"/></svg></span>
+          <h3 data-i18n="p1_t">Projetos Agropecuários para Crédito Rural</h3>
+          <p data-i18n="p1_b">Projetos técnicos orientados por equipe capacitada, para acesso a linhas de crédito nas principais instituições financeiras.</p>
+        </div>
+        <div class="proj-card reveal">
+          <span class="ic-wrap"><svg class="ic" viewBox="0 0 24 24" stroke-width="1.6"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7 2 13a3 3 0 0 0 6 0Z"/><path d="M19 7l-3 6a3 3 0 0 0 6 0Z"/><path d="M8 21h8"/></svg></span>
+          <h3 data-i18n="p2_t">Laudos e Perícias</h3>
+          <p data-i18n="p2_b">Avaliação de terra nua e benfeitorias conforme as normas técnicas da ABNT.</p>
+        </div>
+        <div class="proj-card reveal">
+          <span class="ic-wrap"><svg class="ic" viewBox="0 0 24 24" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 6-6 2 2-6Z"/><circle cx="12" cy="12" r="1"/></svg></span>
+          <h3 data-i18n="p3_t">Planejamento Estratégico</h3>
+          <p data-i18n="p3_b">Diagnósticos e levantamentos que embasam as decisões do produtor rural.</p>
+        </div>
+      </div>
+
+      <div class="proj-foot">
+        <div class="plate reveal" style="--ar:16/10">
+          <span class="plate__corner tl"></span><span class="plate__corner tr"></span><span class="plate__corner bl"></span><span class="plate__corner br"></span>
+          <svg class="plate__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="15" r="4"/><path d="M4 34 18 20 26 28 34 18 44 34"/></svg>
+          <p class="plate__cap" data-i18n="proj_imgcap">Espaço reservado: reunião de planejamento com mapas e projeto agropecuário sobre a mesa</p>
+        </div>
+        <div class="reveal">
+          <p data-i18n="proj_cta_lead">Quer saber qual serviço faz sentido para o seu imóvel?</p>
+          <a class="btn btn--primary" href="#contato" data-i18n="proj_cta">Saiba mais</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="neatline"></div>
+
+  <!-- ================= TESTIMONIAL ================= -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="testi-grid">
+        <div class="plate reveal" style="--ar:3/4">
+          <span class="plate__corner tl"></span><span class="plate__corner tr"></span><span class="plate__corner bl"></span><span class="plate__corner br"></span>
+          <svg class="plate__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="16" r="7"/><path d="M10 42c0-8 6-13 14-13s14 5 14 13"/></svg>
+          <p class="plate__cap" data-i18n="test_imgcap">Espaço reservado: retrato de Ramon Gomes, proprietário da Norte Agro</p>
+        </div>
+        <div class="testi-card reveal">
+          <span class="mark">“</span>
+          <blockquote data-i18n="test_quote">Nosso foco é na solução. Temos a missão de trazer a regularização total dos imóveis dos nossos clientes.</blockquote>
+          <hr>
+          <p class="name">Ramon Gomes</p>
+          <p class="role" data-i18n="test_role">Proprietário da Norte Agro</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTATO ================= -->
+  <section class="section section--dark" id="contato">
+    <div class="container">
+      <p class="eyebrow" data-i18n="contact_eyebrow">Contato</p>
+      <h2 class="title" data-i18n="contact_title">Vamos regularizar o seu <em>imóvel</em>.</h2>
+      <p class="lede" style="margin:.9rem 0 3rem" data-i18n="contact_body">Preencha o formulário ou fale com a gente pelos canais abaixo.</p>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div class="info-row">
+            <span class="ic-wrap"><svg class="ic" viewBox="0 0 24 24" stroke-width="1.6"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg></span>
+            <p><span class="strong">Rua Santa Catarina, 363</span><br>Centro, Mara Rosa - GO · CEP 76490-000</p>
+          </div>
+          <div class="info-row">
+            <span class="ic-wrap"><svg class="ic" viewBox="0 0 24 24" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+            <p><a href="mailto:atendimento@norteagroprojetos.com.br" class="strong" style="text-decoration:none">atendimento@norteagroprojetos.com.br</a></p>
+          </div>
+          <div class="info-row">
+            <span class="ic-wrap"><svg class="ic" viewBox="0 0 24 24" stroke-width="1.6"><path d="M4 5c0 8.3 6.7 15 15 15l3-4-6-2-2 2c-2.4-1-4-2.6-5-5l2-2-2-6-4 1Z"/></svg></span>
+            <p class="strong" style="opacity:.6" data-i18n="contact_whatsapp_note">WhatsApp em breve</p>
+          </div>
+
+          <div class="stamp-row" style="margin-top:1.75rem">
+            <a class="stamp" href="https://www.instagram.com/norteagroprojetos/" target="_blank" rel="noopener" title="Instagram">IG</a>
+            <a class="stamp" href="https://www.facebook.com/profile.php?id=100089072502488&locale=pt_BR" target="_blank" rel="noopener" title="Facebook">FB</a>
+            <a class="stamp" href="https://www.linkedin.com/company/norte-agro-projetos/posts/?feedView=all" target="_blank" rel="noopener" title="LinkedIn">IN</a>
+            <a class="stamp" href="https://www.youtube.com/@ramoncsgomes" target="_blank" rel="noopener" title="YouTube">YT</a>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" id="contactForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="f-nome" data-i18n="form_name">Nome <span class="req">*</span></label>
+              <input id="f-nome" name="nome" type="text" required data-i18n-ph="form_name_ph" placeholder="Insira seu nome">
+            </div>
+            <div class="field">
+              <label for="f-email" data-i18n="form_email">Email <span class="req">*</span></label>
+              <input id="f-email" name="email" type="email" required data-i18n-ph="form_email_ph" placeholder="Insira seu email">
+            </div>
+            <div class="field">
+              <label for="f-tel" data-i18n="form_phone">Telefone</label>
+              <input id="f-tel" name="telefone" type="tel" data-i18n-ph="form_phone_ph" placeholder="Insira seu telefone">
+            </div>
+            <div class="field">
+              <label for="f-end" data-i18n="form_address">Endereço</label>
+              <input id="f-end" name="endereco" type="text" data-i18n-ph="form_address_ph" placeholder="Insira seu endereço">
+            </div>
+            <div class="field full">
+              <label for="f-assunto" data-i18n="form_subject">Assunto</label>
+              <input id="f-assunto" name="assunto" type="text" data-i18n-ph="form_subject_ph" placeholder="Insira o assunto">
+            </div>
+            <div class="field full">
+              <label for="f-msg" data-i18n="form_message">Mensagem</label>
+              <textarea id="f-msg" name="mensagem" data-i18n-ph="form_message_ph" placeholder="Digite sua mensagem aqui"></textarea>
+            </div>
+          </div>
+          <div class="form-foot">
+            <button class="btn btn--primary" type="submit" data-i18n="form_submit">Enviar</button>
+            <p class="form-success" id="formSuccess" data-i18n="form_success">Mensagem registrada. Em breve nossa equipe entrará em contato.</p>
+          </div>
+          <p class="form-note" style="margin-top:1rem" data-i18n="form_note">Formulário ilustrativo — em breve conectado ao nosso atendimento.</p>
+        </form>
+      </div>
+
+      <div class="plate reveal" style="--ar:21/6; margin-top:3.5rem">
+        <span class="plate__corner tl"></span><span class="plate__corner tr"></span><span class="plate__corner bl"></span><span class="plate__corner br"></span>
+        <svg class="plate__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="14" r="4"/><path d="M24 18v20M16 42h16"/></svg>
+        <p class="plate__cap" data-i18n="contact_map_cap">Espaço reservado: mapa interativo com a localização da Norte Agro em Mara Rosa - GO</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#inicio" style="color:var(--on-dark)"><span class="cap">N</span><span class="word">orte </span><span class="cap">A</span><span class="word">gro</span></a>
+        <p data-i18n="footer_tagline">Regularização de imóveis rurais com precisão técnica e tranquilidade jurídica.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_nav_title">Navegação</h4>
+        <ul>
+          <li><a href="#quem-somos" data-i18n="nav_about">Quem somos</a></li>
+          <li><a href="#territorial" data-i18n="nav_territorial">Territorial</a></li>
+          <li><a href="#ambiental" data-i18n="nav_environmental">Ambiental</a></li>
+          <li><a href="#projetos" data-i18n="nav_projects">Projetos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_contact_title">Contato</h4>
+        <ul>
+          <li><a href="mailto:atendimento@norteagroprojetos.com.br">atendimento@norteagroprojetos.com.br</a></li>
+          <li>Rua Santa Catarina, 363 — Mara Rosa, GO</li>
+          <li style="opacity:.6" data-i18n="contact_whatsapp_note">WhatsApp em breve</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_follow_title">Redes sociais</h4>
+        <div class="stamp-row">
+          <a class="stamp" href="https://www.instagram.com/norteagroprojetos/" target="_blank" rel="noopener" title="Instagram">IG</a>
+          <a class="stamp" href="https://www.facebook.com/profile.php?id=100089072502488&locale=pt_BR" target="_blank" rel="noopener" title="Facebook">FB</a>
+          <a class="stamp" href="https://www.linkedin.com/company/norte-agro-projetos/posts/?feedView=all" target="_blank" rel="noopener" title="LinkedIn">IN</a>
+          <a class="stamp" href="https://www.youtube.com/@ramoncsgomes" target="_blank" rel="noopener" title="YouTube">YT</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year">2026</span> Norte Agro Projetos e Planejamentos Agroambientais LTDA. <span data-i18n="footer_rights">Todos os direitos reservados.</span></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var I18N = {
+    pt:{
+      nav_home:"Início", nav_about:"Quem somos", nav_territorial:"Territorial", nav_environmental:"Ambiental", nav_projects:"Projetos", nav_contact:"Contato",
+      hero_eyebrow:"Norte Agro Projetos e Planejamentos Agroambientais",
+      hero_title:'Especialistas em <em>regularização</em> de imóveis rurais.',
+      hero_body:"Levantamentos georreferenciados e acompanhamento completo junto às instituições e órgãos competentes — para que sua propriedade fique 100% dentro da lei.",
+      hero_cta1:"Fale conosco", hero_cta2:"Conheça os serviços",
+      hero_imgcap:"Espaço reservado: foto aérea (drone) de propriedade rural georreferenciada, com sobreposição do contorno do perímetro",
+      intro_eyebrow:"Visão geral",
+      intro_title:'Regularização de imóveis rurais, do campo ao <em>cartório</em>.',
+      intro_body:"Ajudamos produtores rurais a regularizar suas propriedades com agilidade, unindo levantamento técnico de precisão a um acompanhamento próximo junto a INCRA, IBAMA, SEMAD e demais órgãos competentes.",
+      intro1_t:"Georreferenciamento", intro1_b:"Processo completo de certificação do imóvel junto ao INCRA.",
+      intro2_t:"Cadastros Rurais", intro2_b:"CCIR, CIB, CAR e todos os cadastros obrigatórios em dia.",
+      intro3_t:"Ambiental", intro3_b:"Regularização ambiental completa para a atividade rural.",
+      about_eyebrow:"Quem somos", about_title:'Seu imóvel rural, <em>regularizado</em>.', about_badge:"Desde 2016",
+      about_p1:"Desde 2016 a Norte Agro é referência em regularização de imóveis rurais, dedicada à organização e gestão de territórios com soluções técnicas inovadoras para o produtor rural.",
+      about_p2:"Oferecemos serviços personalizados que vão do georreferenciamento à regularização ambiental, simplificando processos complexos e garantindo legalidade e tranquilidade para os nossos clientes.",
+      about_imgcap:"Espaço reservado: foto da equipe técnica da Norte Agro em campo, com equipamento de topografia",
+      purpose_body:"Nosso propósito é impactar efetivamente a regularização de imóveis rurais, auxiliando o produtor em cada etapa da jornada de legalização.",
+      mission_t:"Missão", mission_b:"Auxiliar de forma simplificada e objetiva, por meio de trabalhos técnicos especializados, encurtando o caminho com estratégias assertivas.",
+      vision_t:"Visão", vision_b:"Ser responsável pelo maior movimento de regularização de imóveis rurais do Brasil, com propostas eficientes de legalização.",
+      values_t:"Valores", values_b:"Comunicação clara e precisa, sempre a serviço do produtor, com o compromisso de entregar o melhor que podemos oferecer.",
+      terr_eyebrow:"Territorial", terr_title:'Precisão em cada <em>limite</em>.', terr_body:"Do marco em campo ao mapa certificado — levantamentos técnicos que dão base legal ao seu território.",
+      t1_t:"Georreferenciamento", t1_b:"Levantamento de precisão e certificação do imóvel junto ao INCRA, conforme a Lei 10.267.", t1_cap:"Técnico operando estação total em campo",
+      t2_t:"Levantamento Topográfico", t2_b:"Medição detalhada de limites, áreas e curvas de nível da propriedade.", t2_cap:"Mapa topográfico com curvas de nível",
+      t3_t:"Piquetagem", t3_b:"Demarcação física dos limites do imóvel diretamente em campo, com marcos e coordenadas.", t3_cap:"Marco de piquetagem cravado em campo",
+      t4_t:"Divisão de Imóveis Rurais", t4_b:"Parcelamento técnico para partilha, venda ou processos de sucessão familiar.", t4_cap:"Mapa de divisão de gleba em parcelas",
+      t5_t:"Mapeamentos", t5_b:"Projetos de mapeamento com auxílio de aerolevantamento por drone.", t5_cap:"Ortomosaico aéreo gerado por drone",
+      env_eyebrow:"Ambiental", env_title:'Conformidade com <em>tranquilidade</em>.', env_body:"Regularização ambiental completa, para que sua atividade rural esteja segura perante a lei.",
+      env_imgcap:"Espaço reservado: área de preservação permanente à beira de curso d'água",
+      e1_t:"CAR — Cadastro Ambiental Rural", e1_b:"Inscrição, atualização e retificação do cadastro ambiental da propriedade.",
+      e2_t:"Licenciamento Ambiental", e2_b:"Obtenção de licenças e outorgas junto aos órgãos ambientais competentes.",
+      e3_t:"Recuperação de Áreas Degradadas", e3_b:"Projetos técnicos de PRAD para recomposição de áreas de preservação.",
+      e4_t:"CCIR e CIB", e4_b:"Emissão e regularização dos certificados obrigatórios do imóvel rural.",
+      proj_eyebrow:"Projetos e Planejamentos", proj_title:'Estratégia para o seu <em>negócio rural</em>.', proj_body:"Levantamentos técnicos que apoiam decisões — do acesso ao crédito ao planejamento de longo prazo.",
+      p1_t:"Projetos Agropecuários para Crédito Rural", p1_b:"Projetos técnicos orientados por equipe capacitada, para acesso a linhas de crédito nas principais instituições financeiras.",
+      p2_t:"Laudos e Perícias", p2_b:"Avaliação de terra nua e benfeitorias conforme as normas técnicas da ABNT.",
+      p3_t:"Planejamento Estratégico", p3_b:"Diagnósticos e levantamentos que embasam as decisões do produtor rural.",
+      proj_cta_lead:"Quer saber qual serviço faz sentido para o seu imóvel?", proj_cta:"Saiba mais",
+      proj_imgcap:"Espaço reservado: reunião de planejamento com mapas e projeto agropecuário sobre a mesa",
+      test_quote:"Nosso foco é na solução. Temos a missão de trazer a regularização total dos imóveis dos nossos clientes.",
+      test_role:"Proprietário da Norte Agro", test_imgcap:"Espaço reservado: retrato de Ramon Gomes, proprietário da Norte Agro",
+      contact_eyebrow:"Contato", contact_title:'Vamos regularizar o seu <em>imóvel</em>.', contact_body:"Preencha o formulário ou fale com a gente pelos canais abaixo.",
+      form_name:'Nome <span class="req">*</span>', form_email:'Email <span class="req">*</span>', form_phone:"Telefone", form_address:"Endereço", form_subject:"Assunto", form_message:"Mensagem",
+      form_name_ph:"Insira seu nome", form_email_ph:"Insira seu email", form_phone_ph:"Insira seu telefone", form_address_ph:"Insira seu endereço", form_subject_ph:"Insira o assunto", form_message_ph:"Digite sua mensagem aqui",
+      form_submit:"Enviar", form_note:"Formulário ilustrativo — em breve conectado ao nosso atendimento.", form_success:"Mensagem registrada. Em breve nossa equipe entrará em contato.",
+      contact_whatsapp_note:"WhatsApp em breve", contact_map_cap:"Espaço reservado: mapa interativo com a localização da Norte Agro em Mara Rosa - GO",
+      footer_tagline:"Regularização de imóveis rurais com precisão técnica e tranquilidade jurídica.",
+      footer_nav_title:"Navegação", footer_contact_title:"Contato", footer_follow_title:"Redes sociais", footer_rights:"Todos os direitos reservados.",
+      aria_theme:"Alternar tema", aria_menu:"Abrir menu"
+    },
+    en:{
+      nav_home:"Home", nav_about:"About Us", nav_territorial:"Land Surveying", nav_environmental:"Environmental", nav_projects:"Projects", nav_contact:"Contact",
+      hero_eyebrow:"Norte Agro Rural Land Projects & Planning",
+      hero_title:'Specialists in <em>regularizing</em> rural land.',
+      hero_body:"Georeferenced surveys and full support before the relevant institutions and agencies — so your property stands 100% within the law.",
+      hero_cta1:"Get in touch", hero_cta2:"See our services",
+      hero_imgcap:"Image placeholder: aerial drone photo of a georeferenced rural property, with parcel boundary overlay",
+      intro_eyebrow:"Overview",
+      intro_title:'Rural land regularization, from the field to the <em>registry</em>.',
+      intro_body:"We help rural producers regularize their properties quickly, combining precision technical surveying with close support before INCRA, IBAMA, SEMAD, and other relevant agencies.",
+      intro1_t:"Georeferencing", intro1_b:"Full property certification process with INCRA.",
+      intro2_t:"Rural Registries", intro2_b:"CCIR, CIB, CAR, and every mandatory registry kept current.",
+      intro3_t:"Environmental", intro3_b:"Complete environmental regularization for rural activity.",
+      about_eyebrow:"About us", about_title:'Your rural property, <em>regularized</em>.', about_badge:"Since 2016",
+      about_p1:"Since 2016, Norte Agro has been a reference in rural land regularization, dedicated to organizing and managing territories with innovative technical solutions for rural producers.",
+      about_p2:"We offer personalized services ranging from georeferencing to environmental regularization, simplifying complex processes and ensuring legality and peace of mind for our clients.",
+      about_imgcap:"Image placeholder: photo of Norte Agro's technical team in the field, with surveying equipment",
+      purpose_body:"Our purpose is to make a real impact on rural land regularization, supporting producers through every step of the legalization journey.",
+      mission_t:"Mission", mission_b:"Provide simple, objective support through specialized technical work, shortening the path with assertive strategies.",
+      vision_t:"Vision", vision_b:"To lead the largest movement for rural land regularization in Brazil, with efficient legalization proposals.",
+      values_t:"Values", values_b:"Clear, precise communication, always in service of the producer, committed to delivering the best we can offer.",
+      terr_eyebrow:"Land Surveying", terr_title:'Precision at every <em>boundary</em>.', terr_body:"From the field marker to the certified map — technical surveys that give your land its legal foundation.",
+      t1_t:"Georeferencing", t1_b:"Precision surveying and property certification with INCRA, in accordance with Law 10,267.", t1_cap:"Technician operating a total station in the field",
+      t2_t:"Topographic Survey", t2_b:"Detailed measurement of the property's boundaries, area, and contour lines.", t2_cap:"Topographic map with contour lines",
+      t3_t:"Boundary Staking", t3_b:"Physical staking of the property's boundaries directly in the field, with markers and coordinates.", t3_cap:"Boundary stake set in the field",
+      t4_t:"Rural Property Division", t4_b:"Technical parceling for inheritance, sale, or family succession processes.", t4_cap:"Map showing a plot divided into parcels",
+      t5_t:"Mapping", t5_b:"Mapping projects supported by drone aerial surveys.", t5_cap:"Aerial orthomosaic generated by drone",
+      env_eyebrow:"Environmental", env_title:'Compliance with <em>peace of mind</em>.', env_body:"Complete environmental regularization, so your rural activity stays safe under the law.",
+      env_imgcap:"Image placeholder: permanent preservation area along a watercourse",
+      e1_t:"CAR — Rural Environmental Registry", e1_b:"Registration, updating, and correction of the property's environmental record.",
+      e2_t:"Environmental Licensing", e2_b:"Obtaining licenses and permits from the relevant environmental agencies.",
+      e3_t:"Degraded Area Recovery", e3_b:"Technical PRAD projects to restore preservation areas.",
+      e4_t:"CCIR & CIB Certificates", e4_b:"Issuance and regularization of the rural property's mandatory certificates.",
+      proj_eyebrow:"Projects & Planning", proj_title:'Strategy for your <em>rural business</em>.', proj_body:"Technical surveys that support decisions — from credit access to long-term planning.",
+      p1_t:"Agricultural Projects for Rural Credit", p1_b:"Technical projects guided by a qualified team, for access to credit lines at the leading financial institutions.",
+      p2_t:"Reports & Expert Appraisals", p2_b:"Appraisal of bare land and improvements in accordance with ABNT technical standards.",
+      p3_t:"Strategic Planning", p3_b:"Diagnostics and surveys that inform the rural producer's decisions.",
+      proj_cta_lead:"Want to know which service fits your property?", proj_cta:"Learn more",
+      proj_imgcap:"Image placeholder: planning meeting with maps and an agricultural project on the table",
+      test_quote:"Our focus is on the solution. Our mission is to bring our clients' properties to full regularization.",
+      test_role:"Owner of Norte Agro", test_imgcap:"Image placeholder: portrait of Ramon Gomes, owner of Norte Agro",
+      contact_eyebrow:"Contact", contact_title:"Let's regularize your <em>property</em>.", contact_body:"Fill out the form or reach us through the channels below.",
+      form_name:'Name <span class="req">*</span>', form_email:'Email <span class="req">*</span>', form_phone:"Phone", form_address:"Address", form_subject:"Subject", form_message:"Message",
+      form_name_ph:"Enter your name", form_email_ph:"Enter your email", form_phone_ph:"Enter your phone", form_address_ph:"Enter your address", form_subject_ph:"Enter the subject", form_message_ph:"Type your message here",
+      form_submit:"Send", form_note:"Illustrative form — soon to be connected to our support team.", form_success:"Message recorded. Our team will be in touch soon.",
+      contact_whatsapp_note:"WhatsApp coming soon", contact_map_cap:"Image placeholder: interactive map showing Norte Agro's location in Mara Rosa - GO",
+      footer_tagline:"Rural land regularization with technical precision and legal peace of mind.",
+      footer_nav_title:"Navigation", footer_contact_title:"Contact", footer_follow_title:"Social media", footer_rights:"All rights reserved.",
+      aria_theme:"Toggle theme", aria_menu:"Open menu"
+    },
+    es:{
+      nav_home:"Inicio", nav_about:"Quiénes somos", nav_territorial:"Territorial", nav_environmental:"Ambiental", nav_projects:"Proyectos", nav_contact:"Contacto",
+      hero_eyebrow:"Norte Agro Proyectos y Planificación Agroambiental",
+      hero_title:'Especialistas en <em>regularización</em> de propiedades rurales.',
+      hero_body:"Levantamientos georreferenciados y acompañamiento completo ante las instituciones y organismos competentes, para que su propiedad quede 100% dentro de la ley.",
+      hero_cta1:"Hablemos", hero_cta2:"Conozca los servicios",
+      hero_imgcap:"Espacio reservado: foto aérea (dron) de una propiedad rural georreferenciada, con la superposición del contorno del perímetro",
+      intro_eyebrow:"Visión general",
+      intro_title:'Regularización de inmuebles rurales, del campo al <em>registro</em>.',
+      intro_body:"Ayudamos a los productores rurales a regularizar sus propiedades con agilidad, combinando un levantamiento técnico de precisión con un acompañamiento cercano ante el INCRA, IBAMA, SEMAD y demás organismos competentes.",
+      intro1_t:"Georreferenciación", intro1_b:"Proceso completo de certificación del inmueble ante el INCRA.",
+      intro2_t:"Catastros Rurales", intro2_b:"CCIR, CIB, CAR y todos los catastros obligatorios al día.",
+      intro3_t:"Ambiental", intro3_b:"Regularización ambiental completa para la actividad rural.",
+      about_eyebrow:"Quiénes somos", about_title:'Su propiedad rural, <em>regularizada</em>.', about_badge:"Desde 2016",
+      about_p1:"Desde 2016, Norte Agro es referencia en regularización de inmuebles rurales, dedicada a la organización y gestión de territorios con soluciones técnicas innovadoras para el productor rural.",
+      about_p2:"Ofrecemos servicios personalizados que van desde la georreferenciación hasta la regularización ambiental, simplificando procesos complejos y garantizando legalidad y tranquilidad para nuestros clientes.",
+      about_imgcap:"Espacio reservado: foto del equipo técnico de Norte Agro en campo, con equipo de topografía",
+      purpose_body:"Nuestro propósito es impactar efectivamente la regularización de inmuebles rurales, acompañando al productor en cada etapa del proceso de legalización.",
+      mission_t:"Misión", mission_b:"Brindar apoyo simplificado y objetivo, mediante trabajos técnicos especializados, acortando el camino con estrategias asertivas.",
+      vision_t:"Visión", vision_b:"Ser responsable del mayor movimiento de regularización de inmuebles rurales de Brasil, con propuestas eficientes de legalización.",
+      values_t:"Valores", values_b:"Comunicación clara y precisa, siempre al servicio del productor, con el compromiso de entregar lo mejor que podemos ofrecer.",
+      terr_eyebrow:"Territorial", terr_title:'Precisión en cada <em>límite</em>.', terr_body:"Desde el mojón en campo hasta el mapa certificado: levantamientos técnicos que dan base legal a su territorio.",
+      t1_t:"Georreferenciación", t1_b:"Levantamiento de precisión y certificación del inmueble ante el INCRA, conforme a la Ley 10.267.", t1_cap:"Técnico operando estación total en campo",
+      t2_t:"Levantamiento Topográfico", t2_b:"Medición detallada de límites, áreas y curvas de nivel de la propiedad.", t2_cap:"Mapa topográfico con curvas de nivel",
+      t3_t:"Piquetaje", t3_b:"Demarcación física de los límites del inmueble directamente en campo, con mojones y coordenadas.", t3_cap:"Mojón de piquetaje colocado en campo",
+      t4_t:"División de Inmuebles Rurales", t4_b:"Parcelamiento técnico para partición, venta o procesos de sucesión familiar.", t4_cap:"Mapa de división de un predio en parcelas",
+      t5_t:"Mapeos", t5_b:"Proyectos de mapeo con apoyo de aerolevantamiento por dron.", t5_cap:"Ortomosaico aéreo generado por dron",
+      env_eyebrow:"Ambiental", env_title:'Cumplimiento con <em>tranquilidad</em>.', env_body:"Regularización ambiental completa, para que su actividad rural esté segura ante la ley.",
+      env_imgcap:"Espacio reservado: área de preservación permanente junto a un curso de agua",
+      e1_t:"CAR — Catastro Ambiental Rural", e1_b:"Inscripción, actualización y rectificación del catastro ambiental de la propiedad.",
+      e2_t:"Licenciamiento Ambiental", e2_b:"Obtención de licencias y autorizaciones ante los organismos ambientales competentes.",
+      e3_t:"Recuperación de Áreas Degradadas", e3_b:"Proyectos técnicos de PRAD para la recomposición de áreas de preservación.",
+      e4_t:"CCIR y CIB", e4_b:"Emisión y regularización de los certificados obligatorios del inmueble rural.",
+      proj_eyebrow:"Proyectos y Planificación", proj_title:'Estrategia para su <em>negocio rural</em>.', proj_body:"Levantamientos técnicos que apoyan decisiones, desde el acceso al crédito hasta la planificación a largo plazo.",
+      p1_t:"Proyectos Agropecuarios para Crédito Rural", p1_b:"Proyectos técnicos guiados por un equipo capacitado, para el acceso a líneas de crédito en las principales instituciones financieras.",
+      p2_t:"Informes y Peritajes", p2_b:"Evaluación de tierra desnuda y mejoras conforme a las normas técnicas de ABNT.",
+      p3_t:"Planificación Estratégica", p3_b:"Diagnósticos y levantamientos que fundamentan las decisiones del productor rural.",
+      proj_cta_lead:"¿Quiere saber qué servicio se ajusta a su propiedad?", proj_cta:"Saber más",
+      proj_imgcap:"Espacio reservado: reunión de planificación con mapas y un proyecto agropecuario sobre la mesa",
+      test_quote:"Nuestro foco está en la solución. Tenemos la misión de lograr la regularización total de los inmuebles de nuestros clientes.",
+      test_role:"Propietario de Norte Agro", test_imgcap:"Espacio reservado: retrato de Ramon Gomes, propietario de Norte Agro",
+      contact_eyebrow:"Contacto", contact_title:'Regularicemos su <em>propiedad</em>.', contact_body:"Complete el formulario o contáctenos por los canales de abajo.",
+      form_name:'Nombre <span class="req">*</span>', form_email:'Correo electrónico <span class="req">*</span>', form_phone:"Teléfono", form_address:"Dirección", form_subject:"Asunto", form_message:"Mensaje",
+      form_name_ph:"Ingrese su nombre", form_email_ph:"Ingrese su correo", form_phone_ph:"Ingrese su teléfono", form_address_ph:"Ingrese su dirección", form_subject_ph:"Ingrese el asunto", form_message_ph:"Escriba su mensaje aquí",
+      form_submit:"Enviar", form_note:"Formulario ilustrativo — próximamente conectado a nuestro equipo de atención.", form_success:"Mensaje registrado. Nuestro equipo se pondrá en contacto pronto.",
+      contact_whatsapp_note:"WhatsApp próximamente", contact_map_cap:"Espacio reservado: mapa interactivo con la ubicación de Norte Agro en Mara Rosa - GO",
+      footer_tagline:"Regularización de inmuebles rurales con precisión técnica y tranquilidad jurídica.",
+      footer_nav_title:"Navegación", footer_contact_title:"Contacto", footer_follow_title:"Redes sociales", footer_rights:"Todos los derechos reservados.",
+      aria_theme:"Cambiar tema", aria_menu:"Abrir menú"
+    }
+  };
+
+  var htmlKeys = {hero_title:1,intro_title:1,about_title:1,terr_title:1,env_title:1,proj_title:1,contact_title:1,form_name:1,form_email:1};
+
+  function applyLang(lang){
+    var dict = I18N[lang] || I18N.pt;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(dict[key] == null) return;
+      if(htmlKeys[key]){ el.innerHTML = dict[key]; } else { el.textContent = dict[key]; }
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-ph');
+      if(dict[key] != null) el.setAttribute('placeholder', dict[key]);
+    });
+    document.querySelectorAll('[data-i18n-title]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-title');
+      if(dict[key] != null) el.setAttribute('title', dict[key]);
+    });
+    document.querySelectorAll('#langSwitch button').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+    });
+    document.documentElement.lang = lang;
+    try{ localStorage.setItem('na_lang', lang); }catch(e){}
+  }
+
+  var startLang = 'pt';
+  try{ startLang = localStorage.getItem('na_lang') || 'pt'; }catch(e){}
+  applyLang(startLang);
+
+  document.getElementById('langSwitch').addEventListener('click', function(e){
+    var btn = e.target.closest('button[data-lang]');
+    if(!btn) return;
+    applyLang(btn.getAttribute('data-lang'));
+  });
+
+  /* theme toggle */
+  var sun = document.getElementById('iconSun'), moon = document.getElementById('iconMoon');
+  function currentTheme(){
+    var stamped = document.documentElement.getAttribute('data-theme');
+    if(stamped) return stamped;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  function syncThemeIcon(){
+    var t = currentTheme();
+    sun.style.display = t === 'dark' ? 'none' : 'block';
+    moon.style.display = t === 'dark' ? 'block' : 'none';
+  }
+  syncThemeIcon();
+  document.getElementById('themeToggle').addEventListener('click', function(){
+    var next = currentTheme() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try{ localStorage.setItem('na_theme', next); }catch(e){}
+    syncThemeIcon();
+  });
+
+  /* mobile menu */
+  var nav = document.getElementById('primaryNav'), menuBtn = document.getElementById('menuToggle');
+  var iconMenu = document.getElementById('iconMenu'), iconClose = document.getElementById('iconClose');
+  menuBtn.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    iconMenu.style.display = open ? 'none' : 'block';
+    iconClose.style.display = open ? 'block' : 'none';
+  });
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      nav.classList.remove('open');
+      iconMenu.style.display = 'block'; iconClose.style.display = 'none';
+    });
+  });
+
+  /* active nav link on scroll */
+  var sections = ['inicio','quem-somos','territorial','ambiental','projetos','contato']
+    .map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.primary > ul > li > a'));
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          var id = entry.target.id;
+          links.forEach(function(l){ l.classList.toggle('active', l.getAttribute('href') === '#' + id); });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    sections.forEach(function(s){ io.observe(s); });
+  }
+
+  /* reveal on scroll */
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals = document.querySelectorAll('.reveal');
+  if(reduceMotion || !('IntersectionObserver' in window)){
+    reveals.forEach(function(el){ el.classList.add('is-visible'); });
+  } else {
+    var ro = new IntersectionObserver(function(entries, obs){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('is-visible'); obs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.14 });
+    reveals.forEach(function(el){ ro.observe(el); });
+  }
+
+  /* contact form (front-end only) */
+  var form = document.getElementById('contactForm'), success = document.getElementById('formSuccess');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    success.classList.add('show');
+    form.reset();
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
