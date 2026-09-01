@@ -148,16 +148,18 @@
   .lang-btn.active{ background:rgba(159,180,99,.16); color:var(--on-dark); }
   .icon-btn{ background:none; border:none; color:var(--on-dark-soft); cursor:pointer; display:flex; padding:.3rem; }
   .icon-btn:hover{ color:var(--on-dark); }
-  .stamp-row{ display:flex; gap:.4rem; }
+  .stamp-row{ display:flex; gap:.5rem; }
   .stamp-row.mobile-only{ display:none; }
   .stamp{
-    width:30px; height:30px; border-radius:50%; border:1px dashed rgba(var(--inverse-rgb),.35);
+    width:34px; height:34px; border-radius:9px; border:none;
+    background:var(--on-dark); color:var(--dark);
     display:flex; align-items:center; justify-content:center;
-    color:var(--on-dark-soft); text-decoration:none;
+    text-decoration:none; transition:transform .2s ease, opacity .2s ease;
   }
-  .stamp:hover{ border-color:var(--accent); color:var(--on-dark); border-style:solid; }
-  .stamp.disabled{ opacity:.45; cursor:default; }
-  .ic-stamp{ width:16px; height:16px; stroke:currentColor; stroke-width:1.6; fill:none; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+  .stamp:hover{ transform:translateY(-2px); opacity:.82; }
+  .stamp.disabled{ opacity:.35; cursor:default; }
+  .stamp.disabled:hover{ transform:none; opacity:.35; }
+  .ic-stamp{ width:18px; height:18px; stroke:currentColor; stroke-width:1.6; fill:none; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
   .menu-toggle{ display:none; }
 
   @media (max-width:960px){
