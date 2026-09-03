@@ -51,33 +51,40 @@
 .card-body h3{ font-size:1.08rem; margin-bottom:.5rem; }
 .card-body p{ color:var(--ink-soft); font-size:.92rem; }
 
-/* ---------- seletor de idioma ---------- */
-.lang-select{ position:relative; font-family:var(--font-label); font-size:.72rem; }
+/* ---------- seletor de idioma ----------
+   Só bandeiras, recortadas em círculo. O nome do idioma fica no title e no
+   aria-label dos botões, já que não há texto visível. */
+.lang-select{ position:relative; }
 .lang-select-toggle{
-  display:flex; align-items:center; gap:.45rem; background:none;
+  display:flex; align-items:center; gap:.3rem; background:none;
   border:1px solid rgba(var(--inverse-rgb),.18); color:var(--on-dark-soft);
-  padding:.35rem .55rem; cursor:pointer; letter-spacing:.05em; border-radius:2px;
+  padding:.3rem .4rem; cursor:pointer; border-radius:999px;
 }
 .lang-select-toggle:hover{ border-color:var(--accent); color:var(--on-dark); }
 .lang-select.open .lang-select-toggle{ border-color:var(--accent); color:var(--on-dark); }
-.lang-select-flag{ width:18px; height:13px; object-fit:cover; border-radius:1px; display:block; box-shadow:0 0 0 1px rgba(var(--inverse-rgb),.15); }
-.lang-select-code{ font-weight:600; letter-spacing:.06em; }
+
+/* quadrada + object-fit:cover: a bandeira preenche o círculo sem distorcer */
+.lang-select-flag{
+  width:22px; height:22px; border-radius:50%; object-fit:cover; display:block;
+  box-shadow:0 0 0 1px rgba(var(--inverse-rgb),.2);
+}
+
 .lang-select-caret{ width:12px; height:12px; transition:transform .2s ease; }
 .lang-select.open .lang-select-caret{ transform:rotate(180deg); }
+
 .lang-select-menu{
-  position:absolute; top:calc(100% + 8px); right:0; z-index:30; min-width:172px;
-  background:var(--dark-2); border:1px solid rgba(var(--inverse-rgb),.14); border-radius:3px;
-  padding:.35rem; display:flex; flex-direction:column; gap:.15rem; box-shadow:var(--shadow);
+  position:absolute; top:calc(100% + 8px); right:0; z-index:30;
+  background:var(--dark-2); border:1px solid rgba(var(--inverse-rgb),.14); border-radius:999px;
+  padding:.3rem; display:flex; flex-direction:column; gap:.2rem; box-shadow:var(--shadow);
 }
 .lang-select-menu[hidden]{ display:none; }
 .lang-btn{
-  display:flex; align-items:center; gap:.6rem; width:100%; background:none; border:none;
-  color:var(--on-dark-soft); padding:.55rem .65rem; border-radius:2px; cursor:pointer;
-  font-family:var(--font-label); font-size:.78rem; text-align:left; letter-spacing:.04em;
+  display:flex; align-items:center; justify-content:center; background:none; border:none;
+  padding:.25rem; border-radius:50%; cursor:pointer; line-height:0;
 }
-.lang-btn .lang-select-flag{ width:20px; height:14px; }
-.lang-btn:hover{ background:rgba(var(--inverse-rgb),.07); color:var(--on-dark); }
-.lang-btn.active{ background:rgba(159,180,99,.16); color:var(--on-dark); }
+.lang-btn .lang-select-flag{ width:26px; height:26px; }
+.lang-btn:hover .lang-select-flag{ box-shadow:0 0 0 2px var(--accent); }
+.lang-btn.active .lang-select-flag{ box-shadow:0 0 0 2px var(--accent); }
 
 /* ---------- botões de ícone (tema, menu) ---------- */
 .icon-btn{ background:none; border:none; color:var(--on-dark-soft); cursor:pointer; display:flex; padding:.3rem; }

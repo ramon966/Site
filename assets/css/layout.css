@@ -9,14 +9,33 @@ header.site{
   background:var(--dark-2); color:var(--on-dark);
   border-bottom:1px solid rgba(var(--inverse-rgb),.08);
 }
-header.site .container{ height:100%; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
+/* Três faixas: marca à esquerda, navegação no centro exato, ferramentas à
+   direita. As colunas laterais são 1fr cada — como têm sempre a mesma
+   largura, o centro da navegação coincide com o centro da página,
+   independentemente do tamanho da marca ou dos botões.
+   (Com flex + space-between o meio ficaria deslocado, porque o espaço é
+   dividido entre elementos de larguras diferentes.) */
+header.site .container{
+  height:100%;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:1.5rem;
+}
+header.site .brand{ justify-self:start; }
+header.site nav.primary{ justify-self:center; }
+header.site .head-tools{ justify-self:end; }
 
 /* ---------- logotipo ----------
    As duas versões do logo ficam no HTML e o CSS mostra a que combina com o
    fundo: cabeçalho e rodapé usam --dark-2, que é claro no tema claro e quase
    preto no tema escuro. */
 .brand{ --logo-h:44px; display:flex; align-items:center; text-decoration:none; flex-shrink:0; }
-.brand__logo{ display:block; height:var(--logo-h); width:auto; }
+/* O logo nunca pode ser achatado. Duas travas para isso: `max-width:none`
+   anula o `img{max-width:100%}` do reset (que limitaria a imagem à largura
+   da coluna, estreitando-a sem mexer na altura) e `flex-shrink:0` impede que
+   ela ceda espaço dentro do link. */
+.brand__logo{ display:block; height:var(--logo-h); width:auto; max-width:none; flex-shrink:0; }
 /* Os dois arquivos têm enquadramentos diferentes: no claro a linha
    "NORTE AGRO" ocupa 52,6% da altura da imagem; no escuro, 58,1% (o espaço
    até "PROJETOS" é menor). O fator 0,904 faz o texto sair do mesmo tamanho
@@ -60,7 +79,26 @@ footer.site{ background:var(--dark-2); color:var(--on-dark-soft); padding-top:4r
 .footer-col a, .footer-col li{ overflow-wrap:anywhere; }
 
 /* ---------- responsivo ---------- */
+
+/* Faixa apertada do desktop.
+   Para a navegação ficar no centro exato, as colunas laterais têm de ter a
+   mesma largura — ou seja, a conta é DUAS vezes a largura da marca, mesmo
+   que as ferramentas ocupem bem menos. Com a navegação em inglês (608px),
+   o logo em tamanho cheio só cabe a partir de ~1107px. Abaixo disso o logo
+   diminui e os espaçamentos encolhem, mantendo tudo em tamanho natural.
+   Se um idioma novo tiver rótulos mais longos, revise esta faixa. */
+@media (min-width:961px) and (max-width:1180px){
+  header.site .container{ gap:1rem; }
+  header.site .brand{ --logo-h:34px; }
+  nav.primary ul{ gap:1rem; }
+}
+
 @media (max-width:960px){
+  /* a navegação vira painel fixo e sai do fluxo: sem ela, a grade de três
+     colunas não faz sentido — volta a ser marca à esquerda, ferramentas à
+     direita */
+  header.site .container{ display:flex; justify-content:space-between; }
+
   nav.primary{
     position:fixed; inset:var(--header-h) 0 0 auto; width:min(340px,86vw);
     height:calc(100vh - var(--header-h));
@@ -94,8 +132,6 @@ footer.site{ background:var(--dark-2); color:var(--on-dark-soft); padding-top:4r
   .footer-bottom{ font-size:.75rem; }
 }
 
-/* telas bem estreitas (≈320px): o seletor de idioma fica só com a bandeira */
 @media (max-width:380px){
   .brand{ --logo-h:26px; }
-  .lang-select-toggle .lang-select-code{ display:none; }
 }

@@ -28,7 +28,7 @@ NA.i18n = (function () {
     ['data-i18n-aria',  (el, value) => el.setAttribute('aria-label', value)]
   ];
 
-  let select, toggle, menu, toggleFlag, toggleCode;
+  let select, toggle, menu, toggleFlag;
   let current = FALLBACK;
 
   const metaOf = (tag) => NA.site.locales.find((loc) => loc.tag === tag) || NA.site.locales[0];
@@ -52,7 +52,6 @@ NA.i18n = (function () {
     });
 
     if (toggleFlag) toggleFlag.src = meta.flag;
-    if (toggleCode) toggleCode.textContent = meta.code;
     document.querySelectorAll('.lang-btn').forEach((btn) => {
       const active = btn.getAttribute('data-lang') === meta.tag;
       btn.classList.toggle('active', active);
@@ -89,7 +88,6 @@ NA.i18n = (function () {
     toggle = document.getElementById('langToggle');
     menu = document.getElementById('langMenu');
     toggleFlag = document.getElementById('langToggleFlag');
-    toggleCode = document.getElementById('langToggleCode');
 
     translate(savedLocale());
     if (!select || !toggle || !menu) return;

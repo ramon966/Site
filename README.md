@@ -73,6 +73,12 @@ navegador executa.
 **Textos** → `assets/js/i18n/`. Altere sempre os três idiomas; a chave é a mesma
 nos três arquivos.
 
+**Novo idioma** → crie `assets/js/i18n/<tag>.js` copiando um existente, coloque a
+bandeira em `assets/img/flags/<tag>.svg`, acrescente o `<script defer>` no
+`index.html` e uma linha na lista `locales` de `data/site.js`. O botão no
+seletor aparece sozinho. O seletor mostra só a bandeira, recortada em círculo;
+o nome do idioma (`titleKey`) vira o `title` e o `aria-label` do botão.
+
 **Endereço, e-mail, redes sociais, itens do menu** → `assets/js/data/site.js`.
 Um só lugar alimenta cabeçalho, contato e rodapé.
 
@@ -95,8 +101,8 @@ componente precisa ser tocado.
 **Tipografia** — as mesmas famílias do site de referência (romeroambiental.com.br):
 `--font-display` **Amiri** (serif) nos títulos, sempre em peso 700, que é o
 único peso forte da família; `--font-body` **Poppins** (sans) no corpo.
-`--font-label` é usada nos rótulos técnicos (etiquetas, legendas, códigos de
-idioma) e hoje também é Poppins, porque o site de referência não usa fonte
+`--font-label` é usada nos rótulos técnicos (etiquetas de seção, legendas das
+imagens, coordenadas) e hoje também é Poppins, porque o site de referência não usa fonte
 monoespaçada; para recuperar o visual técnico anterior, basta trocar essa
 linha do `tokens.css` de volta para `'IBM Plex Mono', ui-monospace, …` e
 acrescentar a família no `<link>` do Google Fonts no `index.html`.
@@ -139,7 +145,7 @@ O layout é feito para telefone, tablet e desktop, com três pontos de quebra:
 
 | Largura | O que muda |
 | --- | --- |
-| até **380px** | a marca encolhe mais e o seletor de idioma fica só com a bandeira |
+| até **380px** | a marca encolhe mais |
 | até **640px** (celular) | tudo em uma coluna; cabeçalho compacto (60px); menos espaço entre blocos; campos do formulário em 16px; bloco panorâmico do mapa fica mais alto |
 | até **960px** (tablet) | navegação vira painel lateral; grades caem para duas colunas |
 | acima disso | layout completo em três colunas |

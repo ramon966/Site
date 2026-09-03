@@ -61,11 +61,12 @@ NA.site = {
     { id: 'contato',    key: 'nav_contact' }
   ],
 
-  /* Idiomas do seletor no cabeçalho. */
+  /* Idiomas do seletor no cabeçalho. O seletor mostra só a bandeira; o nome
+     do idioma (titleKey) vira o title e o aria-label do botão. */
   locales: [
-    { tag: 'pt-BR', code: 'PT', flag: 'assets/img/flags/pt-BR.svg', titleKey: 'lang_pt' },
-    { tag: 'en-US', code: 'US', flag: 'assets/img/flags/en-US.svg', titleKey: 'lang_en' },
-    { tag: 'es-ES', code: 'ES', flag: 'assets/img/flags/es-ES.svg', titleKey: 'lang_es' }
+    { tag: 'pt-BR', flag: 'assets/img/flags/pt-BR.svg', titleKey: 'lang_pt' },
+    { tag: 'en-US', flag: 'assets/img/flags/en-US.svg', titleKey: 'lang_en' },
+    { tag: 'es-ES', flag: 'assets/img/flags/es-ES.svg', titleKey: 'lang_es' }
   ],
 
   /* Rodapé: quais seções aparecem na coluna "Navegação". */

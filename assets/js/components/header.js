@@ -17,6 +17,9 @@ NA.components.header = (function () {
       ${each(NA.site.nav, (item) => `<li><a href="#${item.id}"${t(item.key)}></a></li>`)}
     </ul>`;
 
+  /* Só as bandeiras, em círculo. Sem texto visível, o nome do idioma vive no
+     title (dica ao passar o mouse) e no aria-label, para quem usa leitor de
+     tela — as duas coisas traduzidas junto com o resto da página. */
   const langSelect = () => {
     const first = NA.site.locales[0];
     return `
@@ -24,15 +27,13 @@ NA.components.header = (function () {
         <button type="button" class="lang-select-toggle" id="langToggle"
                 ${tAria('lang_switch_aria')} aria-haspopup="listbox" aria-expanded="false">
           <img class="lang-select-flag" id="langToggleFlag" src="${first.flag}" alt="">
-          <span class="lang-select-code" id="langToggleCode">${first.code}</span>
           ${NA.icons.use('i-caret', 'lang-select-caret', ' fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"')}
         </button>
         <div class="lang-select-menu" id="langMenu" role="listbox" hidden>
           ${each(NA.site.locales, (loc, i) => `
             <button type="button" class="lang-btn${i === 0 ? ' active' : ''}" role="option"
-                    data-lang="${loc.tag}"${tTitle(loc.titleKey)} aria-selected="${i === 0}">
+                    data-lang="${loc.tag}"${tTitle(loc.titleKey)}${tAria(loc.titleKey)} aria-selected="${i === 0}">
               <img class="lang-select-flag" src="${loc.flag}" alt="">
-              <span class="lang-select-code">${loc.code}</span>
             </button>`)}
         </div>
       </div>`;
