@@ -1,0 +1,59 @@
+/* ============================================================
+   tokens.css — variáveis de design (cores, tipografia, sombras)
+   Tema claro no :root, tema escuro por preferência do sistema
+   e por escolha explícita ([data-theme]).
+   ============================================================ */
+
+:root{
+  --bg:#f3efe3; --bg-alt:#e9e2cd; --surface:#fffdf8; --surface-2:#ece5d2;
+  --ink:#201e18; --ink-soft:#5a5546; --ink-faint:#948d76;
+  --line:#d9d0b8; --dark:#ece5d2; --dark-2:#e3d9bd;
+  --on-dark:#201e18; --on-dark-soft:#5a5546;
+  --inverse-rgb:32,30,24;
+  --accent:#5c6b35; --accent-strong:#3f4a25; --accent-soft:#dfe3c9;
+  --clay:#a15c3c;
+  --shadow:0 24px 60px -30px rgba(28,25,18,.45);
+  --header-h:76px;
+
+  /* Tipografia — mesmas famílias do site de referência (romeroambiental.com.br):
+     Amiri (serif) nos títulos, em peso 700; Poppins (sans) no corpo.
+     Amiri só tem os pesos 400 e 700, regular e itálico. */
+  --font-display:'Amiri','Iowan Old Style',Georgia,serif;
+  --font-body:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  /* Rótulos técnicos (etiquetas, legendas, códigos de idioma). O site de
+     referência não usa monoespaçada, então aqui também é Poppins — o efeito
+     técnico vem do tamanho menor e do espaçamento entre letras.
+     Para voltar à monoespaçada, troque só esta linha por:
+     'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace */
+  --font-label:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#15130d; --bg-alt:#1c1912; --surface:#201d16; --surface-2:#262218;
+    --ink:#efe9d8; --ink-soft:#b3ab93; --ink-faint:#7d7660;
+    --line:#37331f; --dark:#0d0c08; --dark-2:#090805;
+    --on-dark:#efe9d8; --on-dark-soft:#a89f86;
+    --inverse-rgb:255,255,255;
+    --accent:#9fb463; --accent-strong:#c3d189; --accent-soft:#2b3320;
+    --clay:#c9835e;
+    --shadow:0 24px 60px -30px rgba(0,0,0,.65);
+  }
+}
+
+/* No celular o cabeçalho é mais baixo, sobrando tela para o conteúdo.
+   O mesmo valor posiciona o topo do hero e o scroll-margin das seções. */
+@media (max-width:640px){
+  :root{ --header-h:60px; }
+}
+
+:root[data-theme="dark"]{
+  --bg:#15130d; --bg-alt:#1c1912; --surface:#201d16; --surface-2:#262218;
+  --ink:#efe9d8; --ink-soft:#b3ab93; --ink-faint:#7d7660;
+  --line:#37331f; --dark:#0d0c08; --dark-2:#090805;
+  --on-dark:#efe9d8; --on-dark-soft:#a89f86;
+  --inverse-rgb:255,255,255;
+  --accent:#9fb463; --accent-strong:#c3d189; --accent-soft:#2b3320;
+  --clay:#c9835e;
+  --shadow:0 24px 60px -30px rgba(0,0,0,.65);
+}

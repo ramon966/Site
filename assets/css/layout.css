@@ -1,0 +1,101 @@
+/* ============================================================
+   layout.css — cabeçalho fixo, navegação principal e rodapé
+   Depende de: tokens.css, base.css, components.css
+   ============================================================ */
+
+/* ---------- cabeçalho ---------- */
+header.site{
+  position:fixed; inset:0 0 auto 0; height:var(--header-h); z-index:100;
+  background:var(--dark-2); color:var(--on-dark);
+  border-bottom:1px solid rgba(var(--inverse-rgb),.08);
+}
+header.site .container{ height:100%; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
+
+/* ---------- logotipo ----------
+   As duas versões do logo ficam no HTML e o CSS mostra a que combina com o
+   fundo: cabeçalho e rodapé usam --dark-2, que é claro no tema claro e quase
+   preto no tema escuro. */
+.brand{ --logo-h:44px; display:flex; align-items:center; text-decoration:none; flex-shrink:0; }
+.brand__logo{ display:block; height:var(--logo-h); width:auto; }
+/* Os dois arquivos têm enquadramentos diferentes: no claro a linha
+   "NORTE AGRO" ocupa 52,6% da altura da imagem; no escuro, 58,1% (o espaço
+   até "PROJETOS" é menor). O fator 0,904 faz o texto sair do mesmo tamanho
+   nos dois temas. Se algum dia os arquivos forem reexportados com o mesmo
+   enquadramento, é só remover esta regra. */
+.brand__logo--dark{ display:none; height:calc(var(--logo-h) * 0.904); }
+
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .brand__logo--light{ display:none; }
+  :root:not([data-theme="light"]) .brand__logo--dark{ display:block; }
+}
+:root[data-theme="dark"] .brand__logo--light{ display:none; }
+:root[data-theme="dark"] .brand__logo--dark{ display:block; }
+
+/* ---------- navegação ---------- */
+nav.primary{ display:flex; align-items:center; gap:2rem; }
+nav.primary ul{ list-style:none; display:flex; gap:1.9rem; margin:0; padding:0; }
+nav.primary a{
+  text-decoration:none; font-size:.9rem; font-weight:500; letter-spacing:.02em; color:var(--on-dark-soft);
+  position:relative; padding-block:.3rem;
+}
+nav.primary a:hover, nav.primary a.active{ color:var(--on-dark); }
+nav.primary a.active::after{ content:""; position:absolute; left:0; right:0; bottom:-2px; height:2px; background:var(--accent); }
+
+.head-tools{ display:flex; align-items:center; gap:1rem; }
+.menu-toggle{ display:none; }
+
+/* ---------- rodapé ---------- */
+footer.site{ background:var(--dark-2); color:var(--on-dark-soft); padding-top:4rem; }
+.footer-grid{ display:grid; grid-template-columns:1.3fr .8fr .9fr .9fr; gap:2.5rem; padding-bottom:3rem; border-bottom:1px solid rgba(var(--inverse-rgb),.08); }
+.footer-grid .brand{ margin-bottom:1rem; }
+.footer-grid p{ font-size:.9rem; line-height:1.6; max-width:32ch; }
+.footer-col h4{ font-family:var(--font-label); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--on-dark); margin-bottom:1.1rem; font-weight:500; }
+.footer-col ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.75rem; }
+.footer-col a{ text-decoration:none; color:var(--on-dark-soft); font-size:.9rem; }
+.footer-col a:hover{ color:var(--on-dark); }
+.footer-bottom{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; padding-block:1.5rem; font-size:.8rem; }
+
+/* e-mails e endereços não cabem em uma linha estreita: quebram em vez de
+   esticar a página */
+.footer-col a, .footer-col li{ overflow-wrap:anywhere; }
+
+/* ---------- responsivo ---------- */
+@media (max-width:960px){
+  nav.primary{
+    position:fixed; inset:var(--header-h) 0 0 auto; width:min(340px,86vw);
+    height:calc(100vh - var(--header-h));
+    /* dvh acompanha a barra de endereço do navegador móvel, que aparece e
+       some durante a rolagem; 100vh sozinho corta o fim do menu */
+    height:calc(100dvh - var(--header-h));
+    background:var(--dark-2); flex-direction:column; align-items:flex-start; padding:2rem 1.75rem; gap:2.25rem;
+    transform:translateX(100%); transition:transform .35s ease; overflow-y:auto; border-left:1px solid rgba(var(--inverse-rgb),.08);
+  }
+  nav.primary.open{ transform:translateX(0); }
+  nav.primary ul{ flex-direction:column; gap:1.25rem; width:100%; }
+  /* área de toque confortável: ~44px de altura por link */
+  nav.primary a{ font-size:1.05rem; display:block; padding-block:.6rem; }
+  .head-tools{ order:2; }
+  .menu-toggle{ display:flex; order:3; }
+  .footer-grid{ grid-template-columns:1fr 1fr; }
+}
+
+/* ---------- celular ----------
+   No cabeçalho cabem marca + idioma + tema + menu lado a lado. Sem encolher
+   a marca e os espaçamentos, a soma passa da largura da tela e a página
+   inteira ganha rolagem horizontal. */
+@media (max-width:640px){
+  header.site .container{ gap:.5rem; }
+  .brand{ --logo-h:30px; }
+  .head-tools{ gap:.4rem; }
+  .icon-btn{ padding:.35rem; }
+
+  nav.primary{ width:100%; }
+  .footer-grid{ grid-template-columns:1fr; gap:2rem; }
+  .footer-bottom{ font-size:.75rem; }
+}
+
+/* telas bem estreitas (≈320px): o seletor de idioma fica só com a bandeira */
+@media (max-width:380px){
+  .brand{ --logo-h:26px; }
+  .lang-select-toggle .lang-select-code{ display:none; }
+}
