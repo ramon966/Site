@@ -4,10 +4,15 @@
    Depende de: tokens.css, base.css
    ============================================================ */
 
-/* ---------- botões ---------- */
+/* ---------- botões ----------
+   O contorno repete a folha do favicon: cantos superior-esquerdo e
+   inferior-direito arredondados, os outros dois em ponta. O raio maior que a
+   altura é reduzido pelo próprio navegador até caber, então a curva acompanha
+   o tamanho do botão sem precisar de valor fixo. O padding lateral é maior que
+   o vertical para o texto não encostar nas curvas. */
 .btn{
   display:inline-flex; align-items:center; gap:.55rem; font-weight:600; font-size:.95rem;
-  padding:.85rem 1.5rem; border-radius:2px; text-decoration:none; cursor:pointer; border:1px solid transparent;
+  padding:.85rem 1.9rem; border-radius:999px 0 999px 0; text-decoration:none; cursor:pointer; border:1px solid transparent;
   transition:background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
 }
 .btn:hover{ transform:translateY(-2px); }
