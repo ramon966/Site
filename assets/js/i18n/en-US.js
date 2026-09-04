@@ -110,7 +110,7 @@ NA.translations['en-US'] = {
   form_success: "Message recorded. Our team will be in touch soon.",
   contact_whatsapp_note: "WhatsApp coming soon",
   unit_soon: "Address coming soon",
-  contact_map_cap: "Image placeholder: interactive map showing Norte Agro's offices in Mara Rosa and Goiânia - GO",
+  contact_map_cap: "Image placeholder: interactive map showing this Norte Agro office",
 
   footer_tagline: "Rural land regularization with technical precision and legal peace of mind.",
   footer_nav_title: "Navigation",

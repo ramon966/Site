@@ -70,8 +70,8 @@ footer.site{ background:var(--dark-2); color:var(--on-dark-soft); padding-top:4r
 .footer-grid p{ font-size:.9rem; line-height:1.6; max-width:32ch; }
 .footer-col h4{ font-family:var(--font-label); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--on-dark); margin-bottom:1.1rem; font-weight:500; }
 .footer-col ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.75rem; }
-.footer-col a{ text-decoration:none; color:var(--on-dark-soft); font-size:.9rem; }
-.footer-col a:hover{ color:var(--on-dark); }
+.footer-col a:not(.stamp){ text-decoration:none; color:var(--on-dark-soft); font-size:.9rem; }
+.footer-col a:not(.stamp):hover{ color:var(--on-dark); }
 .footer-bottom{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; padding-block:1.5rem; font-size:.8rem; }
 
 /* e-mails e endereços não cabem em uma linha estreita: quebram em vez de

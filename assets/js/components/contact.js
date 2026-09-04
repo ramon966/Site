@@ -33,6 +33,16 @@ NA.components.contact = (function () {
       : `<p class="strong" style="opacity:.6"${t('contact_whatsapp_note')}></p>`);
   };
 
+  /* um espaço reservado de mapa por unidade — o nome da cidade é o mesmo
+     em todos os idiomas, por isso vai como rótulo fixo, fora do i18n */
+  const mapPlate = (u) => NA.components.plate({
+    icon: 'i-plate-marker',
+    ratio: '16/9',
+    caption: 'contact_map_cap',
+    label: NA.units.title(u),
+    cls: 'plate--map'
+  });
+
   const field = (f) => `
     <div class="field${f.full ? ' full' : ''}">
       <label for="${f.id}"${f.labelHasHtml ? tHtml(f.label) : t(f.label)}></label>
@@ -70,7 +80,9 @@ NA.components.contact = (function () {
             </form>
           </div>
 
-          ${NA.components.plate({ icon: 'i-plate-marker', ratio: '21/6', caption: 'contact_map_cap', cls: 'plate--map', style: '; margin-top:3.5rem' })}
+          <div class="map-grid" style="margin-top:3.5rem">
+            ${each(NA.site.units, mapPlate)}
+          </div>
         </div>
       </section>`;
   };

@@ -110,7 +110,7 @@ NA.translations['pt-BR'] = {
   form_success: "Mensagem registrada. Em breve nossa equipe entrará em contato.",
   contact_whatsapp_note: "WhatsApp em breve",
   unit_soon: "Endereço em breve",
-  contact_map_cap: "Espaço reservado: mapa interativo com a localização das unidades da Norte Agro em Mara Rosa e Goiânia - GO",
+  contact_map_cap: "Espaço reservado: mapa interativo com a localização desta unidade da Norte Agro",
 
   footer_tagline: "Regularização de imóveis rurais com precisão técnica e tranquilidade jurídica.",
   footer_nav_title: "Navegação",
