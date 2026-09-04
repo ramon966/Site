@@ -17,7 +17,7 @@ NA.components.about = (function () {
 
   return function about() {
     return `
-      <section class="section section--alt" id="quem-somos">
+      <section class="section" id="quem-somos">
         <div class="container">
           <div class="about-grid">
             <div class="about-copy reveal">

@@ -11,7 +11,7 @@ NA.components.testimonial = (function () {
   return function testimonial() {
     const data = NA.content.testimonial;
     return `
-      <section class="section section--alt">
+      <section class="section">
         <div class="container">
           <div class="testi-grid">
             ${NA.components.plate({ icon: 'i-plate-person', ratio: '3/4', caption: data.caption })}

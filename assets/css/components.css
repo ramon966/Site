@@ -30,7 +30,6 @@
   display:flex; flex-direction:column; align-items:center; justify-content:center;
   gap:.75rem; text-align:center; padding:1.5rem; overflow:hidden;
 }
-.section--dark .plate{ background:rgba(var(--inverse-rgb),.03); border-color:rgba(var(--inverse-rgb),.3); }
 .plate__corner{ position:absolute; width:16px; height:16px; }
 .plate__corner.tl{ top:6px; left:6px; border-top:1.5px solid var(--clay); border-left:1.5px solid var(--clay); }
 .plate__corner.tr{ top:6px; right:6px; border-top:1.5px solid var(--clay); border-right:1.5px solid var(--clay); }

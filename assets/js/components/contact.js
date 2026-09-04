@@ -54,7 +54,7 @@ NA.components.contact = (function () {
   return function contact() {
     const { email } = NA.site;
     return `
-      <section class="section section--dark" id="contato">
+      <section class="section" id="contato">
         <div class="container">
           <p class="eyebrow"${t('contact_eyebrow')}></p>
           <h2 class="title"${tHtml('contact_title')}></h2>

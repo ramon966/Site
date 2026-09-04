@@ -80,8 +80,8 @@
 .contact-info dl{ margin:2rem 0 0; }
 .info-row{ display:flex; gap:.9rem; align-items:flex-start; margin-bottom:1.4rem; }
 .info-row .ic-wrap{ color:var(--accent); flex-shrink:0; margin-top:.15rem; }
-.info-row p{ color:var(--on-dark-soft); min-width:0; }
-.info-row .strong{ color:var(--on-dark); font-weight:600; }
+.info-row p{ color:var(--ink-soft); min-width:0; }
+.info-row .strong{ color:var(--ink); font-weight:600; }
 /* o e-mail é mais largo que a coluna no celular: quebra em vez de vazar */
 .info-row a{ overflow-wrap:anywhere; }
 

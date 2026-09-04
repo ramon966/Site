@@ -17,7 +17,7 @@ NA.components.environmental = (function () {
 
   return function environmental() {
     return `
-      <section class="section section--alt" id="ambiental">
+      <section class="section" id="ambiental">
         <div class="container">
           <div class="env-wrap">
             ${NA.components.plate({ ratio: '1/1', caption: 'env_imgcap' })}
