@@ -24,11 +24,7 @@
     neatline(),
     c.about(),
     neatline(),
-    c.territorial(),
-    neatline(),
-    c.environmental(),
-    neatline(),
-    c.projects(),
+    c.services(),   /* três seções: fundiária, ambiental e consultoria */
     neatline(),
     c.testimonial(),
     c.contact(),

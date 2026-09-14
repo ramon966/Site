@@ -1,7 +1,7 @@
 /* ============================================================
    sections.css — composição de cada seção da home
-   (hero, visão geral, quem somos, territorial, ambiental,
-    projetos, depoimento, contato)
+   (hero, visão geral, quem somos, serviços — fundiária, ambiental
+    e consultoria —, depoimento, contato)
    Depende de: tokens.css, base.css, components.css
    ============================================================ */
 
@@ -45,26 +45,67 @@
 .purpose-item h3{ font-size:1.1rem; margin-bottom:.5rem; }
 .purpose-item p{ color:var(--on-dark-soft); font-size:.93rem; }
 
-/* ---------- territorial ---------- */
-.head-row{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:1.5rem; margin-bottom:3rem; }
-.card-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.75rem; }
+/* ---------- serviços (fundiária, ambiental, consultoria) ----------
+   Cada grupo é uma seção: o título fica numa coluna estreita à esquerda,
+   separado por um fio, e os cartões ocupam o resto da largura. */
+.svc-group{ display:grid; grid-template-columns:minmax(190px,235px) 1fr; gap:clamp(1.75rem,3.5vw,2.75rem); align-items:start; }
+.svc-intro{ border-right:1px solid var(--line); padding-right:clamp(1rem,2vw,1.75rem); }
+.svc-intro .lede{ margin-top:.9rem; font-size:.97rem; }
 
-/* ---------- ambiental ---------- */
-.env-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,4rem); align-items:start; }
-.env-list{ display:grid; grid-template-columns:1fr 1fr; gap:1.75rem 2rem; }
-.env-item{ border-top:1px solid var(--line); padding-top:1.1rem; }
-.env-item .ic-wrap{ color:var(--accent); margin-bottom:.7rem; }
-.env-item h3{ font-size:1rem; margin-bottom:.4rem; }
-.env-item p{ color:var(--ink-soft); font-size:.9rem; }
+/* --cols vem do HTML: é a quantidade de cartões do grupo, para que a
+   fileira caiba sempre em uma linha só (5, 3 ou 2 cartões). */
+.svc-cards{ display:grid; grid-template-columns:repeat(var(--cols,3),minmax(0,1fr)); gap:1rem; }
 
-/* ---------- projetos ---------- */
-.proj-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-bottom:3rem; }
-.proj-card{ background:var(--surface); border:1px solid var(--line); border-radius:2px; padding:1.9rem; }
-.proj-card .ic-wrap{ color:var(--accent); margin-bottom:1.1rem; }
-.proj-card h3{ font-size:1.08rem; margin-bottom:.55rem; }
-.proj-card p{ color:var(--ink-soft); font-size:.92rem; }
-.proj-foot{ display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:center; }
-.proj-foot p{ color:var(--ink-soft); margin-bottom:1.5rem; }
+.svc-card{
+  display:flex; flex-direction:column; overflow:hidden;
+  background:var(--surface); border:1px solid var(--line); border-radius:2px;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.svc-card:hover{ transform:translateY(-5px); box-shadow:var(--shadow); }
+
+/* A imagem absorve a sobra de altura: numa fileira, o cartão com menos
+   itens fica com o espaço reservado mais alto e todos terminam juntos. */
+.svc-card__media{ display:flex; flex:1 1 auto; min-height:clamp(120px,12vw,165px); }
+.svc-card .plate{
+  flex:1; aspect-ratio:auto; border:none; border-bottom:1px dashed var(--line);
+  border-radius:0; padding:.9rem; gap:.5rem;
+}
+.svc-card .plate svg.plate__icon{ width:26px; height:26px; }
+/* o cartão é estreito: a legenda do espaço reservado é cortada em 4 linhas
+   para nunca esbarrar na borda da moldura */
+.svc-card .plate__cap{
+  font-size:.64rem; line-height:1.45; max-width:26ch;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:4; line-clamp:4; overflow:hidden;
+}
+
+.svc-card__body{ padding:1rem 1.1rem 1.3rem; }
+.svc-card__head{
+  display:flex; align-items:flex-start; justify-content:space-between; gap:.6rem;
+  text-decoration:none; padding-bottom:.7rem; border-bottom:1px solid var(--line);
+}
+.svc-card__head h3{ font-size:1rem; line-height:1.28; transition:color .2s ease; }
+.svc-card__arrow{
+  width:18px; height:18px; flex-shrink:0; margin-top:.2rem; color:var(--accent);
+  stroke:currentColor; stroke-width:1.6; fill:none; stroke-linecap:round; stroke-linejoin:round;
+  transition:transform .2s ease;
+}
+.svc-card__head:hover h3{ color:var(--accent-strong); }
+.svc-card__head:hover .svc-card__arrow{ transform:translateX(3px); }
+
+/* lista de subserviços, com o chevron ">" desenhado em CSS */
+.svc-list{ list-style:none; margin:.9rem 0 0; padding:0; display:grid; gap:.45rem; }
+.svc-list li{ position:relative; padding-left:1rem; font-size:.82rem; line-height:1.45; color:var(--ink-soft); }
+.svc-list li::before{
+  content:""; position:absolute; left:1px; top:.45em; width:5px; height:5px;
+  border-top:1.4px solid var(--accent); border-right:1.4px solid var(--accent); transform:rotate(45deg);
+}
+
+/* chamada para o contato, fechando o último grupo */
+.svc-cta{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.25rem;
+  margin-top:clamp(2.5rem,5vw,3.5rem); padding-top:2rem; border-top:1px solid var(--line);
+}
+.svc-cta p{ color:var(--ink-soft); font-size:1.05rem; max-width:46ch; }
 
 /* ---------- depoimento ---------- */
 .testi-grid{ display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(2rem,5vw,3.5rem); align-items:center; }
@@ -86,17 +127,27 @@
 .info-row a{ overflow-wrap:anywhere; }
 
 /* ---------- responsivo ---------- */
+
+/* Com cinco cartões numa fileira, a coluna do título aperta demais antes
+   mesmo do tablet: aqui o título sobe para cima dos cartões e a fileira
+   passa a quebrar sozinha, em colunas de no mínimo 210px. */
+@media (max-width:1180px){
+  .svc-group{ grid-template-columns:1fr; gap:2rem; }
+  .svc-intro{ border-right:none; padding-right:0; }
+  .svc-intro .lede{ max-width:60ch; }
+  .svc-cards{ grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr)); }
+}
+
 @media (max-width:960px){
   .hero{ padding-bottom:0; }
   .hero .container{ grid-template-columns:1fr; }
   .hero .plate{ margin-top:2.5rem; }
-  .intro-grid, .purpose-grid, .card-grid, .proj-grid{ grid-template-columns:1fr 1fr; }
-  .about-grid, .env-wrap, .testi-grid, .contact-grid, .proj-foot{ grid-template-columns:1fr; }
-  .env-list{ grid-template-columns:1fr; }
+  .intro-grid, .purpose-grid{ grid-template-columns:1fr 1fr; }
+  .about-grid, .testi-grid, .contact-grid{ grid-template-columns:1fr; }
 }
 
 @media (max-width:640px){
-  .intro-grid, .purpose-grid, .card-grid, .proj-grid{ grid-template-columns:1fr; }
+  .intro-grid, .purpose-grid{ grid-template-columns:1fr; }
 
   /* menos ar entre os blocos: no celular tudo vira uma coluna só e o
      espaçamento pensado para o desktop deixa a rolagem interminável */
@@ -105,7 +156,8 @@
   .intro-grid{ gap:1.75rem; margin-top:2rem; }
   .purpose{ margin-top:2.5rem; }
   .purpose-grid{ gap:2rem; }
-  .head-row{ margin-bottom:2rem; }
-  .proj-grid{ margin-bottom:2rem; }
-  .env-list{ gap:1.5rem; }
+  .svc-group{ gap:1.5rem; }
+  .svc-cards{ grid-template-columns:1fr; }
+  .svc-card__media{ min-height:170px; }
+  .svc-cta{ margin-top:2rem; padding-top:1.5rem; }
 }

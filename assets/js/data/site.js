@@ -55,9 +55,9 @@ NA.site = {
   nav: [
     { id: 'inicio',     key: 'nav_home' },
     { id: 'quem-somos', key: 'nav_about' },
-    { id: 'territorial', key: 'nav_territorial' },
+    { id: 'fundiaria',  key: 'nav_land' },
     { id: 'ambiental',  key: 'nav_environmental' },
-    { id: 'projetos',   key: 'nav_projects' },
+    { id: 'consultoria', key: 'nav_advisory' },
     { id: 'contato',    key: 'nav_contact' }
   ],
 
@@ -70,5 +70,5 @@ NA.site = {
   ],
 
   /* Rodapé: quais seções aparecem na coluna "Navegação". */
-  footerNav: ['quem-somos', 'territorial', 'ambiental', 'projetos']
+  footerNav: ['quem-somos', 'fundiaria', 'ambiental', 'consultoria']
 };

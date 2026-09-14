@@ -26,11 +26,13 @@ NA.icons = (function () {
     'i-credit':   [V24, '<circle cx="12" cy="14" r="7"/><path d="M12 14V6"/><path d="M12 6c-2 0-3 1.4-3 3 2 0 3-1.2 3-3Z"/><path d="M12 6c2 0 3 1.4 3 3-2 0-3-1.2-3-3Z"/>'],
     'i-mail':     [V24, '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'],
     'i-phone':    [V24, '<path d="M4 5c0 8.3 6.7 15 15 15l3-4-6-2-2 2c-2.4-1-4-2.6-5-5l2-2-2-6-4 1Z"/>'],
+    'i-arrow-right': [V24, '<path d="M4 12h15"/><path d="m13 6 6 6-6 6"/>'],
 
     /* ---- ícones dos espaços reservados de imagem ---- */
     'i-plate-landscape': [V48, '<circle cx="16" cy="15" r="4"/><path d="M4 34 18 20 26 28 34 18 44 34"/>'],
     'i-plate-person':    [V48, '<circle cx="24" cy="16" r="7"/><path d="M10 42c0-8 6-13 14-13s14 5 14 13"/>'],
     'i-plate-marker':    [V48, '<circle cx="24" cy="14" r="4"/><path d="M24 18v20M16 42h16"/>'],
+    'i-plate-doc':       [V48, '<path d="M12 6h16l8 8v28H12Z"/><path d="M28 6v8h8"/><path d="M19 26h14M19 33h10"/>'],
 
     /* ---- redes sociais ---- */
     'i-instagram': [V24, '<rect x="3" y="3" width="18" height="18" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/>'],

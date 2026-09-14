@@ -36,8 +36,8 @@ montada em JavaScript, a partir de dados e componentes.
     │   ├── components/         uma função por bloco, devolvendo HTML
     │   │   ├── brand.js  plate.js  social.js      (reutilizáveis)
     │   │   ├── header.js  footer.js
-    │   │   └── hero.js  overview.js  about.js  territorial.js
-    │   │       environmental.js  projects.js  testimonial.js  contact.js
+    │   │   └── hero.js  overview.js  about.js  services.js
+    │   │       testimonial.js  contact.js
     │   └── modules/            comportamento, depois que a página existe
     │       ├── i18n.js         troca de idioma + menu de idiomas
     │       ├── theme.js        botão claro/escuro
@@ -96,6 +96,16 @@ para que buscadores enxerguem os endereços.
 lista da seção (ícone + chaves) e crie as chaves nos três dicionários. Nenhum
 componente precisa ser tocado.
 
+**Serviços** → a lista `services` em `data/content.js` tem um grupo por seção
+(hoje *fundiária*, *ambiental* e *consultoria*). Cada grupo traz o `id` — que é
+o âncora usado pela navegação em `data/site.js` — o título, a linha de apoio e
+os `cards`. Cada cartão tem ícone do espaço reservado, título, legenda da
+imagem e a lista `items` de subserviços, que pode ficar vazia. A fileira nasce
+com o número exato de cartões do grupo (`--cols`), então acrescentar um cartão
+estreita os demais; a partir de cinco cartões, vale conferir como fica no
+desktop. Ao criar ou remover um grupo, ajuste também `nav` e `footerNav` em
+`data/site.js`.
+
 **Cores e fontes** → `assets/css/tokens.css`, com os dois temas lado a lado.
 
 **Tipografia** — as mesmas famílias do site de referência (romeroambiental.com.br):
@@ -148,6 +158,7 @@ O layout é feito para telefone, tablet e desktop, com três pontos de quebra:
 | até **380px** | a marca encolhe mais |
 | até **640px** (celular) | tudo em uma coluna; cabeçalho compacto (60px); menos espaço entre blocos; campos do formulário em 16px; bloco panorâmico do mapa fica mais alto |
 | até **960px** (tablet) | navegação vira painel lateral; grades caem para duas colunas |
+| até **1180px** | nos serviços, o título sobe para cima dos cartões e a fileira quebra sozinha |
 | acima disso | layout completo em três colunas |
 
 Ao mexer no cabeçalho, lembre que ele precisa caber em 320px de largura:

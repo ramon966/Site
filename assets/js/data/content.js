@@ -22,28 +22,72 @@ NA.content = {
     { icon: 'i-scales',  title: 'values_t',  body: 'values_b' }
   ],
 
-  /* serviços territoriais — cartões com imagem */
-  territorial: [
-    { title: 't1_t', body: 't1_b', caption: 't1_cap' },
-    { title: 't2_t', body: 't2_b', caption: 't2_cap' },
-    { title: 't3_t', body: 't3_b', caption: 't3_cap' },
-    { title: 't4_t', body: 't4_b', caption: 't4_cap' },
-    { title: 't5_t', body: 't5_b', caption: 't5_cap' }
-  ],
-
-  /* serviços ambientais — lista com ícone */
-  environmental: [
-    { icon: 'i-shield',   title: 'e1_t', body: 'e1_b' },
-    { icon: 'i-doc',      title: 'e2_t', body: 'e2_b' },
-    { icon: 'i-recycle',  title: 'e3_t', body: 'e3_b' },
-    { icon: 'i-registry', title: 'e4_t', body: 'e4_b' }
-  ],
-
-  /* projetos e planejamentos */
-  projects: [
-    { icon: 'i-credit',  title: 'p1_t', body: 'p1_b' },
-    { icon: 'i-scales',  title: 'p2_t', body: 'p2_b' },
-    { icon: 'i-compass', title: 'p3_t', body: 'p3_b' }
+  /* Serviços — um grupo por seção (o `id` é o âncora da navegação).
+     Cada cartão tem imagem, título e a lista de subserviços (`items`),
+     que pode ficar vazia. A fileira se ajusta à quantidade de cartões:
+     quanto menos cartões, mais largo cada um. */
+  services: [
+    {
+      id: 'fundiaria',
+      title: 'svc1_title',
+      body: 'svc1_body',
+      cards: [
+        {
+          icon: 'i-plate-marker', title: 'f1_t', caption: 'f1_cap',
+          items: []
+        },
+        {
+          icon: 'i-plate-doc', title: 'f2_t', caption: 'f2_cap',
+          items: ['f2_i1', 'f2_i2', 'f2_i3', 'f2_i4']
+        },
+        {
+          icon: 'i-plate-landscape', title: 'f3_t', caption: 'f3_cap',
+          items: ['f3_i1', 'f3_i2', 'f3_i3', 'f3_i4', 'f3_i5', 'f3_i6']
+        },
+        {
+          icon: 'i-plate-landscape', title: 'f4_t', caption: 'f4_cap',
+          items: ['f4_i1', 'f4_i2', 'f4_i3']
+        },
+        {
+          icon: 'i-plate-doc', title: 'f5_t', caption: 'f5_cap',
+          items: ['f5_i1', 'f5_i2', 'f5_i3']
+        }
+      ]
+    },
+    {
+      id: 'ambiental',
+      title: 'svc2_title',
+      body: 'svc2_body',
+      cards: [
+        {
+          icon: 'i-plate-landscape', title: 'a1_t', caption: 'a1_cap',
+          items: ['a1_i1', 'a1_i2', 'a1_i3']
+        },
+        {
+          icon: 'i-plate-landscape', title: 'a2_t', caption: 'a2_cap',
+          items: ['a2_i1', 'a2_i2', 'a2_i3', 'a2_i4', 'a2_i5']
+        },
+        {
+          icon: 'i-plate-landscape', title: 'a3_t', caption: 'a3_cap',
+          items: ['a3_i1', 'a3_i2', 'a3_i3', 'a3_i4']
+        }
+      ]
+    },
+    {
+      id: 'consultoria',
+      title: 'svc3_title',
+      body: 'svc3_body',
+      cards: [
+        {
+          icon: 'i-plate-person', title: 'c1_t', caption: 'c1_cap',
+          items: ['c1_i1', 'c1_i2', 'c1_i3']
+        },
+        {
+          icon: 'i-plate-doc', title: 'c2_t', caption: 'c2_cap',
+          items: ['c2_i1', 'c2_i2', 'c2_i3', 'c2_i4', 'c2_i5']
+        }
+      ]
+    }
   ],
 
   /* depoimento em destaque */

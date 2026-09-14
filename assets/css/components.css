@@ -1,6 +1,6 @@
 /* ============================================================
-   components.css — peças reutilizáveis: botões, cartões, placeholders
-   de imagem, seletor de idioma, ícones sociais e formulário
+   components.css — peças reutilizáveis: botões, placeholders de imagem,
+   seletor de idioma, ícones sociais e formulário
    Depende de: tokens.css, base.css
    ============================================================ */
 
@@ -48,17 +48,6 @@
 @media (max-width:640px){
   .plate--map{ aspect-ratio:16/10; }
 }
-
-/* ---------- cartão de serviço ---------- */
-.card{
-  background:var(--surface); border:1px solid var(--line); border-radius:2px; overflow:hidden;
-  display:flex; flex-direction:column; transition:transform .25s ease, box-shadow .25s ease;
-}
-.card:hover{ transform:translateY(-5px); box-shadow:var(--shadow); }
-.card .plate{ border:none; border-bottom:1px dashed var(--line); border-radius:0; }
-.card-body{ padding:1.5rem 1.5rem 1.75rem; }
-.card-body h3{ font-size:1.08rem; margin-bottom:.5rem; }
-.card-body p{ color:var(--ink-soft); font-size:.92rem; }
 
 /* ---------- seletor de idioma ----------
    Só bandeiras, recortadas em círculo. O nome do idioma fica no title e no

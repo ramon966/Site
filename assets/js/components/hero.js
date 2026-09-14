@@ -25,7 +25,7 @@ NA.components.hero = (function () {
             <p class="lede"${t('hero_body')}></p>
             <div class="cta-row">
               <a class="btn btn--primary" href="#contato"${t('hero_cta1')}></a>
-              <a class="btn btn--outline" href="#territorial"${t('hero_cta2')}></a>
+              <a class="btn btn--outline" href="#fundiaria"${t('hero_cta2')}></a>
             </div>
           </div>
           ${NA.components.plate({ ratio: '4/5', caption: 'hero_imgcap' })}
