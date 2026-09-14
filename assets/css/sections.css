@@ -52,11 +52,13 @@
 .svc-intro{ border-right:1px solid var(--line); padding-right:clamp(1rem,2vw,1.75rem); }
 .svc-intro .lede{ margin-top:.9rem; font-size:.97rem; }
 
-/* --cols vem do HTML: é a quantidade de cartões do grupo, para que a
-   fileira caiba sempre em uma linha só (5, 3 ou 2 cartões). */
-.svc-cards{ display:grid; grid-template-columns:repeat(var(--cols,3),minmax(0,1fr)); gap:1rem; }
+/* Seis colunas de apoio: o --span de cada cartão (vem do HTML) diz quantas
+   ele ocupa, o que dá fileiras de até três cartões — 5 cartões viram 3 + 2,
+   com os dois de baixo mais largos, fechando a largura. */
+.svc-cards{ display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:1rem; }
 
 .svc-card{
+  grid-column:span var(--span,2);
   display:flex; flex-direction:column; overflow:hidden;
   background:var(--surface); border:1px solid var(--line); border-radius:2px;
   transition:transform .25s ease, box-shadow .25s ease;
@@ -129,14 +131,12 @@
 
 /* ---------- responsivo ---------- */
 
-/* Com cinco cartões numa fileira, a coluna do título aperta demais antes
-   mesmo do tablet: aqui o título sobe para cima dos cartões e a fileira
-   passa a quebrar sozinha, em colunas de no mínimo 210px. */
+/* A coluna do título aperta os cartões antes mesmo do tablet: aqui o título
+   sobe para cima deles e a fileira passa a usar a largura inteira. */
 @media (max-width:1180px){
   .svc-group{ grid-template-columns:1fr; gap:2rem; }
   .svc-intro{ border-right:none; padding-right:0; }
   .svc-intro .lede{ max-width:60ch; }
-  .svc-cards{ grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr)); }
 }
 
 @media (max-width:960px){
@@ -158,7 +158,9 @@
   .purpose{ margin-top:2.5rem; }
   .purpose-grid{ gap:2rem; }
   .svc-group{ gap:1.5rem; }
+  /* no celular cada cartão ocupa a linha toda, independente do --span */
   .svc-cards{ grid-template-columns:1fr; }
+  .svc-card{ grid-column:auto; }
   .svc-card__media{ min-height:170px; }
   .svc-cta{ margin-top:2rem; padding-top:1.5rem; }
 }

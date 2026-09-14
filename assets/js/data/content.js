@@ -24,22 +24,15 @@ NA.content = {
 
   /* Serviços — um grupo por seção (o `id` é o âncora da navegação).
      Cada cartão tem imagem, título e a lista de subserviços (`items`),
-     que pode ficar vazia. A fileira se ajusta à quantidade de cartões:
-     quanto menos cartões, mais largo cada um. */
+     que pode ficar vazia. A ordem aqui é a ordem na tela: a fileira leva
+     até três cartões e quebra sozinha, então os últimos dois de um grupo
+     de cinco descem para a linha de baixo, mais largos. */
   services: [
     {
       id: 'fundiaria',
       title: 'svc1_title',
       body: 'svc1_body',
       cards: [
-        {
-          icon: 'i-plate-marker', title: 'f1_t', caption: 'f1_cap',
-          items: []
-        },
-        {
-          icon: 'i-plate-doc', title: 'f2_t', caption: 'f2_cap',
-          items: ['f2_i1', 'f2_i2', 'f2_i3', 'f2_i4']
-        },
         {
           icon: 'i-plate-landscape', title: 'f3_t', caption: 'f3_cap',
           items: ['f3_i1', 'f3_i2', 'f3_i3', 'f3_i4', 'f3_i5', 'f3_i6']
@@ -51,6 +44,15 @@ NA.content = {
         {
           icon: 'i-plate-doc', title: 'f5_t', caption: 'f5_cap',
           items: ['f5_i1', 'f5_i2', 'f5_i3']
+        },
+        /* linha de baixo */
+        {
+          icon: 'i-plate-marker', title: 'f1_t', caption: 'f1_cap',
+          items: []
+        },
+        {
+          icon: 'i-plate-doc', title: 'f2_t', caption: 'f2_cap',
+          items: ['f2_i1', 'f2_i2', 'f2_i3', 'f2_i4']
         }
       ]
     },

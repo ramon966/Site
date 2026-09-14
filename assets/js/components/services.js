@@ -14,10 +14,27 @@ NA.components.services = (function () {
   /* mesma linha tracejada que main.js usa entre as seções */
   const SEPARATOR = '<div class="neatline"></div>';
 
+  /* Cada fileira leva no máximo três cartões. A grade tem seis colunas, então
+     o cartão ocupa 6 ÷ (cartões da fileira): dois numa fileira de três, três
+     numa fileira de dois — assim a última fileira fecha a largura em vez de
+     deixar um buraco. Cinco cartões viram 3 + 2; três viram 3; dois viram 2. */
+  const ROW_MAX = 3;
+  const GRID_COLS = 6;
+
+  const rowSizes = (total) => {
+    const sizes = [];
+    for (let left = total; left > 0; left -= ROW_MAX) sizes.push(Math.min(ROW_MAX, left));
+    return sizes;
+  };
+
+  /* quantas colunas cada cartão ocupa, na ordem em que aparecem */
+  const spans = (total) =>
+    rowSizes(total).reduce((list, size) => list.concat(Array(size).fill(GRID_COLS / size)), []);
+
   const item = (key) => `<li${t(key)}></li>`;
 
-  const card = ({ icon, title, caption, items }) => `
-    <article class="svc-card reveal">
+  const card = (spanList) => ({ icon, title, caption, items }, i) => `
+    <article class="svc-card reveal" style="--span:${spanList[i]}">
       <div class="svc-card__media">
         ${NA.components.plate({ icon, caption, corners: false, reveal: false })}
       </div>
@@ -36,8 +53,6 @@ NA.components.services = (function () {
       <a class="btn btn--primary" href="#contato"${t('svc_cta')}></a>
     </div>`;
 
-  /* `--cols` é a quantidade de cartões do grupo: a fileira nasce com o
-     número exato de colunas e, abaixo de 1180px, o CSS assume o comando. */
   const group = ({ id, title, body, cards }, last) => `
     <section class="section" id="${id}">
       <div class="container">
@@ -48,8 +63,8 @@ NA.components.services = (function () {
             <p class="lede"${t(body)}></p>
           </div>
 
-          <div class="svc-cards" style="--cols:${cards.length}">
-            ${each(cards, card)}
+          <div class="svc-cards">
+            ${each(cards, card(spans(cards.length)))}
           </div>
         </div>
         ${last ? cta() : ''}
