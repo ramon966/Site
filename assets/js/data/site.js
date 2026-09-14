@@ -13,11 +13,11 @@ NA.site = {
   /* Unidades, na ordem em que aparecem no site. A primeira é a sede: é dela
      que sai a coordenada exibida no topo do hero.
 
-     Para publicar a unidade de Goiânia, basta preencher street, district e
-     zip abaixo. Enquanto `street` estiver vazio, o site mostra a cidade com
-     a observação "endereço em breve" — no contato e no rodapé — sem quebrar
-     nada. Ao preencher, lembre de completar também os dados estruturados
-     (JSON-LD) e o bloco <noscript> do index.html. */
+     Para publicar uma unidade nova, basta preencher street, district e zip.
+     Enquanto `street` estiver vazio, o site mostra a cidade com a observação
+     "endereço em breve" — no contato e no rodapé — sem quebrar nada. Ao
+     preencher, lembre de completar também os dados estruturados (JSON-LD) e
+     o bloco <noscript> do index.html. */
   units: [
     {
       city: 'Mara Rosa',
@@ -30,9 +30,9 @@ NA.site = {
     {
       city: 'Goiânia',
       state: 'GO',
-      street: '',
-      district: '',
-      zip: ''
+      street: 'Av. Santa Maria, R. Belo Horizonte, c',
+      district: 'Parque Amazônia',
+      zip: '74840-680'
     }
   ],
 
