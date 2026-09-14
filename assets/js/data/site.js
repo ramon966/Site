@@ -38,12 +38,16 @@ NA.site = {
 
   email: 'atendimento@norteagroprojetos.com.br',
 
-  /* Quando o número existir: troque por { number: '+55…', href: 'https://wa.me/55…' }
-     e o selo deixa de ser exibido como "em breve". */
-  whatsapp: null,
+  /* Número único de WhatsApp: alimenta a seção de contato, o rodapé e o selo
+     da barra de redes sociais. `number` é como aparece escrito; `href` é o
+     link do wa.me, só com dígitos (país + DDD + número). Voltando para
+     `null`, os três lugares exibem "em breve" e o selo some sozinho. */
+  whatsapp: { number: '+55 (62) 99406-6225', href: 'https://wa.me/5562994066225' },
 
-  /* Redes sociais. `stamp: false` tira o ícone das barras de selos. */
+  /* Redes sociais. O selo do WhatsApp não tem `href`: ele sai do campo
+     `whatsapp` acima, para o número existir num lugar só. */
   social: [
+    { id: 'whatsapp',  label: 'WhatsApp',  icon: 'i-whatsapp' },
     { id: 'instagram', label: 'Instagram', icon: 'i-instagram', href: 'https://www.instagram.com/norteagroprojetos/' },
     { id: 'facebook',  label: 'Facebook',  icon: 'i-facebook',  href: 'https://www.facebook.com/profile.php?id=100089072502488&locale=pt_BR' },
     { id: 'linkedin',  label: 'LinkedIn',  icon: 'i-linkedin',  href: 'https://www.linkedin.com/company/norte-agro-projetos/posts/?feedView=all' },

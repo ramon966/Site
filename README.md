@@ -133,9 +133,14 @@ logotipo, os dois precisam ser gerados de novo.
 com `NA.icons.use('i-novo')`. O sprite é embutido na página porque os
 navegadores bloqueiam `<use>` apontando para arquivo `.svg` externo.
 
-**WhatsApp** → em `data/site.js`, troque `whatsapp: null` por
-`{ number: '+55 …', href: 'https://wa.me/55…' }`. Os três lugares que hoje
-mostram "em breve" passam a exibir o link automaticamente.
+**WhatsApp** → o campo `whatsapp` em `data/site.js` é a única fonte do número:
+`number` é como ele aparece escrito e `href` é o link do wa.me, só com dígitos
+(país + DDD + número). Dele saem a linha do contato, a do rodapé e o selo da
+barra de redes sociais — por isso o item `whatsapp` da lista `social` não tem
+`href` próprio. Voltando o campo para `null`, os dois primeiros exibem "em
+breve" (chave `contact_whatsapp_note`) e o selo some sozinho. O `index.html`
+precisa de ajuste manual: o `telephone` dos dados estruturados e o bloco
+`<noscript>`, estáticos de propósito.
 
 **Imagens** → os blocos `.plate` são espaços reservados. Para usar a foto real,
 substitua a chamada de `NA.components.plate({…})` por
