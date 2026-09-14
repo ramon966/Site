@@ -1,18 +1,16 @@
 /* ============================================================
    components.css — peças reutilizáveis: botões, placeholders de imagem,
-   seletor de idioma, ícones sociais e formulário
+   seletor de idioma e ícones sociais
    Depende de: tokens.css, base.css
    ============================================================ */
 
 /* ---------- botões ----------
-   O contorno repete a folha do favicon: cantos superior-esquerdo e
-   inferior-direito arredondados, os outros dois em ponta. O raio maior que a
-   altura é reduzido pelo próprio navegador até caber, então a curva acompanha
-   o tamanho do botão sem precisar de valor fixo. O padding lateral é maior que
-   o vertical para o texto não encostar nas curvas. */
+   Retângulo de cantos arredondados, os quatro com o mesmo raio. Para mudar a
+   curvatura de todos os botões do site, é só o valor de --btn-radius. */
 .btn{
+  --btn-radius:8px;
   display:inline-flex; align-items:center; gap:.55rem; font-weight:600; font-size:.95rem;
-  padding:.85rem 1.9rem; border-radius:999px 0 999px 0; text-decoration:none; cursor:pointer; border:1px solid transparent;
+  padding:.85rem 1.9rem; border-radius:var(--btn-radius); text-decoration:none; cursor:pointer; border:1px solid transparent;
   transition:background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
 }
 .btn:hover{ transform:translateY(-2px); }
@@ -101,28 +99,3 @@
 .stamp.disabled:hover{ transform:none; opacity:.35; }
 .ic-stamp{ width:18px; height:18px; stroke:currentColor; stroke-width:1.6; fill:none; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
 
-/* ---------- formulário de contato ---------- */
-form.contact-form{ background:var(--surface); color:var(--ink); border-radius:2px; padding:clamp(1.75rem,3vw,2.5rem); }
-.form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.25rem 1.5rem; }
-.field{ display:flex; flex-direction:column; gap:.4rem; margin-bottom:1.25rem; }
-.field.full{ grid-column:1/-1; }
-.field label{ font-size:.8rem; font-weight:600; letter-spacing:.02em; }
-.field label .req{ color:var(--clay); }
-.field input, .field textarea{
-  font-family:inherit; font-size:.95rem; padding:.75rem .85rem; border:1px solid var(--line);
-  border-radius:2px; background:var(--bg); color:var(--ink); resize:vertical;
-}
-.field input:focus, .field textarea:focus{ border-color:var(--accent); }
-.field textarea{ min-height:110px; }
-.form-foot{ display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap; margin-top:.5rem; }
-.form-note{ font-family:var(--font-label); font-size:.74rem; color:var(--ink-faint); }
-.form-success{ font-size:.85rem; color:var(--accent-strong); font-weight:600; display:none; }
-.form-success.show{ display:block; }
-
-@media (max-width:640px){
-  .form-grid{ grid-template-columns:1fr; }
-  /* abaixo de 16px o Safari do iPhone dá zoom ao focar o campo e a página
-     fica desalinhada; 1rem = 16px evita isso */
-  .field input, .field textarea{ font-size:1rem; }
-  .field{ margin-bottom:.5rem; }
-}

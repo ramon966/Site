@@ -96,16 +96,5 @@ NA.content = {
     name: 'Ramon Gomes',
     role: 'test_role',
     caption: 'test_imgcap'
-  },
-
-  /* campos do formulário de contato, na ordem em que aparecem.
-     `full: true` ocupa a linha inteira do grid. */
-  formFields: [
-    { id: 'f-nome',    name: 'nome',     type: 'text',  label: 'form_name',    placeholder: 'form_name_ph',    required: true, labelHasHtml: true },
-    { id: 'f-email',   name: 'email',    type: 'email', label: 'form_email',   placeholder: 'form_email_ph',   required: true, labelHasHtml: true },
-    { id: 'f-tel',     name: 'telefone', type: 'tel',   label: 'form_phone',   placeholder: 'form_phone_ph' },
-    { id: 'f-end',     name: 'endereco', type: 'text',  label: 'form_address', placeholder: 'form_address_ph' },
-    { id: 'f-assunto', name: 'assunto',  type: 'text',  label: 'form_subject', placeholder: 'form_subject_ph', full: true },
-    { id: 'f-msg',     name: 'mensagem', type: 'textarea', label: 'form_message', placeholder: 'form_message_ph', full: true }
-  ]
+  }
 };

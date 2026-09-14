@@ -40,5 +40,4 @@
   NA.theme.init();
   NA.nav.init();
   NA.reveal.init();
-  NA.contactForm.init();
 })();

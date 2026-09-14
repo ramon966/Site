@@ -17,7 +17,7 @@ montada em JavaScript, a partir de dados e componentes.
     ├── css/
     │   ├── tokens.css          variáveis: cores, fontes, sombras, temas claro/escuro
     │   ├── base.css            reset, tipografia, container, seções, utilitários
-    │   ├── components.css      botões, cartões, formulário, seletor de idioma, selos
+    │   ├── components.css      botões, espaços reservados, seletor de idioma, selos
     │   ├── layout.css          cabeçalho fixo, navegação e rodapé
     │   └── sections.css        composição de cada seção da home
     ├── js/
@@ -42,8 +42,7 @@ montada em JavaScript, a partir de dados e componentes.
     │       ├── i18n.js         troca de idioma + menu de idiomas
     │       ├── theme.js        botão claro/escuro
     │       ├── nav.js          menu mobile + link ativo conforme a rolagem
-    │       ├── reveal.js       animação de entrada dos blocos
-    │       └── contact-form.js formulário de contato
+    │       └── reveal.js       animação de entrada dos blocos
     └── img/
         ├── logo-light.png      logotipo para fundo claro (tema claro)
         ├── logo-dark.png       logotipo para fundo escuro (tema escuro)
@@ -156,7 +155,7 @@ O layout é feito para telefone, tablet e desktop, com três pontos de quebra:
 | Largura | O que muda |
 | --- | --- |
 | até **380px** | a marca encolhe mais |
-| até **640px** (celular) | tudo em uma coluna; cabeçalho compacto (60px); menos espaço entre blocos; campos do formulário em 16px; bloco panorâmico do mapa fica mais alto |
+| até **640px** (celular) | tudo em uma coluna; cabeçalho compacto (60px); menos espaço entre blocos; bloco panorâmico do mapa fica mais alto |
 | até **960px** (tablet) | navegação vira painel lateral; grades caem para duas colunas |
 | até **1180px** | nos serviços, o título sobe para cima dos cartões e a fileira quebra sozinha |
 | acima disso | layout completo em três colunas |
@@ -187,8 +186,7 @@ Chave ausente na tradução escolhida cai automaticamente no português.
   buscadores e o WhatsApp leem apenas o `<head>`. Por isso o `index.html` traz
   os dados estruturados (JSON-LD) e o `<noscript>` com endereço e e-mail —
   mantenha os dois em dia com `data/site.js`.
-- O formulário de contato é apenas front-end: exibe a mensagem de sucesso sem
-  enviar nada. Para conectar a um serviço real, veja o comentário em
-  `modules/contact-form.js`.
+- A seção de contato não tem formulário: o atendimento acontece por e-mail,
+  WhatsApp e redes sociais, listados a partir de `data/site.js`.
 - Falta definir `og:url` e `og:image` no `<head>` (dependem do domínio final).
 - A seção de contato tem um espaço reservado para o mapa.
