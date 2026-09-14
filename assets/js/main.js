@@ -26,7 +26,6 @@
     neatline(),
     c.services(),   /* três seções: fundiária, ambiental e consultoria */
     neatline(),
-    c.testimonial(),
     c.contact(),
     '</main>',
     c.footer()

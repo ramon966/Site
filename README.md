@@ -36,8 +36,7 @@ montada em JavaScript, a partir de dados e componentes.
     │   ├── components/         uma função por bloco, devolvendo HTML
     │   │   ├── brand.js  plate.js  social.js      (reutilizáveis)
     │   │   ├── header.js  footer.js
-    │   │   └── hero.js  overview.js  about.js  services.js
-    │   │       testimonial.js  contact.js
+    │   │   └── hero.js  overview.js  about.js  services.js  contact.js
     │   └── modules/            comportamento, depois que a página existe
     │       ├── i18n.js         troca de idioma + menu de idiomas
     │       ├── theme.js        botão claro/escuro

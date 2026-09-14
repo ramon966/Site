@@ -115,10 +115,6 @@ NA.translations['en-US'] = {
   svc_cta_lead: "Want to know which service fits your property?",
   svc_cta: "Learn more",
 
-  test_quote: "Our focus is on the solution. Our mission is to bring our clients' properties to full regularization.",
-  test_role: "Owner of Norte Agro",
-  test_imgcap: "Image placeholder: portrait of Ramon Gomes, owner of Norte Agro",
-
   contact_eyebrow: "Contact",
   contact_title: "Let's regularize your <em>property</em>.",
   contact_body: "Reach us through the channels below.",

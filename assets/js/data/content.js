@@ -90,13 +90,5 @@ NA.content = {
         }
       ]
     }
-  ],
-
-  /* depoimento em destaque */
-  testimonial: {
-    quote: 'test_quote',
-    name: 'Ramon Gomes',
-    role: 'test_role',
-    caption: 'test_imgcap'
-  }
+  ]
 };
