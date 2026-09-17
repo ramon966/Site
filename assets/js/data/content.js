@@ -35,11 +35,11 @@ NA.content = {
       cards: [
         {
           icon: 'i-plate-landscape', title: 'f3_t', caption: 'f3_cap',
-          items: ['f3_i1', 'f3_i2', 'f3_i3', 'f3_i4', 'f3_i5', 'f3_i6']
+          items: ['f3_i1', 'f3_i2', 'f3_i3', 'f3_i4']
         },
         {
           icon: 'i-plate-landscape', title: 'f4_t', caption: 'f4_cap',
-          items: ['f4_i1', 'f4_i2', 'f4_i3']
+          items: ['f4_i1', 'f4_i2', 'f4_i3', 'f4_i4']
         },
         {
           icon: 'i-plate-doc', title: 'f5_t', caption: 'f5_cap',
@@ -52,7 +52,7 @@ NA.content = {
         },
         {
           icon: 'i-plate-doc', title: 'f2_t', caption: 'f2_cap',
-          items: ['f2_i1', 'f2_i2', 'f2_i3', 'f2_i4']
+          items: ['f2_i1', 'f2_i2', 'f2_i3', 'f2_i4', 'f2_i5']
         }
       ]
     },
@@ -63,15 +63,15 @@ NA.content = {
       cards: [
         {
           icon: 'i-plate-landscape', title: 'a1_t', caption: 'a1_cap',
-          items: ['a1_i1', 'a1_i2', 'a1_i3']
+          items: []
         },
         {
           icon: 'i-plate-landscape', title: 'a2_t', caption: 'a2_cap',
-          items: ['a2_i1', 'a2_i2', 'a2_i3', 'a2_i4', 'a2_i5']
+          items: ['a2_i1', 'a2_i2', 'a2_i3', 'a2_i4', 'a2_i5', 'a2_i6']
         },
         {
           icon: 'i-plate-landscape', title: 'a3_t', caption: 'a3_cap',
-          items: ['a3_i1', 'a3_i2', 'a3_i3', 'a3_i4']
+          items: ['a3_i1', 'a3_i2']
         }
       ]
     },
@@ -82,7 +82,7 @@ NA.content = {
       cards: [
         {
           icon: 'i-plate-person', title: 'c1_t', caption: 'c1_cap',
-          items: ['c1_i1', 'c1_i2', 'c1_i3']
+          items: ['c1_i1', 'c1_i2']
         },
         {
           icon: 'i-plate-doc', title: 'c2_t', caption: 'c2_cap',

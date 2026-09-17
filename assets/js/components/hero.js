@@ -23,6 +23,7 @@ NA.components.hero = (function () {
             <p class="eyebrow"${t('hero_eyebrow')}></p>
             <h1${tHtml('hero_title')}></h1>
             <p class="lede"${t('hero_body')}></p>
+            <p class="hero__support"${t('hero_body2')}></p>
             <div class="cta-row">
               <a class="btn btn--primary" href="#contato"${t('hero_cta1')}></a>
               <a class="btn btn--outline" href="#fundiaria"${t('hero_cta2')}></a>

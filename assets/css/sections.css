@@ -13,7 +13,9 @@
 .hero__coord{ font-family:var(--font-label); font-size:.78rem; letter-spacing:.08em; color:var(--clay); margin-bottom:1.25rem; }
 .hero h1{ font-size:clamp(2.4rem,1.6rem + 3.4vw,3.9rem); line-height:1.16; letter-spacing:-.01em; margin-bottom:1.3rem; }
 .hero h1 em{ font-style:italic; color:var(--accent); }
-.hero p.lede{ color:var(--ink-soft); max-width:48ch; margin-bottom:2.1rem; font-size:1.08rem; }
+.hero p.lede{ color:var(--ink-soft); max-width:48ch; margin-bottom:.9rem; font-size:1.08rem; }
+/* linha de apoio abaixo da chamada: lista o que fazemos, em corpo menor */
+.hero__support{ color:var(--ink-soft); max-width:52ch; margin-bottom:2.1rem; font-size:.95rem; }
 .cta-row{ display:flex; flex-wrap:wrap; gap:1rem; }
 
 /* ---------- faixa de visão geral ---------- */
@@ -36,7 +38,14 @@
 
 /* missão, visão e valores */
 .purpose{ background:var(--dark); color:var(--on-dark); border-radius:2px; padding:clamp(2.5rem,5vw,4rem); margin-top:4.5rem; border:1px solid var(--line); }
-.purpose > p{ max-width:60ch; color:var(--on-dark-soft); font-size:1.05rem; margin-bottom:2.75rem; }
+.purpose-title{
+  font-family:var(--font-label); font-size:.74rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--on-dark); margin-bottom:.9rem; font-weight:500;
+}
+.purpose > p{ max-width:60ch; color:var(--on-dark-soft); font-size:1.05rem; }
+.purpose > p + p{ margin-top:1rem; }
+/* o afastamento da grade fica no último parágrafo, não em cada um */
+.purpose > p:last-of-type{ margin-bottom:2.75rem; }
 .purpose-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2.5rem; }
 .purpose-item .ic-wrap{
   width:40px; height:40px; border:1px solid rgba(var(--inverse-rgb),.25); border-radius:50%;
@@ -110,13 +119,6 @@
   border-top:1.4px solid var(--accent); border-right:1.4px solid var(--accent); transform:rotate(45deg);
 }
 
-/* chamada para o contato, fechando o último grupo */
-.svc-cta{
-  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.25rem;
-  margin-top:clamp(2.5rem,5vw,3.5rem); padding-top:2rem; border-top:1px solid var(--line);
-}
-.svc-cta p{ color:var(--ink-soft); font-size:1.05rem; max-width:46ch; }
-
 /* ---------- contato ----------
    Os canais ocupam a largura inteira: uma coluna por unidade, mais
    e-mail e WhatsApp, quebrando conforme a largura disponível. */
@@ -160,6 +162,4 @@
   /* no celular cada cartão ocupa a linha toda, independente do --span */
   .svc-cards{ grid-template-columns:1fr; }
   .svc-card{ grid-column:auto; }
-  .svc-card__media{ min-height:170px; }
-  .svc-cta{ margin-top:2rem; padding-top:1.5rem; }
-}
+  .svc-card__media{ min-height:170px; }}

@@ -3,7 +3,7 @@
 
    Cada grupo de NA.content.services vira uma seção própria (é o
    âncora da navegação): título à esquerda, fileira de cartões à
-   direita. O último grupo fecha com a chamada para o contato.
+   direita.
    ============================================================ */
 window.NA = window.NA || {};
 NA.components = NA.components || {};
@@ -47,13 +47,7 @@ NA.components.services = (function () {
       </div>
     </article>`;
 
-  const cta = () => `
-    <div class="svc-cta reveal">
-      <p${t('svc_cta_lead')}></p>
-      <a class="btn btn--primary" href="#contato"${t('svc_cta')}></a>
-    </div>`;
-
-  const group = ({ id, title, body, cards }, last) => `
+  const group = ({ id, title, body, cards }) => `
     <section class="section" id="${id}">
       <div class="container">
         <div class="svc-group">
@@ -67,14 +61,10 @@ NA.components.services = (function () {
             ${each(cards, card(spans(cards.length)))}
           </div>
         </div>
-        ${last ? cta() : ''}
       </div>
     </section>`;
 
   return function services() {
-    const groups = NA.content.services;
-    return groups
-      .map((g, i) => group(g, i === groups.length - 1))
-      .join(SEPARATOR);
+    return NA.content.services.map(group).join(SEPARATOR);
   };
 })();

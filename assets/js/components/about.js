@@ -34,7 +34,9 @@ NA.components.about = (function () {
           </div>
 
           <div class="purpose reveal">
+            <h3 class="purpose-title"${t('purpose_t')}></h3>
             <p${t('purpose_body')}></p>
+            <p${t('purpose_body2')}></p>
             <div class="purpose-grid">
               ${each(NA.content.purpose, purposeItem)}
             </div>
