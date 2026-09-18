@@ -82,9 +82,10 @@
 }
 .svc-card:hover{ transform:translateY(-5px); box-shadow:var(--shadow); }
 
-/* A imagem absorve a sobra de altura: numa fileira, o cartão com menos
-   itens fica com o espaço reservado mais alto e todos terminam juntos. */
-.svc-card__media{ display:flex; flex:1 1 auto; min-height:clamp(120px,12vw,165px); }
+/* A imagem tem a mesma altura em todos os cartões, então título e lista
+   começam na mesma linha. A sobra de altura fica no corpo: o cartão com
+   menos itens termina com espaço em branco embaixo da lista. */
+.svc-card__media{ display:flex; flex:none; height:clamp(120px,12vw,165px); }
 .svc-card .plate{
   flex:1; aspect-ratio:auto; border:none; border-bottom:1px dashed var(--line);
   border-radius:0; padding:.9rem; gap:.5rem;
@@ -97,7 +98,7 @@
   display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:4; line-clamp:4; overflow:hidden;
 }
 
-.svc-card__body{ padding:1rem 1.1rem 1.3rem; }
+.svc-card__body{ flex:1 1 auto; padding:1rem 1.1rem 1.3rem; }
 .svc-card__head{
   display:flex; align-items:flex-start; justify-content:space-between; gap:.6rem;
   text-decoration:none; padding-bottom:.7rem; border-bottom:1px solid var(--line);
@@ -162,4 +163,4 @@
   /* no celular cada cartão ocupa a linha toda, independente do --span */
   .svc-cards{ grid-template-columns:1fr; }
   .svc-card{ grid-column:auto; }
-  .svc-card__media{ min-height:170px; }}
+  .svc-card__media{ height:170px; }}

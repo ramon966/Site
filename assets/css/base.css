@@ -38,11 +38,10 @@ button{font-family:inherit;}
 
 /* ---------- títulos de seção ---------- */
 .eyebrow{
-  display:inline-flex; align-items:center; gap:.5em; font-family:var(--font-label);
+  font-family:var(--font-label);
   font-size:.74rem; letter-spacing:.16em; text-transform:uppercase; color:var(--clay);
   margin:0 0 .9rem;
 }
-.eyebrow::before{content:"§"; opacity:.75;}
 /* entrelinha um pouco maior que a original: a Amiri tem ascendentes altas e
    apertava demais em 1.12 */
 h2.title{font-size:clamp(1.9rem,1.2rem + 2.6vw,2.7rem); line-height:1.2; letter-spacing:-.01em;}
