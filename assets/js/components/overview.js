@@ -21,7 +21,6 @@ NA.components.overview = (function () {
     return `
       <section class="section" aria-labelledby="introTitle">
         <div class="container">
-          <p class="eyebrow"${t('intro_eyebrow')}></p>
           <h2 class="title" id="introTitle"${tHtml('intro_title')}></h2>
           <p class="lede" style="margin-top:1rem"${t('intro_body')}></p>
 
