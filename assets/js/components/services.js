@@ -33,11 +33,8 @@ NA.components.services = (function () {
 
   const item = (key) => `<li${t(key)}></li>`;
 
-  const card = (spanList) => ({ icon, title, caption, items }, i) => `
+  const card = (spanList) => ({ title, items }, i) => `
     <article class="svc-card reveal" style="--span:${spanList[i]}">
-      <div class="svc-card__media">
-        ${NA.components.plate({ icon, caption, corners: false, reveal: false })}
-      </div>
       <div class="svc-card__body">
         <a class="svc-card__head" href="#contato">
           <h3${t(title)}></h3>
@@ -52,7 +49,6 @@ NA.components.services = (function () {
       <div class="container">
         <div class="svc-group">
           <div class="svc-intro reveal">
-            <p class="eyebrow"${t('svc_eyebrow')}></p>
             <h2 class="title"${tHtml(title)}></h2>
             <p class="lede"${t(body)}></p>
           </div>
