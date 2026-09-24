@@ -6,15 +6,41 @@
    ============================================================ */
 
 /* ---------- hero ----------
-   Fundo igual ao das demais seções (--bg): só o cabeçalho fixo, em --dark-2,
-   se destaca acima dele. */
-.hero{ background:var(--bg); color:var(--ink); padding-top:calc(var(--header-h) + 4.5rem); padding-bottom:4.5rem; }
-.hero .container{ display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(2rem,5vw,4rem); align-items:center; }
-.hero h1{ font-size:clamp(2.4rem,1.6rem + 3.4vw,3.9rem); line-height:1.16; letter-spacing:-.01em; margin-bottom:1.3rem; }
-.hero h1 em{ font-style:italic; color:var(--accent); }
-.hero p.lede{ color:var(--ink-soft); max-width:48ch; margin-bottom:.9rem; font-size:1.08rem; }
+   A foto ocupa a seção inteira; por cima dela, um degradê no verde da marca
+   que é sólido à direita (onde fica o texto) e some em direção à esquerda,
+   deixando a foto aparecer. As cores são fixas, não seguem o tema: o texto
+   é sempre claro sobre o verde. A borda de baixo é inclinada. */
+.hero{
+  --hero-green:92,107,53;        /* #5c6b35 — --accent do tema claro */
+  --hero-green-deep:47,56,27;    /* tom mais escuro do mesmo verde */
+  position:relative; isolation:isolate; overflow:hidden;
+  color:#fff; background:rgb(var(--hero-green-deep));
+  padding-top:calc(var(--header-h) + 6rem); padding-bottom:8rem;
+  min-height:min(92vh,820px); display:flex; align-items:center;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 4.5vw),48% 100%,0 calc(100% - 2.5vw));
+}
+.hero__bg{ position:absolute; inset:0; z-index:-2; width:100%; height:100%; object-fit:cover; object-position:30% center; }
+.hero::before{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(90deg,
+    rgba(var(--hero-green),0) 0%,
+    rgba(var(--hero-green),.25) 28%,
+    rgba(var(--hero-green),.82) 48%,
+    rgba(var(--hero-green-deep),.96) 70%,
+    rgb(var(--hero-green-deep)) 100%);
+}
+.hero .container{ display:flex; justify-content:flex-end; width:100%; }
+.hero__copy{ width:min(100%,560px); }
+.hero h1{ font-size:clamp(2.4rem,1.6rem + 3.4vw,3.9rem); line-height:1.16; letter-spacing:-.01em; margin-bottom:1.3rem; color:#fff; }
+.hero h1 em{ font-style:italic; color:#dfe3c9; }
+.hero p.lede{ color:rgba(255,255,255,.92); max-width:48ch; margin-bottom:.9rem; font-size:1.08rem; }
 /* linha de apoio abaixo da chamada: lista o que fazemos, em corpo menor */
-.hero__support{ color:var(--ink-soft); max-width:52ch; margin-bottom:2.1rem; font-size:.95rem; }
+.hero__support{ color:rgba(255,255,255,.78); max-width:52ch; margin-bottom:2.1rem; font-size:.95rem; }
+/* botões sobre o verde: o primário vira claro para não sumir no fundo */
+.hero .btn--primary{ background:#fff; color:#3f4a25; }
+.hero .btn--primary:hover{ background:#dfe3c9; }
+.hero .btn--outline{ border-color:rgba(255,255,255,.7); color:#fff; }
+.hero .btn--outline:hover{ border-color:#fff; background:rgba(255,255,255,.1); }
 .cta-row{ display:flex; flex-wrap:wrap; gap:1rem; }
 
 /* ---------- faixa de visão geral ---------- */
@@ -125,9 +151,16 @@
 }
 
 @media (max-width:960px){
-  .hero{ padding-bottom:0; }
-  .hero .container{ grid-template-columns:1fr; }
-  .hero .plate{ margin-top:2.5rem; }
+  /* sem espaço para foto e texto lado a lado: o verde cobre a foto de
+     baixo para cima e o texto ocupa a largura toda */
+  .hero{ min-height:0; padding-bottom:6rem; }
+  .hero::before{
+    background:linear-gradient(180deg,
+      rgba(var(--hero-green),.35) 0%,
+      rgba(var(--hero-green),.8) 40%,
+      rgba(var(--hero-green-deep),.95) 100%);
+  }
+  .hero .container{ justify-content:flex-start; }
   .intro-grid, .purpose-grid{ grid-template-columns:1fr 1fr; }
   .about-grid{ grid-template-columns:1fr; }
 }
@@ -137,8 +170,7 @@
 
   /* menos ar entre os blocos: no celular tudo vira uma coluna só e o
      espaçamento pensado para o desktop deixa a rolagem interminável */
-  .hero{ padding-top:calc(var(--header-h) + 2.5rem); }
-  .hero .plate{ margin-top:2rem; }
+  .hero{ padding-top:calc(var(--header-h) + 2.5rem); padding-bottom:4.5rem; }
   .intro-grid{ gap:1.75rem; margin-top:2rem; }
   .purpose{ margin-top:2.5rem; }
   .purpose-grid{ gap:2rem; }

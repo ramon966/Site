@@ -10,8 +10,9 @@ NA.components.hero = (function () {
   return function hero() {
     return `
       <section class="hero" id="inicio">
+        <img class="hero__bg" src="assets/img/Primeira%20FOTO.png" alt="" fetchpriority="high">
         <div class="container">
-          <div class="reveal">
+          <div class="hero__copy reveal">
             <h1${tHtml('hero_title')}></h1>
             <p class="lede"${t('hero_body')}></p>
             <p class="hero__support"${t('hero_body2')}></p>
@@ -20,7 +21,6 @@ NA.components.hero = (function () {
               <a class="btn btn--outline" href="#fundiaria"${t('hero_cta2')}></a>
             </div>
           </div>
-          ${NA.components.plate({ ratio: '4/5', caption: 'hero_imgcap' })}
         </div>
       </section>`;
   };
