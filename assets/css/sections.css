@@ -57,19 +57,22 @@
 .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,4.5rem); align-items:center; }
 .about-copy p{ color:var(--ink-soft); margin-top:1rem; }
 
-/* Foto com bloco de cor deslocado atrás: o bloco verde sai por cima e pela
-   direita da foto, e a foto passa um pouco da base do bloco. */
-.photo-offset{
-  --offset:clamp(1.25rem,3vw,2.25rem);
-  position:relative; padding:var(--offset) var(--offset) 0 0;
-}
-.photo-offset::before{
-  content:""; position:absolute; top:0; right:0; left:12%; bottom:10%;
-  background:var(--accent); border-radius:2px;
-}
+/* Foto com bordas em névoa: sem moldura nem contorno, a imagem vai ficando
+   transparente em direção às quatro bordas e se dissolve no fundo da
+   página (funciona nos dois temas, porque o que aparece é o próprio fundo).
+   As duas máscaras (horizontal e vertical) se cruzam; --fog controla a
+   largura da faixa de névoa. */
+.photo-offset{ --fog:18%; }
 .photo-offset img{
-  position:relative; display:block; width:100%; height:auto; border-radius:2px;
-  box-shadow:var(--shadow);
+  display:block; width:100%; height:auto;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent, #000 var(--fog), #000 calc(100% - var(--fog)), transparent),
+    linear-gradient(to bottom, transparent, #000 var(--fog), #000 calc(100% - var(--fog)), transparent);
+  -webkit-mask-composite:source-in;
+          mask-image:
+    linear-gradient(to right, transparent, #000 var(--fog), #000 calc(100% - var(--fog)), transparent),
+    linear-gradient(to bottom, transparent, #000 var(--fog), #000 calc(100% - var(--fog)), transparent);
+          mask-composite:intersect;
 }
 .badge-year{
   display:inline-flex; align-items:center; gap:.5rem; font-family:var(--font-label); font-size:.78rem;
