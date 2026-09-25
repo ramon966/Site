@@ -124,6 +124,7 @@ NA.translations['pt-BR'] = {
   contact_map_cap: "Espaço reservado: mapa interativo com a localização desta unidade da Norte Agro",
   contact_map_open: "Abrir no Google Maps ↗",
   contact_photo_goiania: "Fachada do escritório da Norte Agro Projetos em Goiânia, na Galeria Via Veneto",
+  contact_photo_mararosa: "Fachada do escritório da Norte Agro Projetos em Mara Rosa, na Rua Santa Catarina",
   contact_photo_open: "Ampliar a foto da fachada",
 
   footer_tagline: "Regularização de imóveis rurais com precisão técnica e tranquilidade jurídica.",

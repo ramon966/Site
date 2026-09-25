@@ -35,7 +35,8 @@ NA.site = {
       map: {
         query: 'R. Santa Catarina, 363 - Centro, Mara Rosa - GO, 76490-000',
         link: 'https://maps.app.goo.gl/zA9yvQsR2s6pNM3G6'
-      }
+      },
+      photo: { src: 'assets/img/06-fachada-escritorio-norte-agro.webp', alt: 'contact_photo_mararosa' }
     },
     {
       city: 'Goiânia',
