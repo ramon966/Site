@@ -32,9 +32,27 @@ NA.components.contact = (function () {
       : `<p class="strong" style="opacity:.6"${t('contact_whatsapp_note')}></p>`);
   };
 
+  /* unidade com `map`: mapa real do Google Maps, na mesma moldura do
+     espaço reservado, com o nome da cidade e o link para abrir no app */
+  const mapEmbed = (u) => {
+    const title = NA.units.title(u);
+    const src = `https://www.google.com/maps?q=${encodeURIComponent(u.map.query)}&output=embed`;
+    return `
+      <figure class="map-embed reveal">
+        <div class="plate plate--map plate--live" style="--ar:16/9">
+          <iframe src="${src}" title="${title}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          ${['tl', 'tr', 'bl', 'br'].map((pos) => `<span class="plate__corner ${pos}"></span>`).join('')}
+        </div>
+        <figcaption>
+          <span class="plate__label">${title}</span>
+          <a href="${u.map.link}" target="_blank" rel="noopener"${t('contact_map_open')}></a>
+        </figcaption>
+      </figure>`;
+  };
+
   /* um espaço reservado de mapa por unidade — o nome da cidade é o mesmo
      em todos os idiomas, por isso vai como rótulo fixo, fora do i18n */
-  const mapPlate = (u) => NA.components.plate({
+  const mapPlate = (u) => u.map ? mapEmbed(u) : NA.components.plate({
     icon: 'i-plate-marker',
     ratio: '16/9',
     caption: 'contact_map_cap',

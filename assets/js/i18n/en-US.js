@@ -122,6 +122,7 @@ NA.translations['en-US'] = {
   contact_whatsapp_note: "WhatsApp coming soon",
   unit_soon: "Address coming soon",
   contact_map_cap: "Image placeholder: interactive map showing this Norte Agro office",
+  contact_map_open: "Open in Google Maps ↗",
 
   footer_tagline: "Rural land regularization with technical precision and legal peace of mind.",
   footer_nav_title: "Navigation",

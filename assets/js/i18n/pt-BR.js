@@ -122,6 +122,7 @@ NA.translations['pt-BR'] = {
   contact_whatsapp_note: "WhatsApp em breve",
   unit_soon: "Endereço em breve",
   contact_map_cap: "Espaço reservado: mapa interativo com a localização desta unidade da Norte Agro",
+  contact_map_open: "Abrir no Google Maps ↗",
 
   footer_tagline: "Regularização de imóveis rurais com precisão técnica e tranquilidade jurídica.",
   footer_nav_title: "Navegação",

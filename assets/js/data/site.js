@@ -17,7 +17,10 @@ NA.site = {
      Enquanto `street` estiver vazio, o site mostra a cidade com a observação
      "endereço em breve" — no contato e no rodapé — sem quebrar nada. Ao
      preencher, lembre de completar também os dados estruturados (JSON-LD) e
-     o bloco <noscript> do index.html. */
+     o bloco <noscript> do index.html.
+
+     `map` (opcional) troca o espaço reservado do contato por um mapa do
+     Google Maps: `query` é o que o mapa procura; `link` abre no app. */
   units: [
     {
       city: 'Mara Rosa',
@@ -32,7 +35,11 @@ NA.site = {
       state: 'GO',
       street: 'Av. Santa Maria, R. Belo Horizonte, c',
       district: 'Parque Amazônia',
-      zip: '74840-680'
+      zip: '74840-680',
+      map: {
+        query: 'Galeria Via Veneto, Av. Santa Maria, Parque Amazônia, Goiânia - GO, 74840-680',
+        link: 'https://maps.app.goo.gl/ikSZggv2LaPbTzNr6'
+      }
     }
   ],
 

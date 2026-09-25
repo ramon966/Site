@@ -41,6 +41,18 @@
    largura inteira. */
 .map-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.75rem; }
 
+/* Mapa real: o iframe ocupa a moldura inteira e os cantos de mira ficam por
+   cima; o rótulo da cidade e o link "abrir no Google Maps" vão logo abaixo. */
+.map-embed{ margin:0; }
+.plate--live{ padding:0; border-style:solid; }
+.plate--live iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+.plate--live .plate__corner{ z-index:1; pointer-events:none; }
+.map-embed figcaption{
+  display:flex; justify-content:space-between; align-items:baseline; gap:1rem; margin-top:.75rem;
+}
+.map-embed figcaption .plate__label{ margin:0; }
+.map-embed figcaption a{ font-family:var(--font-label); font-size:.72rem; letter-spacing:.02em; color:var(--accent); }
+
 /* O bloco do mapa vira uma faixa baixa demais no celular e corta a legenda:
    em telas estreitas ele fica mais alto. */
 @media (max-width:640px){
