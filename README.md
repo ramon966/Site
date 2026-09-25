@@ -106,9 +106,8 @@ de baixo mais largos). Ao criar ou remover um grupo, ajuste também `nav` e
 
 **Cores e fontes** → `assets/css/tokens.css`, com os dois temas lado a lado.
 
-**Tipografia** — as mesmas famílias do site de referência (romeroambiental.com.br):
-`--font-display` **Amiri** (serif) nos títulos, sempre em peso 700, que é o
-único peso forte da família; `--font-body` **Poppins** (sans) no corpo.
+**Tipografia** — `--font-display` **Archivo** (sans) nos títulos, em peso 700,
+com itálico nas palavras em destaque; `--font-body` **Poppins** (sans) no corpo.
 `--font-label` é usada nos rótulos técnicos (etiquetas de seção, legendas das
 imagens, coordenadas) e hoje também é Poppins, porque o site de referência não usa fonte
 monoespaçada; para recuperar o visual técnico anterior, basta trocar essa

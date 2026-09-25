@@ -15,10 +15,11 @@
   --shadow:0 24px 60px -30px rgba(28,25,18,.45);
   --header-h:76px;
 
-  /* Tipografia — mesmas famílias do site de referência (romeroambiental.com.br):
-     Amiri (serif) nos títulos, em peso 700; Poppins (sans) no corpo.
-     Amiri só tem os pesos 400 e 700, regular e itálico. */
-  --font-display:'Amiri','Iowan Old Style',Georgia,serif;
+  /* Tipografia — Archivo (sans) nos títulos, em peso 700, com itálico real
+     para as palavras em destaque (<em>); Poppins (sans) no corpo.
+     Antes era Amiri (serif): para voltar, troque esta linha por
+     'Amiri','Iowan Old Style',Georgia,serif e ajuste o link do Google Fonts. */
+  --font-display:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --font-body:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   /* Rótulos técnicos (etiquetas, legendas, códigos de idioma). O site de
      referência não usa monoespaçada, então aqui também é Poppins — o efeito

@@ -28,7 +28,8 @@
     neatline(),
     c.contact(),
     '</main>',
-    c.footer()
+    c.footer(),
+    c.whatsappFloat()   /* botão flutuante, fixo no canto da tela */
   ];
 
   NA.dom.mount(app, page.join('\n'));
@@ -43,4 +44,5 @@
   NA.theme.init();
   NA.nav.init();
   NA.reveal.init();
+  NA.whatsapp.init();
 })();

@@ -145,3 +145,73 @@
 .stamp.disabled:hover{ transform:none; opacity:.35; }
 .ic-stamp{ width:18px; height:18px; stroke:currentColor; stroke-width:1.6; fill:none; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
 
+
+/* ---------- botão flutuante do WhatsApp ----------
+   Fica fixo no canto inferior direito. As cores verdes são as da marca
+   do WhatsApp (fixas nos dois temas); a caixinha usa as cores do site,
+   então acompanha o tema claro/escuro. */
+.wa-float{
+  --wa:#25d366; --wa-strong:#1a9e50;
+  position:fixed; right:clamp(1rem,3vw,1.75rem); bottom:clamp(1rem,3vw,1.75rem); z-index:90;
+  display:flex; flex-direction:column; align-items:flex-end; gap:1rem;
+}
+.wa-float__button{
+  position:relative; width:60px; height:60px; border-radius:50%; border:0; cursor:pointer;
+  background:var(--wa); color:#fff; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 6px 20px rgba(37,211,102,.35), 0 2px 6px rgba(0,0,0,.15);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.wa-float__button:hover{ transform:scale(1.07); box-shadow:0 8px 26px rgba(37,211,102,.45), 0 2px 6px rgba(0,0,0,.15); }
+.wa-float__button .ic{ width:32px; height:32px; }
+
+/* dica "Fale no WhatsApp" à esquerda do botão, só no passar do mouse */
+.wa-float__tooltip{
+  position:absolute; right:calc(100% + .75rem); top:50%; transform:translate(6px,-50%);
+  white-space:nowrap; background:var(--surface); color:var(--ink); font-size:.85rem; font-weight:500;
+  padding:.5rem .9rem; border-radius:999px; box-shadow:0 4px 16px rgba(0,0,0,.14);
+  opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease;
+}
+.wa-float__button:hover .wa-float__tooltip,
+.wa-float__button:focus-visible .wa-float__tooltip{ opacity:1; transform:translate(0,-50%); }
+.wa-float.is-open .wa-float__tooltip{ display:none; }
+
+/* caixinha de conversa */
+.wa-float__box{
+  width:min(340px, calc(100vw - 2rem)); border-radius:22px; overflow:hidden;
+  background:var(--surface); box-shadow:0 18px 50px rgba(0,0,0,.22);
+  transform-origin:bottom right; animation:wa-pop .22s ease-out;
+}
+.wa-float__box[hidden]{ display:none; }
+@keyframes wa-pop{ from{ opacity:0; transform:translateY(10px) scale(.96); } to{ opacity:1; transform:none; } }
+
+.wa-float__head{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  background:var(--wa-strong); color:#fff; padding:1rem 1rem 1rem 1.4rem;
+}
+.wa-float__title{ font-weight:600; font-size:1.05rem; }
+.wa-float__close{
+  width:34px; height:34px; border-radius:50%; border:0; cursor:pointer; flex-shrink:0;
+  background:rgba(0,0,0,.2); color:#fff; display:flex; align-items:center; justify-content:center;
+}
+.wa-float__close:hover{ background:rgba(0,0,0,.32); }
+.wa-float__close .ic{ width:18px; height:18px; stroke-width:2.2; }
+
+.wa-float__body{ background:var(--bg); padding:1.4rem 1.1rem 1.1rem; display:flex; flex-direction:column; gap:1.4rem; }
+.wa-float__bubble{
+  position:relative; align-self:flex-start; max-width:85%;
+  background:var(--surface); color:var(--ink); font-size:.92rem; line-height:1.45;
+  padding:.8rem 1.1rem; border-radius:4px 18px 18px 18px; box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+.wa-float__cta{
+  align-self:flex-end; display:inline-flex; align-items:center; gap:.7rem;
+  background:var(--wa-strong); color:#fff; text-decoration:none; font-weight:600; font-size:.95rem;
+  padding:.75rem 1.1rem .75rem 1.4rem; border-radius:999px;
+  transition:background .2s ease, transform .2s ease;
+}
+.wa-float__cta:hover{ background:#168a45; transform:translateY(-1px); }
+.wa-float__cta .ic{ width:22px; height:22px; stroke-width:1.8; }
+
+@media (prefers-reduced-motion:reduce){
+  .wa-float__box{ animation:none; }
+  .wa-float__button, .wa-float__tooltip, .wa-float__cta{ transition:none; }
+}

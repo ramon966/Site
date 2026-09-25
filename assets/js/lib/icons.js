@@ -27,6 +27,7 @@ NA.icons = (function () {
     'i-mail':     [V24, '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'],
     'i-phone':    [V24, '<path d="M4 5c0 8.3 6.7 15 15 15l3-4-6-2-2 2c-2.4-1-4-2.6-5-5l2-2-2-6-4 1Z"/>'],
     'i-arrow-right': [V24, '<path d="M4 12h15"/><path d="m13 6 6 6-6 6"/>'],
+    'i-send':     [V24, '<path d="M4 4l17 8-17 8 3-8Z"/><path d="M7 12h14"/>'],
 
     /* ---- ícones dos espaços reservados de imagem ---- */
     'i-plate-landscape': [V48, '<circle cx="16" cy="15" r="4"/><path d="M4 34 18 20 26 28 34 18 44 34"/>'],

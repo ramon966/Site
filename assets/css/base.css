@@ -20,8 +20,7 @@ body{
 }
 
 img{max-width:100%;}
-/* peso 700: é o único peso forte que a Amiri oferece, e é o usado nos títulos
-   do site de referência */
+/* títulos em Archivo, peso 700 */
 h1,h2,h3,h4{font-family:var(--font-display); font-weight:700; margin:0; text-wrap:balance; color:inherit;}
 p{margin:0;}
 a{color:inherit;}
@@ -42,9 +41,9 @@ button{font-family:inherit;}
   font-size:.74rem; letter-spacing:.16em; text-transform:uppercase; color:var(--clay);
   margin:0 0 .9rem;
 }
-/* entrelinha um pouco maior que a original: a Amiri tem ascendentes altas e
-   apertava demais em 1.12 */
-h2.title{font-size:clamp(1.9rem,1.2rem + 2.6vw,2.7rem); line-height:1.2; letter-spacing:-.01em;}
+/* A Archivo é larga e pesada em 700: letras um pouco mais juntas e
+   entrelinha mais curta deixam o título compacto */
+h2.title{font-size:clamp(1.9rem,1.2rem + 2.6vw,2.7rem); line-height:1.15; letter-spacing:-.02em;}
 h2.title em{font-style:italic; color:var(--accent);}
 .lede{max-width:46ch; color:var(--ink-soft); font-size:1.05rem;}
 

@@ -28,7 +28,7 @@ NA.translations['en-US'] = {
   intro3_b: "Complete environmental regularization for rural activity.",
 
   about_eyebrow: "About us",
-  about_title: 'Your rural property, <em>regularized</em>.',
+  about_title: 'Specialists in <em>regularizing</em> rural land.',
   about_badge: "Since 2015",
   about_p1: "Since 2015, Norte Agro has regularized more than 1,000 rural properties in Goiás and the Center-West — from smallholdings to large farms and corporate groups. Every job is signed off by a licensed agronomist.",
   about_p2: "We handle it end to end: from georeferencing to environmental regularization, we turn complex processes and agency deadlines at INCRA, IBAMA and SEMAD into one organized front — so the owner can run the operation without carrying the bureaucracy.",
@@ -136,6 +136,11 @@ NA.translations['en-US'] = {
   aria_theme: "Toggle theme",
   aria_menu: "Open menu",
   aria_close: "Close",
+
+  wa_title: "Chat on WhatsApp",
+  wa_greeting: "Hi! 👋 How can we help regularize your rural property?",
+  wa_cta: "Chat on WhatsApp",
+  wa_prefill: "Hi! I found Norte Agro through the website and would like more information.",
   lang_switch_aria: "Select language",
   lang_pt: "Português (Brasil)",
   lang_en: "English (US)",
