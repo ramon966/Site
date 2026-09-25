@@ -30,7 +30,7 @@ NA.translations['es-ES'] = {
   about_eyebrow: "Quiénes somos",
   about_title: 'Especialistas en <em>regularización</em> de propiedades rurales.',
   about_badge: "Desde 2015",
-  about_p1: "Desde 2015, Norte Agro ya ha regularizado más de 1.000 propiedades rurales en Goiás y en el Centro-Oeste de Brasil, desde pequeñas fincas hasta grandes haciendas y grupos empresariales. Todo trabajo se realiza bajo la responsabilidad técnica de un ingeniero agrónomo registrado.",
+  about_p1: "Desde 2015, Norte Agro Projetos ya ha regularizado más de 1.000 propiedades rurales en Goiás y en el Centro-Oeste de Brasil, desde pequeñas fincas hasta grandes haciendas y grupos empresariales. Todo trabajo se realiza bajo la responsabilidad técnica de un ingeniero agrónomo registrado.",
   about_p2: "Nos ocupamos de principio a fin: de la georreferenciación a la regularización ambiental, traducimos procesos complejos y plazos de organismos como el INCRA, IBAMA y SEMAD en un único frente organizado, para que el propietario se dedique a producir sin cargar con la burocracia.",
   stat1_unit: "años",
   stat1_label: "de experiencia",
