@@ -41,10 +41,9 @@ NA.components.about = (function () {
                 <span${t('about_badge')}></span>
               </span>
             </div>
-            <div class="plate plate--photo reveal" style="--ar:1376/1143">
+            <div class="photo-offset reveal">
               <img src="assets/img/01-reuniao-atendimento-escritorio.webp" width="1376" height="1143"
                    loading="lazy" decoding="async"${tAlt('about_img_alt')}>
-              ${['tl', 'tr', 'bl', 'br'].map((pos) => `<span class="plate__corner ${pos}"></span>`).join('')}
             </div>
           </div>
         </div>
