@@ -61,18 +61,18 @@
   letter-spacing:.06em; color:var(--accent-strong); background:var(--accent-soft); padding:.4rem .8rem; border-radius:2px; margin-top:1.5rem;
 }
 
-/* números em destaque: três colunas separadas por fios verticais, sobre a
-   foto da paisagem com uma camada escura por cima para o texto branco ficar
-   legível (igual nos dois temas). No celular viram uma coluna só. */
+/* números em destaque: faixa de ponta a ponta sobre a foto da paisagem,
+   com uma camada escura por cima para o texto branco ficar legível (igual
+   nos dois temas). Os três números ficam no .container, alinhados ao resto
+   do conteúdo. No celular viram uma coluna só. */
 .stats{
-  display:grid; grid-template-columns:repeat(3,1fr); margin-top:4.5rem;
-  border-radius:2px; overflow:hidden; color:#fff;
+  margin-top:4.5rem; color:#fff;
   background:
     linear-gradient(rgba(14,18,9,.62), rgba(14,18,9,.62)),
     url('../img/08-paisagem-lavoura-numeros.jpg') center 60% / cover no-repeat;
 }
-.stat{ padding:clamp(2.5rem,5vw,3.75rem) 1.5rem; text-align:center; }
-.stat + .stat{ border-left:1px solid rgba(255,255,255,.22); }
+.stats__grid{ display:grid; grid-template-columns:repeat(3,1fr); }
+.stat{ padding:clamp(3rem,6vw,4.5rem) 1.5rem; text-align:center; }
 .stat__number{
   font-family:var(--font-display); font-weight:700; line-height:1; letter-spacing:-.02em;
   font-size:clamp(2.6rem,1.8rem + 2.6vw,3.6rem); color:#fff;
@@ -85,9 +85,8 @@
   text-transform:uppercase; color:rgba(255,255,255,.86);
 }
 @media (max-width:640px){
-  .stats{ grid-template-columns:1fr; }
-  .stat{ padding:1.9rem 1rem; }
-  .stat + .stat{ border-left:0; border-top:1px solid rgba(255,255,255,.22); }
+  .stats__grid{ grid-template-columns:1fr; padding-block:1.5rem; }
+  .stat{ padding:1.25rem 1rem; }
 }
 
 /* missão, visão e valores */

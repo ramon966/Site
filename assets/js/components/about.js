@@ -47,11 +47,17 @@ NA.components.about = (function () {
               ${['tl', 'tr', 'bl', 'br'].map((pos) => `<span class="plate__corner ${pos}"></span>`).join('')}
             </div>
           </div>
+        </div>
 
-          <div class="stats reveal">
+        <!-- faixa de ponta a ponta: fica fora do .container para a foto
+             ocupar a largura toda; os números usam um .container próprio -->
+        <div class="stats">
+          <div class="container stats__grid reveal">
             ${each(NA.content.stats, statItem)}
           </div>
+        </div>
 
+        <div class="container">
           <div class="purpose reveal">
             <h3 class="purpose-title"${t('purpose_t')}></h3>
             <p${t('purpose_body')}></p>
