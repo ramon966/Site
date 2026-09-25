@@ -11,9 +11,6 @@ NA.components = NA.components || {};
 NA.components.services = (function () {
   const { each, t, tHtml } = NA.dom;
 
-  /* mesma linha tracejada que main.js usa entre as seções */
-  const SEPARATOR = '<div class="neatline"></div>';
-
   /* Cada fileira leva no máximo três cartões. A grade tem seis colunas, então
      o cartão ocupa 6 ÷ (cartões da fileira): dois numa fileira de três, três
      numa fileira de dois — assim a última fileira fecha a largura em vez de
@@ -61,6 +58,6 @@ NA.components.services = (function () {
     </section>`;
 
   return function services() {
-    return NA.content.services.map(group).join(SEPARATOR);
+    return each(NA.content.services, group);
   };
 })();

@@ -1,6 +1,6 @@
 /* ============================================================
    components/about.js — "Quem somos" + bloco de missão, visão e valores
-   Itens do bloco escuro em NA.content.purpose.
+   Missão, visão e valores vêm de NA.content.purpose.
    ============================================================ */
 window.NA = window.NA || {};
 NA.components = NA.components || {};
@@ -58,9 +58,6 @@ NA.components.about = (function () {
 
         <div class="container">
           <div class="purpose reveal">
-            <h3 class="purpose-title"${t('purpose_t')}></h3>
-            <p${t('purpose_body')}></p>
-            <p${t('purpose_body2')}></p>
             <div class="purpose-grid">
               ${each(NA.content.purpose, purposeItem)}
             </div>

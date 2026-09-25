@@ -12,8 +12,15 @@
   const app = document.getElementById('app');
   if (!app) return;
 
+  /* Ao carregar ou recarregar, a página sempre abre no início. Sem isto, o
+     navegador pula para a seção do endereço (ex.: .../#contato, que fica
+     depois de clicar em "Fale conosco") ou volta à rolagem anterior. O
+     #seção é tirado do endereço antes de a página ser montada, então não
+     há seção para onde pular. Os links internos continuam funcionando. */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+
   const c = NA.components;
-  const neatline = () => '<div class="neatline"></div>';
 
   /* ordem das seções da home — mexer aqui reordena a página */
   const page = [
@@ -21,11 +28,8 @@
     '<main>',
     c.hero(),
     c.overview(),
-    neatline(),
     c.about(),
-    neatline(),
     c.services(),   /* três seções: fundiária, ambiental e consultoria */
-    neatline(),
     c.contact(),
     '</main>',
     c.footer(),
@@ -33,6 +37,7 @@
   ];
 
   NA.dom.mount(app, page.join('\n'));
+  window.scrollTo(0, 0);
   document.body.insertAdjacentHTML('afterbegin', NA.icons.sprite());
 
   /* o lightbox acrescenta o <dialog> ao body antes do i18n, para o

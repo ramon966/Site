@@ -47,12 +47,6 @@ h2.title{font-size:clamp(1.9rem,1.2rem + 2.6vw,2.7rem); line-height:1.15; letter
 h2.title em{font-style:italic; color:var(--accent);}
 .lede{max-width:46ch; color:var(--ink-soft); font-size:1.05rem;}
 
-/* divisor "neat line": ecoa a linha tracejada de limite de uma planta topográfica */
-.neatline{
-  height:14px; width:100%;
-  background:repeating-linear-gradient(to right, var(--line) 0 18px, transparent 18px 30px) center/100% 1px no-repeat;
-}
-
 /* ---------- ícones ---------- */
 .ic{ width:24px; height:24px; stroke:currentColor; stroke-width:1.6; fill:none; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
 
