@@ -68,7 +68,7 @@
 .stats{
   margin-top:4.5rem; color:#fff;
   background:
-    linear-gradient(rgba(14,18,9,.62), rgba(14,18,9,.62)),
+    linear-gradient(rgba(14,18,9,.45), rgba(14,18,9,.45)),
     url('../img/08-paisagem-lavoura-numeros.jpg') center 60% / cover no-repeat;
 }
 .stats__grid{ display:grid; grid-template-columns:repeat(3,1fr); }
