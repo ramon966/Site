@@ -8,7 +8,7 @@ window.NA = window.NA || {};
 NA.components = NA.components || {};
 
 NA.components.contact = (function () {
-  const { each, t, tHtml, tAlt } = NA.dom;
+  const { each, t, tHtml, tAlt, tAria } = NA.dom;
 
   /* <wbr> oferece um ponto de quebra depois do @: em tela estreita o e-mail
      quebra entre usuário e domínio, em vez de partir no meio do domínio */
@@ -34,18 +34,20 @@ NA.components.contact = (function () {
 
   /* unidade com `map`: mapa real do Google Maps, na mesma moldura do
      espaço reservado, com o nome da cidade e o link para abrir no app.
-     Com `photo`, a foto da fachada entra ao lado do mapa. */
+     Com `photo`, a foto da fachada entra como miniatura no canto do mapa;
+     o clique amplia (modules/lightbox.js). */
   const mapEmbed = (u) => {
     const title = NA.units.title(u);
     const src = `https://www.google.com/maps?q=${encodeURIComponent(u.map.query)}&output=embed`;
     return `
       <figure class="map-embed reveal">
-        <div class="map-embed__media${u.photo ? ' has-photo' : ''}">
-          ${u.photo ? `<div class="map-embed__photo"><img src="${u.photo.src}" loading="lazy" decoding="async"${tAlt(u.photo.alt)}></div>` : ''}
-          <div class="plate plate--map plate--live" style="--ar:16/9">
-            <iframe src="${src}" title="${title}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-            ${['tl', 'tr', 'bl', 'br'].map((pos) => `<span class="plate__corner ${pos}"></span>`).join('')}
-          </div>
+        <div class="plate plate--map plate--live" style="--ar:16/9">
+          <iframe src="${src}" title="${title}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          ${['tl', 'tr', 'bl', 'br'].map((pos) => `<span class="plate__corner ${pos}"></span>`).join('')}
+          ${u.photo ? `
+          <button type="button" class="map-embed__thumb" data-lightbox="${u.photo.src}"${tAria('contact_photo_open')}>
+            <img src="${u.photo.src}" loading="lazy" decoding="async"${tAlt(u.photo.alt)}>
+          </button>` : ''}
         </div>
         <figcaption>
           <span class="plate__label">${title}</span>

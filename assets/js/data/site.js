@@ -21,7 +21,8 @@ NA.site = {
 
      `map` (opcional) troca o espaço reservado do contato por um mapa do
      Google Maps: `query` é o que o mapa procura; `link` abre no app.
-     `photo` (opcional) põe a foto da fachada ao lado do mapa, para o cliente
+     `photo` (opcional) põe a foto da fachada em miniatura sobre o mapa (o
+     clique amplia), para o cliente
      reconhecer o escritório na chegada; `alt` é a chave do texto no i18n. */
   units: [
     {

@@ -34,6 +34,10 @@
   NA.dom.mount(app, page.join('\n'));
   document.body.insertAdjacentHTML('afterbegin', NA.icons.sprite());
 
+  /* o lightbox acrescenta o <dialog> ao body antes do i18n, para o
+     botão de fechar também receber o texto traduzido */
+  NA.lightbox.init();
+
   /* i18n primeiro: preenche os textos antes de qualquer observador rodar */
   NA.i18n.init();
   NA.theme.init();

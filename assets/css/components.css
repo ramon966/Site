@@ -47,18 +47,33 @@
 .plate--live{ padding:0; border-style:solid; }
 .plate--live iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 .plate--live .plate__corner{ z-index:1; pointer-events:none; }
-/* Foto da fachada ao lado do mapa. A foto é vertical: fica numa coluna
-   estreita, com a mesma altura do mapa, recortada em volta do letreiro.
-   A imagem é absoluta para não esticar a linha com a sua altura natural. */
-.map-embed__media.has-photo{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,2.2fr); gap:.75rem; }
-.map-embed__photo{ position:relative; overflow:hidden; border-radius:2px; background:var(--surface-2); }
-.map-embed__photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 38%; }
-
-/* No celular a coluna ficaria fina demais: a foto desce para baixo do mapa. */
-@media (max-width:640px){
-  .map-embed__media.has-photo{ grid-template-columns:1fr; }
-  .map-embed__photo{ order:1; aspect-ratio:4/3; }
+/* Miniatura da fachada sobre o mapa, no canto superior direito, no formato
+   vertical da própria foto (sem recorte). O clique abre a foto grande. */
+.map-embed__thumb{
+  position:absolute; top:.75rem; right:.75rem; z-index:2;
+  width:clamp(52px,17%,92px); aspect-ratio:941/1672; padding:0;
+  border:2px solid #fff; border-radius:4px; overflow:hidden; cursor:zoom-in;
+  background:var(--surface-2); box-shadow:0 2px 10px rgba(0,0,0,.3);
+  transition:transform .2s ease, box-shadow .2s ease;
 }
+.map-embed__thumb:hover{ transform:scale(1.05); box-shadow:0 4px 16px rgba(0,0,0,.35); }
+.map-embed__thumb:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+.map-embed__thumb img{ display:block; width:100%; height:100%; object-fit:cover; }
+
+/* Foto ampliada: <dialog> com fundo escuro; clicar em qualquer lugar ou
+   apertar Esc fecha. */
+.lightbox{
+  padding:0; border:0; background:none; max-width:none; max-height:none;
+  width:100vw; height:100vh; display:none; align-items:center; justify-content:center; cursor:zoom-out;
+}
+.lightbox[open]{ display:flex; }
+.lightbox::backdrop{ background:rgba(0,0,0,.82); }
+.lightbox img{ max-width:calc(100vw - 2rem); max-height:calc(100vh - 2rem); border-radius:4px; box-shadow:0 10px 40px rgba(0,0,0,.5); }
+.lightbox__close{
+  position:fixed; top:1rem; right:1rem; width:2.5rem; height:2.5rem; border-radius:50%;
+  border:0; background:rgba(255,255,255,.15); color:#fff; font-size:1.5rem; line-height:1; cursor:pointer;
+}
+.lightbox__close:hover{ background:rgba(255,255,255,.28); }
 
 .map-embed figcaption{
   display:flex; justify-content:space-between; align-items:baseline; gap:1rem; margin-top:.75rem;
