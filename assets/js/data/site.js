@@ -28,7 +28,11 @@ NA.site = {
       street: 'Rua Santa Catarina, 363',
       district: 'Centro',
       zip: '76490-000',
-      coordinates: "13°59'S 49°06'O"
+      coordinates: "13°59'S 49°06'O",
+      map: {
+        query: 'R. Santa Catarina, 363 - Centro, Mara Rosa - GO, 76490-000',
+        link: 'https://maps.app.goo.gl/zA9yvQsR2s6pNM3G6'
+      }
     },
     {
       city: 'Goiânia',
