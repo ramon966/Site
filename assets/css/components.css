@@ -37,6 +37,12 @@
 .plate__label{ font-family:var(--font-label); font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:-.35rem; }
 .plate__cap{ font-family:var(--font-label); font-size:.72rem; letter-spacing:.02em; color:var(--ink-faint); line-height:1.5; max-width:32ch; }
 
+/* Foto real dentro da moldura: a imagem cobre o quadro inteiro e os cantos
+   de mira ficam por cima, como no espaço reservado. */
+.plate--photo{ padding:0; border:0; }
+.plate--photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.plate--photo .plate__corner{ z-index:1; }
+
 /* Um espaço de mapa por unidade, lado a lado; com uma unidade só, ocupa a
    largura inteira. */
 .map-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.75rem; }

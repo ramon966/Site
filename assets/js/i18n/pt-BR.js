@@ -32,7 +32,7 @@ NA.translations['pt-BR'] = {
   about_badge: "Desde 2015",
   about_p1: "Desde 2015, a Norte Agro já regularizou mais de 1.000 propriedades rurais em Goiás e no Centro-Oeste — de sítios a grandes fazendas e grupos empresariais. Todo trabalho sai sob responsabilidade técnica de agrônomo registrado.",
   about_p2: "Cuidamos de ponta a ponta: do georreferenciamento à regularização ambiental, traduzimos processos complexos e prazos de órgãos como INCRA, IBAMA e SEMAD em uma única frente organizada — para o proprietário tocar a produção sem carregar a burocracia.",
-  about_imgcap: "Espaço reservado: foto da equipe técnica da Norte Agro em campo, com equipamento de topografia",
+  about_img_alt: "Atendimento a cliente em reunião no escritório da Norte Agro Projetos",
 
   purpose_t: "Propósito",
   purpose_body: "Nosso propósito é transformar a complexidade do setor agrário e ambiental em segurança, regularidade e oportunidades para nossos clientes.",

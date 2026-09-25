@@ -6,7 +6,7 @@ window.NA = window.NA || {};
 NA.components = NA.components || {};
 
 NA.components.about = (function () {
-  const { each, t, tHtml } = NA.dom;
+  const { each, t, tHtml, tAlt } = NA.dom;
 
   const purposeItem = ({ icon, title, body }) => `
     <div class="purpose-item">
@@ -30,7 +30,11 @@ NA.components.about = (function () {
                 <span${t('about_badge')}></span>
               </span>
             </div>
-            ${NA.components.plate({ ratio: '4/5', caption: 'about_imgcap' })}
+            <div class="plate plate--photo reveal" style="--ar:1376/1143">
+              <img src="assets/img/01-reuniao-atendimento-escritorio.webp" width="1376" height="1143"
+                   loading="lazy" decoding="async"${tAlt('about_img_alt')}>
+              ${['tl', 'tr', 'bl', 'br'].map((pos) => `<span class="plate__corner ${pos}"></span>`).join('')}
+            </div>
           </div>
 
           <div class="purpose reveal">
