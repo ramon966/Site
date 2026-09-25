@@ -62,7 +62,7 @@
    página (funciona nos dois temas, porque o que aparece é o próprio fundo).
    As duas máscaras (horizontal e vertical) se cruzam; --fog controla a
    largura da faixa de névoa. */
-.photo-offset{ --fog:18%; }
+.photo-offset{ --fog:10%; }
 .photo-offset img{
   display:block; width:100%; height:auto;
   -webkit-mask-image:
