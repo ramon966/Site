@@ -15,6 +15,15 @@ NA.content = {
     { icon: 'i-shield',   title: 'intro3_t', body: 'intro3_b' }
   ],
 
+  /* números em destaque, entre "Quem somos" e o bloco de propósito.
+     `value` é o número que a contagem animada alcança; `prefix` vai antes
+     dele (ex.: '+'); `unit` e `label` são chaves de tradução. */
+  stats: [
+    { value: 11, prefix: '',  unit: 'stat1_unit', label: 'stat1_label' },
+    { value: 4,  prefix: '+', unit: 'stat2_unit', label: 'stat2_label' },
+    { value: 6,  prefix: '+', unit: 'stat3_unit', label: 'stat3_label' }
+  ],
+
   /* missão, visão e valores (bloco escuro em "Quem somos") */
   purpose: [
     { icon: 'i-doc',     title: 'mission_t', body: 'mission_b' },

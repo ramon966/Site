@@ -32,6 +32,12 @@ NA.translations['en-US'] = {
   about_badge: "Since 2015",
   about_p1: "Since 2015, Norte Agro has regularized more than 1,000 rural properties in Goiás and the Center-West — from smallholdings to large farms and corporate groups. Every job is signed off by a licensed agronomist.",
   about_p2: "We handle it end to end: from georeferencing to environmental regularization, we turn complex processes and agency deadlines at INCRA, IBAMA and SEMAD into one organized front — so the owner can run the operation without carrying the bureaucracy.",
+  stat1_unit: "years",
+  stat1_label: "of experience",
+  stat2_unit: "thousand",
+  stat2_label: "clients served",
+  stat3_unit: "thousand",
+  stat3_label: "properties regularized",
   about_img_alt: "Client meeting at the Norte Agro Projetos office",
 
   purpose_t: "Purpose",

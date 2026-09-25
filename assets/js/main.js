@@ -44,5 +44,6 @@
   NA.theme.init();
   NA.nav.init();
   NA.reveal.init();
+  NA.counter.init();
   NA.whatsapp.init();
 })();

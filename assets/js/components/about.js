@@ -15,6 +15,17 @@ NA.components.about = (function () {
       <p${t(body)}></p>
     </div>`;
 
+  /* o número já sai com o valor final: sem JS (ou sem animação), é ele que
+     aparece; modules/counter.js zera e conta até ele ao entrar na tela */
+  const statItem = ({ value, prefix, unit, label }) => `
+    <div class="stat">
+      <p class="stat__number">
+        ${prefix ? `<span class="stat__prefix">${prefix}</span>` : ''}<span data-count-to="${value}">${value}</span>
+        <span class="stat__unit"${t(unit)}></span>
+      </p>
+      <p class="stat__label"${t(label)}></p>
+    </div>`;
+
   return function about() {
     return `
       <section class="section" id="quem-somos">
@@ -35,6 +46,10 @@ NA.components.about = (function () {
                    loading="lazy" decoding="async"${tAlt('about_img_alt')}>
               ${['tl', 'tr', 'bl', 'br'].map((pos) => `<span class="plate__corner ${pos}"></span>`).join('')}
             </div>
+          </div>
+
+          <div class="stats reveal">
+            ${each(NA.content.stats, statItem)}
           </div>
 
           <div class="purpose reveal">
