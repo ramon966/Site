@@ -9,6 +9,7 @@
      data-i18n-ph    -> atributo placeholder
      data-i18n-title -> atributo title
      data-i18n-aria  -> atributo aria-label
+     data-i18n-alt   -> atributo alt (imagens)
 
    Os idiomas disponíveis vêm de NA.site.locales e os textos de
    assets/js/i18n/<idioma>.js.
@@ -25,7 +26,8 @@ NA.i18n = (function () {
     ['data-i18n-html',  (el, value) => { el.innerHTML = value; }],
     ['data-i18n-ph',    (el, value) => el.setAttribute('placeholder', value)],
     ['data-i18n-title', (el, value) => el.setAttribute('title', value)],
-    ['data-i18n-aria',  (el, value) => el.setAttribute('aria-label', value)]
+    ['data-i18n-aria',  (el, value) => el.setAttribute('aria-label', value)],
+    ['data-i18n-alt',   (el, value) => el.setAttribute('alt', value)]
   ];
 
   let select, toggle, menu, toggleFlag;

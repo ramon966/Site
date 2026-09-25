@@ -123,6 +123,7 @@ NA.translations['en-US'] = {
   unit_soon: "Address coming soon",
   contact_map_cap: "Image placeholder: interactive map showing this Norte Agro office",
   contact_map_open: "Open in Google Maps ↗",
+  contact_photo_goiania: "Storefront of the Norte Agro Projetos office in Goiânia, at Galeria Via Veneto",
 
   footer_tagline: "Rural land regularization with technical precision and legal peace of mind.",
   footer_nav_title: "Navigation",

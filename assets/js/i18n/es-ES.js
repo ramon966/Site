@@ -123,6 +123,7 @@ NA.translations['es-ES'] = {
   unit_soon: "Dirección en breve",
   contact_map_cap: "Espacio reservado: mapa interactivo con la ubicación de esta unidad de Norte Agro",
   contact_map_open: "Abrir en Google Maps ↗",
+  contact_photo_goiania: "Fachada de la oficina de Norte Agro Projetos en Goiânia, en la Galeria Via Veneto",
 
   footer_tagline: "Regularización de inmuebles rurales con precisión técnica y tranquilidad jurídica.",
   footer_nav_title: "Navegación",

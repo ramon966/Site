@@ -23,8 +23,9 @@ NA.dom = (function () {
   const tPh    = (key) => attr('data-i18n-ph', key);     // placeholder
   const tTitle = (key) => attr('data-i18n-title', key);  // title
   const tAria  = (key) => attr('data-i18n-aria', key);   // aria-label
+  const tAlt   = (key) => attr('data-i18n-alt', key);    // alt de imagem
 
   const mount = (target, html) => { target.innerHTML = html; };
 
-  return { each, attr, t, tHtml, tPh, tTitle, tAria, mount };
+  return { each, attr, t, tHtml, tPh, tTitle, tAria, tAlt, mount };
 })();

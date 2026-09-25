@@ -47,6 +47,19 @@
 .plate--live{ padding:0; border-style:solid; }
 .plate--live iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 .plate--live .plate__corner{ z-index:1; pointer-events:none; }
+/* Foto da fachada ao lado do mapa. A foto é vertical: fica numa coluna
+   estreita, com a mesma altura do mapa, recortada em volta do letreiro.
+   A imagem é absoluta para não esticar a linha com a sua altura natural. */
+.map-embed__media.has-photo{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,2.2fr); gap:.75rem; }
+.map-embed__photo{ position:relative; overflow:hidden; border-radius:2px; background:var(--surface-2); }
+.map-embed__photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 38%; }
+
+/* No celular a coluna ficaria fina demais: a foto desce para baixo do mapa. */
+@media (max-width:640px){
+  .map-embed__media.has-photo{ grid-template-columns:1fr; }
+  .map-embed__photo{ order:1; aspect-ratio:4/3; }
+}
+
 .map-embed figcaption{
   display:flex; justify-content:space-between; align-items:baseline; gap:1rem; margin-top:.75rem;
 }

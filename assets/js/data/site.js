@@ -20,7 +20,9 @@ NA.site = {
      o bloco <noscript> do index.html.
 
      `map` (opcional) troca o espaço reservado do contato por um mapa do
-     Google Maps: `query` é o que o mapa procura; `link` abre no app. */
+     Google Maps: `query` é o que o mapa procura; `link` abre no app.
+     `photo` (opcional) põe a foto da fachada ao lado do mapa, para o cliente
+     reconhecer o escritório na chegada; `alt` é a chave do texto no i18n. */
   units: [
     {
       city: 'Mara Rosa',
@@ -43,7 +45,8 @@ NA.site = {
       map: {
         query: 'Galeria Via Veneto, Av. Santa Maria, Parque Amazônia, Goiânia - GO, 74840-680',
         link: 'https://maps.app.goo.gl/ikSZggv2LaPbTzNr6'
-      }
+      },
+      photo: { src: 'assets/img/07-fachada-goiania-norte-agro.jpg', alt: 'contact_photo_goiania' }
     }
   ],
 
