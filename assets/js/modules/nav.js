@@ -24,6 +24,8 @@ NA.nav = (function () {
       iconClose.style.display = open ? 'block' : 'none';
       /* trava a rolagem do fundo enquanto o painel está aberto */
       document.body.style.overflow = open ? 'hidden' : '';
+      /* com o painel aberto o cabeçalho fica sólido, mesmo no topo */
+      NA.nav.updateHeader();
     };
 
     button.addEventListener('click', () => setOpen(!isOpen()));
@@ -72,10 +74,26 @@ NA.nav = (function () {
     sections.forEach((section) => observer.observe(section));
   }
 
+  /* Cabeçalho transparente sobre o hero enquanto a página está no topo;
+     sólido depois de rolar ou com o menu do celular aberto. */
+  function updateHeader() {
+    const header = document.querySelector('header.site');
+    const nav = document.getElementById('primaryNav');
+    if (!header) return;
+    const menuOpen = nav && nav.classList.contains('open');
+    header.classList.toggle('is-top', window.scrollY < 10 && !menuOpen);
+  }
+
+  function initHeaderScroll() {
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+  }
+
   function init() {
     initMobileMenu();
     initScrollSpy();
+    initHeaderScroll();
   }
 
-  return { init };
+  return { init, updateHeader };
 })();

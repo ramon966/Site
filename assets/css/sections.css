@@ -22,7 +22,9 @@
 .hero__bg{ position:absolute; inset:0; z-index:-2; width:100%; height:100%; object-fit:cover; object-position:30% center; }
 .hero::before{
   content:""; position:absolute; inset:0; z-index:-1;
-  background:linear-gradient(90deg,
+  /* sombra no alto, para o cabeçalho transparente ficar legível sobre a foto */
+  background:linear-gradient(180deg, rgba(14,18,9,.55) 0, rgba(14,18,9,0) calc(var(--header-h) + 5rem)),
+    linear-gradient(90deg,
     rgba(var(--hero-green),0) 0%,
     rgba(var(--hero-green),.25) 28%,
     rgba(var(--hero-green),.82) 48%,
@@ -60,6 +62,9 @@
 #quem-somos,
 #fundiaria,
 #consultoria{ background:var(--bg-white); }
+
+/* fio fino entre uma seção e a seguinte, marcando a divisão */
+.section + .section{ border-top:1px solid var(--line); }
 
 /* ---------- quem somos ---------- */
 .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,4.5rem); align-items:center; }

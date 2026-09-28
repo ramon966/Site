@@ -8,7 +8,21 @@ header.site{
   position:fixed; inset:0 0 auto 0; height:var(--header-h); z-index:100;
   background:var(--dark-2); color:var(--on-dark);
   border-bottom:1px solid rgba(var(--inverse-rgb),.08);
+  transition:background-color .3s ease, border-color .3s ease;
 }
+
+/* No topo da página o cabeçalho fica transparente e a foto do hero aparece
+   por trás dele; ao rolar, volta ao fundo sólido. A classe .is-top vem de
+   modules/nav.js, que a tira também quando o menu do celular está aberto.
+   Sobre a foto o texto é sempre claro, nos dois temas: as variáveis de cor
+   são redefinidas só dentro do cabeçalho e o logo usa a versão clara. */
+header.site.is-top{
+  background-color:transparent; border-bottom-color:rgba(255,255,255,.18);
+  --on-dark:#fff; --on-dark-soft:rgba(255,255,255,.85); --inverse-rgb:255,255,255;
+}
+header.site.is-top nav.primary a.active::after{ background:#dfe3c9; }
+header.site.is-top .brand__logo--light{ display:none; }
+header.site.is-top .brand__logo--dark{ display:block; }
 /* Três faixas: marca à esquerda, navegação no centro exato, ferramentas à
    direita. As colunas laterais são 1fr cada — como têm sempre a mesma
    largura, o centro da navegação coincide com o centro da página,
