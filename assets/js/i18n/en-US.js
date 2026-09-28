@@ -10,8 +10,8 @@ NA.translations['en-US'] = {
   nav_contact: "Contact",
 
   hero_eyebrow: "Norte Agro Rural Land Projects & Planning",
-  hero_title: 'Specialists in <em>regularizing</em> rural land.',
-  hero_body: "Rural land regularization in Goiás. Your land free of fines, embargoes and red tape.",
+  hero_title: 'Your rural and urban property <em>100% regularized</em>.',
+  hero_body: "Regularization of rural and urban properties. Your land free of fines, embargoes and red tape.",
   hero_body2: "Georeferencing, CAR, licensing and water permits. Over 6,000 properties regularized since 2015, from the survey to the final paperwork.",
   hero_cta1: "Get in touch",
   hero_cta2: "See our services",
@@ -28,9 +28,9 @@ NA.translations['en-US'] = {
   intro3_b: "Complete environmental regularization for rural activity.",
 
   about_eyebrow: "About us",
-  about_title: 'Specialists in <em>regularizing</em> rural land.',
+  about_title: 'Specialists in <em>regularizing</em> rural and urban property.',
   about_badge: "Since 2015",
-  about_p1: "Since 2015, Norte Agro Projetos has regularized more than 6,000 rural properties in Goiás, from smallholdings to large farms and corporate groups. Every job is signed off by a licensed agronomist.",
+  about_p1: "Since 2015, Norte Agro Projetos has regularized more than 6,000 rural and urban properties in Goiás, from smallholdings to large farms and corporate groups. Every job is signed off by a licensed agronomist.",
   about_p2: "We handle it end to end: from georeferencing to environmental regularization, we turn complex processes and agency deadlines at INCRA, IBAMA and SEMAD into one organized front so the owner can run the operation without carrying the bureaucracy.",
   stat1_unit: "years",
   stat1_label: "of experience",
@@ -43,7 +43,7 @@ NA.translations['en-US'] = {
   mission_t: "Mission",
   mission_b: "Through specialized technical work, provide simple and objective support, shortening the path with assertive strategies.",
   vision_t: "Vision",
-  vision_b: "To lead the largest movement for rural land regularization in Brazil, inspiring others with efficient proposals for legalizing property.",
+  vision_b: "To lead the largest movement for rural and urban property regularization in Brazil, inspiring others with efficient proposals for legalizing property.",
   values_t: "Values",
   values_b: "Clear, precise communication, always in service of the producer.",
 
@@ -130,7 +130,7 @@ NA.translations['en-US'] = {
   contact_photo_mararosa: "Storefront of the Norte Agro Projetos office in Mara Rosa, on Rua Santa Catarina",
   contact_photo_open: "Enlarge the storefront photo",
 
-  footer_tagline: "Rural land regularization with technical precision and legal peace of mind.",
+  footer_tagline: "Rural and urban property regularization with technical precision and legal peace of mind.",
   footer_nav_title: "Navigation",
   footer_contact_title: "Contact",
   footer_follow_title: "Social media",
@@ -141,7 +141,7 @@ NA.translations['en-US'] = {
   aria_close: "Close",
 
   wa_title: "Chat on WhatsApp",
-  wa_greeting: "Hi! 👋 How can we help regularize your rural property?",
+  wa_greeting: "Hi! 👋 How can we help regularize your rural or urban property?",
   wa_cta: "Chat on WhatsApp",
   wa_prefill: "Hi! I found Norte Agro through the website and would like more information.",
   lang_switch_aria: "Select language",

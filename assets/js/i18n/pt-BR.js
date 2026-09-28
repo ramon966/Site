@@ -10,8 +10,8 @@ NA.translations['pt-BR'] = {
   nav_contact: "Contato",
 
   hero_eyebrow: "Norte Agro Projetos e Planejamentos Agroambientais",
-  hero_title: 'Especialistas em <em>regularização</em> de imóveis rurais.',
-  hero_body: "Regularização de imóveis rurais em Goiás. Sua terra sem risco de multa, embargo ou entrave.",
+  hero_title: 'O seu imóvel rural e urbano <em>100% regularizado</em>.',
+  hero_body: "Regularização de imóveis rurais e Urbanos. Sua terra sem risco de multa, embargo ou entrave.",
   hero_body2: "Georreferenciamento, CAR, licenciamento e outorga. Mais de 6.000 propriedades regularizadas desde 2015, do levantamento à documentação final.",
   hero_cta1: "Fale conosco",
   hero_cta2: "Conheça os serviços",
@@ -28,9 +28,9 @@ NA.translations['pt-BR'] = {
   intro3_b: "Regularização ambiental completa para a atividade rural.",
 
   about_eyebrow: "Quem somos",
-  about_title: 'Especialistas em <em>regularização</em> de imóveis rurais.',
+  about_title: 'Especialistas em <em>regularização</em> de imóveis rurais e urbanos.',
   about_badge: "Desde 2015",
-  about_p1: "Desde 2015, a Norte Agro Projetos já regularizou mais de 6.000 propriedades rurais em Goiás, de sítios a grandes fazendas e grupos empresariais. Todo trabalho sai sob responsabilidade técnica de agrônomo registrado.",
+  about_p1: "Desde 2015, a Norte Agro Projetos já regularizou mais de 6.000 propriedades rurais e urbanas em Goiás, de sítios a grandes fazendas e grupos empresariais. Todo trabalho sai sob responsabilidade técnica de agrônomo registrado.",
   about_p2: "Cuidamos de ponta a ponta: do georreferenciamento à regularização ambiental, traduzimos processos complexos e prazos de órgãos como INCRA, IBAMA e SEMAD em uma única frente organizada para o proprietário tocar a produção sem carregar a burocracia.",
   stat1_unit: "anos",
   stat1_label: "de experiência",
@@ -43,7 +43,7 @@ NA.translations['pt-BR'] = {
   mission_t: "Missão",
   mission_b: "Através de trabalhos técnicos especializados, auxiliar de forma simplificada e objetiva, encurtando o caminho com estratégias assertivas.",
   vision_t: "Visão",
-  vision_b: "Ser responsável pelo maior movimento de regularização de imóveis rurais do Brasil, inspirando com propostas eficientes na legalização de imóveis.",
+  vision_b: "Ser responsável pelo maior movimento de regularização de imóveis rurais e urbanos do Brasil, inspirando com propostas eficientes na legalização de imóveis.",
   values_t: "Valores",
   values_b: "Comunicação clara e precisa, sempre a serviço do produtor.",
 
@@ -130,7 +130,7 @@ NA.translations['pt-BR'] = {
   contact_photo_mararosa: "Fachada do escritório da Norte Agro Projetos em Mara Rosa, na Rua Santa Catarina",
   contact_photo_open: "Ampliar a foto da fachada",
 
-  footer_tagline: "Regularização de imóveis rurais com precisão técnica e tranquilidade jurídica.",
+  footer_tagline: "Regularização de imóveis rurais e urbanos com precisão técnica e tranquilidade jurídica.",
   footer_nav_title: "Navegação",
   footer_contact_title: "Contato",
   footer_follow_title: "Redes sociais",
@@ -141,7 +141,7 @@ NA.translations['pt-BR'] = {
   aria_close: "Fechar",
 
   wa_title: "Falar no WhatsApp",
-  wa_greeting: "Olá! 👋 Como podemos ajudar na regularização do seu imóvel rural?",
+  wa_greeting: "Olá! 👋 Como podemos ajudar na regularização do seu imóvel rural ou urbano?",
   wa_cta: "Fale no WhatsApp",
   wa_prefill: "Olá! Vim pelo site da Norte Agro e gostaria de mais informações.",
   lang_switch_aria: "Selecionar idioma",
