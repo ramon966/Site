@@ -6,6 +6,8 @@
 
 :root{
   --bg:#f3efe3; --bg-alt:#e9e2cd; --surface:#fffdf8; --surface-2:#ece5d2;
+  /* fundo das seções em faixa branca (Quem somos, Fundiária, Consultoria) */
+  --bg-white:#ffffff;
   --ink:#201e18; --ink-soft:#5a5546; --ink-faint:#948d76;
   --line:#d9d0b8; --dark:#ece5d2; --dark-2:#e3d9bd;
   --on-dark:#201e18; --on-dark-soft:#5a5546;
@@ -32,6 +34,7 @@
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --bg:#15130d; --bg-alt:#1c1912; --surface:#201d16; --surface-2:#262218;
+    --bg-white:#1c1912;
     --ink:#efe9d8; --ink-soft:#b3ab93; --ink-faint:#7d7660;
     --line:#37331f; --dark:#0d0c08; --dark-2:#090805;
     --on-dark:#efe9d8; --on-dark-soft:#a89f86;
@@ -50,6 +53,7 @@
 
 :root[data-theme="dark"]{
   --bg:#15130d; --bg-alt:#1c1912; --surface:#201d16; --surface-2:#262218;
+  --bg-white:#1c1912;
   --ink:#efe9d8; --ink-soft:#b3ab93; --ink-faint:#7d7660;
   --line:#37331f; --dark:#0d0c08; --dark-2:#090805;
   --on-dark:#efe9d8; --on-dark-soft:#a89f86;
