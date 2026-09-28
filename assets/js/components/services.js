@@ -41,14 +41,27 @@ NA.components.services = (function () {
       </div>
     </article>`;
 
-  const group = ({ id, title, body, cards }) => `
-    <section class="section" id="${id}">
-      <div class="container">
-        <div class="svc-group">
+  /* Título do grupo. Com `photo`, vira cartão: a foto em cima e o mesmo
+     título e texto numa faixa verde-escura embaixo. A foto é decorativa
+     (alt vazio): o título logo abaixo já diz do que se trata. */
+  const intro = ({ title, body, photo }) => photo ? `
+          <div class="svc-intro svc-intro--photo reveal">
+            <img class="svc-intro__img" src="${photo}" alt="" loading="lazy" decoding="async">
+            <div class="svc-intro__body">
+              <h2 class="title"${tHtml(title)}></h2>
+              <p class="lede"${t(body)}></p>
+            </div>
+          </div>` : `
           <div class="svc-intro reveal">
             <h2 class="title"${tHtml(title)}></h2>
             <p class="lede"${t(body)}></p>
-          </div>
+          </div>`;
+
+  const group = ({ id, cards, ...head }) => `
+    <section class="section" id="${id}">
+      <div class="container">
+        <div class="svc-group">
+          ${intro(head)}
 
           <div class="svc-cards">
             ${each(cards, card(spans(cards.length)))}

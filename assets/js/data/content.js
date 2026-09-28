@@ -71,6 +71,9 @@ NA.content = {
       id: 'ambiental',
       title: 'svc2_title',
       body: 'svc2_body',
+      /* opcional: com foto, o título do grupo vira um cartão (foto em cima,
+         título e texto numa faixa verde-escura embaixo) */
+      photo: 'assets/img/Ambiental.png',
       cards: [
         {
           icon: 'i-plate-landscape', title: 'a1_t', caption: 'a1_cap',

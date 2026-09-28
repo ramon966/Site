@@ -137,6 +137,19 @@
 }
 .svc-intro .lede{ margin-top:.9rem; font-size:.97rem; }
 
+/* Título em cartão (grupo com foto): foto em cima, faixa verde-escura com
+   título e texto embaixo, cantos retos. As cores são fixas, como no hero:
+   o texto é sempre claro sobre o verde, nos dois temas. */
+.svc-intro--photo{
+  border-right:none; padding-right:0; overflow:hidden;
+  background:rgb(47,56,27); color:#fff;
+}
+.svc-intro__img{ display:block; width:100%; aspect-ratio:4 / 3; object-fit:cover; }
+.svc-intro__body{ padding:1.3rem 1.3rem 1.5rem; }
+.svc-intro--photo .title{ color:#fff; }
+.svc-intro--photo .title em{ color:#dfe3c9; }
+.svc-intro--photo .lede{ color:rgba(255,255,255,.82); }
+
 /* Seis colunas de apoio: o --span de cada cartão (vem do HTML) diz quantas
    ele ocupa, o que dá fileiras de até três cartões — 5 cartões viram 3 + 2,
    com os dois de baixo mais largos, fechando a largura. */
@@ -191,6 +204,8 @@
   .svc-group{ grid-template-columns:1fr; gap:2rem; }
   .svc-intro{ border-right:none; padding-right:0; }
   .svc-intro .lede{ max-width:60ch; }
+  /* em uma coluna só o cartão não estica na largura toda */
+  .svc-intro--photo{ max-width:420px; }
 }
 
 @media (max-width:960px){
