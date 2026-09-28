@@ -109,8 +109,11 @@
   .stat{ padding:1.25rem 1rem; }
 }
 
-/* missão, visão e valores: três colunas soltas no fundo da página */
-.purpose{ margin-top:4.5rem; }
+/* missão, visão e valores: três colunas soltas numa faixa com o fundo da
+   página (bege), de ponta a ponta. A faixa leva o espaçamento de baixo da
+   seção, para o bege ir até a divisa com a seção seguinte. */
+#quem-somos{ padding-bottom:0; }
+.purpose-band{ background:var(--bg); padding-block:clamp(4.25rem,8vw,7rem); }
 .purpose-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2.5rem; }
 .purpose-item .ic-wrap{
   width:40px; height:40px; border:1px solid rgba(var(--inverse-rgb),.25); border-radius:50%;
@@ -212,7 +215,6 @@
      espaçamento pensado para o desktop deixa a rolagem interminável */
   .hero{ padding-top:calc(var(--header-h) + 2.5rem); padding-bottom:4.5rem; }
   .intro-grid{ gap:1.75rem; margin-top:2rem; }
-  .purpose{ margin-top:2.5rem; }
   .purpose-grid{ gap:2rem; }
   .svc-group{ gap:1.5rem; }
   /* no celular cada cartão ocupa a linha toda, independente do --span */

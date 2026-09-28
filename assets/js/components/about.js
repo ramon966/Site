@@ -56,10 +56,14 @@ NA.components.about = (function () {
           </div>
         </div>
 
-        <div class="container">
-          <div class="purpose reveal">
-            <div class="purpose-grid">
-              ${each(NA.content.purpose, purposeItem)}
+        <!-- missão, visão e valores: faixa de ponta a ponta no fundo da
+             página (bege), enquanto o resto de "Quem somos" é branco -->
+        <div class="purpose-band">
+          <div class="container">
+            <div class="purpose reveal">
+              <div class="purpose-grid">
+                ${each(NA.content.purpose, purposeItem)}
+              </div>
             </div>
           </div>
         </div>
