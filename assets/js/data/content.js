@@ -43,6 +43,7 @@ NA.content = {
       id: 'fundiaria',
       title: 'svc1_title',
       body: 'svc1_body',
+      photo: 'assets/img/Fundiaria.png',
       cards: [
         {
           icon: 'i-plate-landscape', title: 'f3_t', caption: 'f3_cap',
@@ -93,6 +94,8 @@ NA.content = {
       id: 'consultoria',
       title: 'svc3_title',
       body: 'svc3_body',
+      /* arquivo "Consultoria Técnica.png": espaço e acento codificados */
+      photo: 'assets/img/Consultoria%20T%C3%A9cnica.png',
       cards: [
         {
           icon: 'i-plate-person', title: 'c1_t', caption: 'c1_cap',
