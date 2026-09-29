@@ -11,18 +11,25 @@ header.site{
   transition:background-color .3s ease, border-color .3s ease;
 }
 
-/* No topo da página o cabeçalho fica transparente e a foto do hero aparece
-   por trás dele; ao rolar, volta ao fundo sólido. A classe .is-top vem de
-   modules/nav.js, que a tira também quando o menu do celular está aberto.
+/* O cabeçalho fica sempre sobre a foto do hero. No topo da página
+   (.is-top) ele é transparente e a foto da seção aparece por trás; ao
+   rolar, a mesma foto vira o fundo do próprio cabeçalho, escurecida para o
+   texto continuar legível. As classes vêm de modules/nav.js, que tira as
+   duas quando o menu do celular está aberto (fundo sólido do tema, porque o
+   painel do menu herda estas cores).
    Sobre a foto o texto é sempre claro, nos dois temas: as variáveis de cor
    são redefinidas só dentro do cabeçalho e o logo usa a versão clara. */
-header.site.is-top{
-  background-color:transparent; border-bottom-color:rgba(255,255,255,.18);
+header.site.on-photo{
+  border-bottom-color:rgba(255,255,255,.18);
   --on-dark:#fff; --on-dark-soft:rgba(255,255,255,.85); --inverse-rgb:255,255,255;
+  background:
+    linear-gradient(rgba(14,18,9,.55), rgba(14,18,9,.55)),
+    url('../img/hero-principal.webp') 30% 35% / cover no-repeat;
 }
-header.site.is-top nav.primary a.active::after{ background:#dfe3c9; }
-header.site.is-top .brand__logo--light{ display:none; }
-header.site.is-top .brand__logo--dark{ display:block; }
+header.site.on-photo.is-top{ background:transparent; }
+header.site.on-photo nav.primary a.active::after{ background:#dfe3c9; }
+header.site.on-photo .brand__logo--light{ display:none; }
+header.site.on-photo .brand__logo--dark{ display:block; }
 /* Três faixas: marca à esquerda, navegação no centro exato, ferramentas à
    direita. As colunas laterais são 1fr cada — como têm sempre a mesma
    largura, o centro da navegação coincide com o centro da página,

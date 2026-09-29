@@ -75,12 +75,14 @@ NA.nav = (function () {
   }
 
   /* Cabeçalho transparente sobre o hero enquanto a página está no topo;
-     sólido depois de rolar ou com o menu do celular aberto. */
+     depois de rolar, a foto do hero vira o fundo do próprio cabeçalho
+     (.on-photo). Com o menu do celular aberto, fundo sólido do tema. */
   function updateHeader() {
     const header = document.querySelector('header.site');
     const nav = document.getElementById('primaryNav');
     if (!header) return;
     const menuOpen = nav && nav.classList.contains('open');
+    header.classList.toggle('on-photo', !menuOpen);
     header.classList.toggle('is-top', window.scrollY < 10 && !menuOpen);
   }
 
