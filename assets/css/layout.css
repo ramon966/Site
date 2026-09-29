@@ -11,20 +11,46 @@ header.site{
   transition:background-color .3s ease, border-color .3s ease;
 }
 
-/* O cabeçalho fica sempre sobre a foto do hero. No topo da página
-   (.is-top) ele é transparente e a foto da seção aparece por trás; ao
-   rolar, a mesma foto vira o fundo do próprio cabeçalho, escurecida para o
-   texto continuar legível. As classes vêm de modules/nav.js, que tira as
-   duas quando o menu do celular está aberto (fundo sólido do tema, porque o
+/* O cabeçalho tem sempre a aparência do topo da página. No topo (.is-top)
+   ele é transparente e o hero aparece por trás; ao rolar, ele reproduz a
+   faixa de cima do hero: mesma foto, no mesmo tamanho e posição, com os
+   mesmos degradês de sections.css (.hero::before). Tamanho e posição da
+   foto são medidos no hero por modules/nav.js (--hero-bg-size,
+   --hero-bg-pos, --hero-h). As classes vêm de nav.js, que tira as duas
+   quando o menu do celular está aberto (fundo sólido do tema, porque o
    painel do menu herda estas cores).
    Sobre a foto o texto é sempre claro, nos dois temas: as variáveis de cor
-   são redefinidas só dentro do cabeçalho e o logo usa a versão clara. */
+   são redefinidas só dentro do cabeçalho e o logo usa a versão clara.
+   Mudando os degradês do hero, mude aqui também. */
 header.site.on-photo{
+  --hero-green:92,107,53; --hero-green-deep:47,56,27;
   border-bottom-color:rgba(255,255,255,.18);
   --on-dark:#fff; --on-dark-soft:rgba(255,255,255,.85); --inverse-rgb:255,255,255;
-  background:
-    linear-gradient(rgba(14,18,9,.55), rgba(14,18,9,.55)),
-    url('../img/hero-principal.webp') 30% 35% / cover no-repeat;
+  background-color:rgb(var(--hero-green-deep));
+  background-image:
+    linear-gradient(180deg, rgba(14,18,9,.55) 0, rgba(14,18,9,0) calc(var(--header-h) + 5rem)),
+    linear-gradient(90deg,
+      rgba(var(--hero-green),0) 0%,
+      rgba(var(--hero-green),.25) 28%,
+      rgba(var(--hero-green),.82) 48%,
+      rgba(var(--hero-green-deep),.96) 70%,
+      rgb(var(--hero-green-deep)) 100%),
+    url('../img/hero-principal.webp');
+  background-size:auto, auto, var(--hero-bg-size, cover);
+  background-position:0 0, 0 0, var(--hero-bg-pos, 30% center);
+  background-repeat:no-repeat;
+}
+@media (max-width:960px){
+  header.site.on-photo{
+    background-image:
+      linear-gradient(180deg,
+        rgba(var(--hero-green),.35) 0,
+        rgba(var(--hero-green),.8) calc(var(--hero-h, 600px) * .4),
+        rgba(var(--hero-green-deep),.95) var(--hero-h, 600px)),
+      url('../img/hero-principal.webp');
+    background-size:auto, var(--hero-bg-size, cover);
+    background-position:0 0, var(--hero-bg-pos, 30% center);
+  }
 }
 header.site.on-photo.is-top{ background:transparent; }
 header.site.on-photo nav.primary a.active::after{ background:#dfe3c9; }
@@ -85,7 +111,9 @@ nav.primary a.active::after{ content:""; position:absolute; left:0; right:0; bot
 .menu-toggle{ display:none; }
 
 /* ---------- rodapé ---------- */
-footer.site{ background:var(--dark-2); color:var(--on-dark-soft); padding-top:4rem; }
+/* a seção Contato, logo acima, também é branco gelo: a linha no alto separa
+   as duas */
+footer.site{ background:var(--footer-bg); color:var(--on-dark-soft); padding-top:4rem; border-top:1px solid rgba(var(--inverse-rgb),.08); }
 .footer-grid{ display:grid; grid-template-columns:1.3fr .8fr .9fr .9fr; gap:2.5rem; padding-bottom:3rem; border-bottom:1px solid rgba(var(--inverse-rgb),.08); }
 .footer-grid .brand{ margin-bottom:1rem; }
 .footer-grid p{ font-size:.9rem; line-height:1.6; max-width:32ch; }

@@ -86,9 +86,35 @@ NA.nav = (function () {
     header.classList.toggle('is-top', window.scrollY < 10 && !menuOpen);
   }
 
+  /* Mede a foto do hero (object-fit:cover, object-position:30% center) e
+     passa tamanho e posição ao cabeçalho, para que o fundo dele depois da
+     rolagem seja exatamente a faixa de cima do hero. */
+  function syncHeaderPhoto() {
+    const header = document.querySelector('header.site');
+    const hero = document.querySelector('.hero');
+    const img = hero && hero.querySelector('.hero__bg');
+    if (!header || !img || !img.naturalWidth) return;
+    const w = hero.clientWidth;
+    const h = hero.clientHeight;
+    const scale = Math.max(w / img.naturalWidth, h / img.naturalHeight);
+    const bw = img.naturalWidth * scale;
+    const bh = img.naturalHeight * scale;
+    header.style.setProperty('--hero-bg-size', `${bw}px ${bh}px`);
+    header.style.setProperty('--hero-bg-pos', `${(w - bw) * 0.3}px ${(h - bh) * 0.5}px`);
+    header.style.setProperty('--hero-h', `${h}px`);
+  }
+
   function initHeaderScroll() {
     updateHeader();
     window.addEventListener('scroll', updateHeader, { passive: true });
+
+    const img = document.querySelector('.hero .hero__bg');
+    if (img && !img.complete) img.addEventListener('load', syncHeaderPhoto, { once: true });
+    syncHeaderPhoto();
+    /* a altura do hero muda com a janela, o idioma e o carregamento das fontes */
+    const hero = document.querySelector('.hero');
+    if (hero && 'ResizeObserver' in window) new ResizeObserver(syncHeaderPhoto).observe(hero);
+    else window.addEventListener('resize', syncHeaderPhoto, { passive: true });
   }
 
   function init() {
