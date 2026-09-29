@@ -8,10 +8,9 @@ NA.theme = (function () {
   const STORAGE_KEY = 'na_theme';
   let sun, moon;
 
-  /* tema em vigor: o escolhido pelo usuário ou, na ausência dele, o do sistema */
-  const current = () =>
-    document.documentElement.getAttribute('data-theme') ||
-    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  /* tema em vigor: o escolhido pelo usuário ou, na ausência dele, o claro
+     (o tema do sistema é ignorado de propósito) */
+  const current = () => document.documentElement.getAttribute('data-theme') || 'light';
 
   function syncIcon() {
     const dark = current() === 'dark';

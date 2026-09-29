@@ -1,7 +1,8 @@
 /* ============================================================
    tokens.css — variáveis de design (cores, tipografia, sombras)
-   Tema claro no :root, tema escuro por preferência do sistema
-   e por escolha explícita ([data-theme]).
+   Tema claro no :root, sempre o padrão (mesmo que o sistema do
+   visitante esteja no modo escuro). O escuro só entra quando a pessoa
+   clica no botão de tema ([data-theme="dark"]).
    ============================================================ */
 
 :root{
@@ -31,21 +32,6 @@
      Para voltar à monoespaçada, troque só esta linha por:
      'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace */
   --font-label:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-}
-
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#15130d; --bg-alt:#1c1912; --surface:#201d16; --surface-2:#262218;
-    --bg-white:#1c1912;
-    --ink:#efe9d8; --ink-soft:#b3ab93; --ink-faint:#7d7660;
-    --line:#37331f; --dark:#0d0c08; --dark-2:#090805;
-    --footer-bg:#090805;
-    --on-dark:#efe9d8; --on-dark-soft:#a89f86;
-    --inverse-rgb:255,255,255;
-    --accent:#9fb463; --accent-strong:#c3d189; --accent-soft:#2b3320;
-    --clay:#c9835e;
-    --shadow:0 24px 60px -30px rgba(0,0,0,.65);
-  }
 }
 
 /* No celular o cabeçalho é mais baixo, sobrando tela para o conteúdo.
