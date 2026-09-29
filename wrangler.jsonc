@@ -1,0 +1,13 @@
+// Configuração de deploy na Cloudflare (Workers, só arquivos estáticos).
+// A cada push na branch main, a Cloudflare publica a raiz deste repositório.
+{
+  "name": "norteagroprojetos",
+  "compatibility_date": "2026-09-29",
+  "assets": {
+    "directory": "."
+  },
+  "routes": [
+    { "pattern": "norteagroprojetos.com.br", "custom_domain": true },
+    { "pattern": "www.norteagroprojetos.com.br", "custom_domain": true }
+  ]
+}

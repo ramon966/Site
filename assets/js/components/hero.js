@@ -10,7 +10,7 @@ NA.components.hero = (function () {
   return function hero() {
     return `
       <section class="hero" id="inicio">
-        <img class="hero__bg" src="assets/img/Primeira%20FOTO.png" alt="" fetchpriority="high">
+        <img class="hero__bg" src="assets/img/hero-principal.webp" alt="" fetchpriority="high">
         <div class="container">
           <div class="hero__copy reveal">
             <h1${tHtml('hero_title')}></h1>

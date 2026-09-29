@@ -43,7 +43,7 @@ NA.content = {
       id: 'fundiaria',
       title: 'svc1_title',
       body: 'svc1_body',
-      photo: 'assets/img/Fundiaria.png',
+      photo: 'assets/img/servico-fundiaria.webp',
       cards: [
         {
           icon: 'i-plate-landscape', title: 'f3_t', caption: 'f3_cap',
@@ -74,7 +74,7 @@ NA.content = {
       body: 'svc2_body',
       /* opcional: com foto, o título do grupo vira um cartão (foto em cima,
          título e texto numa faixa verde-escura embaixo) */
-      photo: 'assets/img/Ambiental.png',
+      photo: 'assets/img/servico-ambiental.webp',
       cards: [
         {
           icon: 'i-plate-landscape', title: 'a1_t', caption: 'a1_cap',
@@ -94,8 +94,7 @@ NA.content = {
       id: 'consultoria',
       title: 'svc3_title',
       body: 'svc3_body',
-      /* arquivo "Consultoria Técnica.png": espaço e acento codificados */
-      photo: 'assets/img/Consultoria%20T%C3%A9cnica.png',
+      photo: 'assets/img/servico-consultoria-tecnica.webp',
       cards: [
         {
           icon: 'i-plate-person', title: 'c1_t', caption: 'c1_cap',
