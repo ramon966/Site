@@ -5,7 +5,8 @@
    ============================================================ */
 
 :root{
-  --bg:#f3efe3; --bg-alt:#e9e2cd; --surface:#fffdf8; --surface-2:#ece5d2;
+  /* --bg: branco gelo (antes #f3efe3, bege) */
+  --bg:#f4f6f7; --bg-alt:#e9e2cd; --surface:#fffdf8; --surface-2:#ece5d2;
   /* fundo das seções em faixa branca (Quem somos, Fundiária, Consultoria) */
   --bg-white:#ffffff;
   --ink:#201e18; --ink-soft:#5a5546; --ink-faint:#948d76;
